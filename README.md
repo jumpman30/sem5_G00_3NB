@@ -14,11 +14,11 @@ Maybe we can transform this into something useful, a more advanced example, just
 We use `node` version `14.21.2`
 
 ```
-nvm install 14.21.1
+nvm install 20
 ```
 
 ```
-nvm use 14
+nvm use 20
 ```
 
 The first time, you will need to run
