@@ -1,5 +1,4 @@
-import { expressjwt, Params } from 'express-jwt';
-//const { jwt } = require('express-jwt');
+import { expressjwt } from 'express-jwt';
 import config from '../../../config';
 
 /**
