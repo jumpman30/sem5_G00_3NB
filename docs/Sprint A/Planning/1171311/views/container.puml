@@ -1,0 +1,31 @@
+@startuml
+' !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+' uncomment the following line and comment the first to use locally
+!include C4_Container.puml
+
+SHOW_PERSON_OUTLINE()
+AddElementTag("backendContainer", $fontColor=$ELEMENT_FONT_COLOR, $bgColor="#335DA5", $shape=EightSidedShape(), $legendText="backend container\neight sided")
+AddRelTag("async", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DashedLine())
+AddRelTag("sync/async", $textColor=$ARROW_FONT_COLOR, $lineColor=$ARROW_COLOR, $lineStyle=DottedLine())
+
+title Container diagram for RobDroneGo
+
+Person(Fmanager, "Gestor de frota", "Gere os dados dos robots e drones e tipos de tarefas.")
+Person(Cmanager, "Gestor de campus", " Gere os dados dos percursos e mapas.")
+Person(user, "Utente (aluno, docente, funcionário)", "Pede a execução de tarefas.")
+
+System_Boundary(c1, "RobDroneGo") {
+    Container(mgf, "Módulo Gestão de Frota", "Java, Spring MVC", "Delivers the static content and the Internet banking SPA")
+    Container(mgc, "Módulo Gestão de Campus", "Java, Spring MVC", "Delivers the static content and the Internet banking SPA")
+    Container(mgt, "Módulo Gestão de Tarefa", "Java, Spring MVC", "Delivers the static content and the Internet banking SPA")
+
+
+}
+
+Rel_Down(Fmanager, mgf, "Uses", "HTTPS")
+Rel_Down(Cmanager, mgc, "Uses", "HTTPS")
+Rel_Down(user, mgt, "Uses", "HTTPS")
+
+
+SHOW_LEGEND()
+@enduml

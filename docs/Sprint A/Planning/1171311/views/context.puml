@@ -1,0 +1,36 @@
+@startuml
+' !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+' uncomment the following line and comment the first to use locally
+!include C4_Context.puml
+
+'LAYOUT_TOP_DOWN()
+'LAYOUT_AS_SKETCH()
+
+
+title System Landscape diagram for RobDroneGo
+
+Enterprise_Boundary(c0, "RobDrones") {
+
+    System(RobDroneGo_system, "RobDroneGo", "sistema de execução de tarefas de uma frota de robots e drones")
+
+}
+
+System_Ext(sms_system, "SMS system", "External system for sending text messages.")
+
+
+Person(admin, "Administrador de sistema", "Gere os utilizadores e as suas permissões.")
+Person(Fmanager, "Gestor de frota", "Gere os dados dos robots e drones e tipos de tarefas.")
+Person(Cmanager, "Gestor de campus", " Gere os dados dos percursos e mapas.")
+Person(user, "Utente (aluno, docente, funcionário)", "Pede a execução de tarefas.")
+
+
+Rel_Down(admin, RobDroneGo_system, "Uses")
+Rel_Down(Fmanager, RobDroneGo_system, "Uses")
+Rel_Down(Cmanager, RobDroneGo_system, "Uses")
+Rel_Down(user, RobDroneGo_system, "Uses")
+
+Rel_Back(Fmanager, sms_system, "Sends sms to")
+Rel_Neighbor(RobDroneGo_system, sms_system, "Uses")
+
+SHOW_LEGEND()
+@enduml

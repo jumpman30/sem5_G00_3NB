@@ -1,0 +1,43 @@
+@startuml
+'!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+' uncomment the following line and comment the first to use locally
+ !include C4_Component.puml
+
+
+title Component diagram for RobDroneGo - Módulo Gestão Tarefas
+
+
+Container_Boundary(mgt, "Módulo Gestão Tarefas") {
+    Container_Boundary(framework, "Framework and Drivers Layer") {
+        Component(prs, "Persistence")
+        Component(route, "Route")
+    }
+    Container_Boundary(interface, "Interface Adapters Layer") {
+        Component(cnt, "MGT Controller", "Rest Controller", "Fornece todas as funcionalidades para gestão de tarefas.")
+        Component(repo, "Repository", "Spring Bean", "A facade onto the mainframe banking system.")
+    }
+    Container_Boundary(business, "Aplication Business Rules") {
+        Component(srv, "MGT Service", "Rest Controller", "Provides customers with a summary of their bank accounts")
+    }
+    Container_Boundary(enterprise, "Enterprise Business Rules") {
+        Component(domain, "Domain Component", "Spring Bean", "Provides functionality related to singing in, changing passwords, etc.")
+    }
+    Component(dm, "Data Model")
+    Component(dto, "DTO")
+
+    Rel_Down(route, cnt, "Controller API")
+    Rel_Down(cnt, srv, "Service API")
+    Rel_Down(cnt, dto, "DTO API")
+    Rel_Down(dto, srv, "DTO API")
+    Rel_Down(srv, domain, "Model API")
+    Rel_Up(srv, repo, "Repo API")
+    Rel_Down(repo, domain, "Model API")
+    Rel_Up(repo, prs, "Persistence API")
+    Rel_Up(repo, dm, "Data Model API")
+    Rel_Up(dm, prs, "Data Model API")
+}
+
+
+
+SHOW_LEGEND()
+@enduml
