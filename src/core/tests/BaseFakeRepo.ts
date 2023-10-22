@@ -1,11 +1,12 @@
+
 export abstract class BaseFakeRepo<T> {
   protected _items: T[];
 
-  constructor() {
+  constructor () {
     this._items = [];
   }
 
-  public addFakeItem(t: T): void {
+  public addFakeItem (t: T): void {
     let found = false;
     for (let item of this._items) {
       if (this.compareFakeItems(item, t)) {
@@ -18,9 +19,10 @@ export abstract class BaseFakeRepo<T> {
     }
   }
 
-  public removeFakeItem(t: T): void {
-    this._items = this._items.filter(item => !this.compareFakeItems(item, t));
+  public removeFakeItem (t: T): void {
+    this._items = this._items
+      .filter((item) => !this.compareFakeItems(item, t));
   }
 
-  abstract compareFakeItems(a: T, b: T): boolean;
+  abstract compareFakeItems (a: T, b: T): boolean;
 }
