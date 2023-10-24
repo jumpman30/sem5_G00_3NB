@@ -1,16 +1,14 @@
 # UC 170 - Listar Edificios
 
 ## 1. Requirements
-The **Campus Manager** starts the process of creating a new building by providing the system with the following information:
-* Building name
-* Building Code
+
 
 #### Preconditions
 * Campus Manager is authenticated.
 * The building must exist in the system.
 
 #### Postconditions
-* The information about the building is stored in the system.
+* The information about the buildings is returned to the **Campus Manager**
 
 ## 2. Analysis
 
@@ -23,7 +21,7 @@ The **Campus Manager** starts the process of creating a new building by providin
 ### 3.1 Information
 
 ### 3.2 Views
-
+![VP-US170](../ProcessViews/VP-US170-ListAllBuildings.svg)
 ### 3.3 Patterns/Libs
 
 ## Tests

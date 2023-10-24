@@ -1,16 +1,13 @@
 # UC 190 - Criar Piso
 
 ## 1. Requirements
-The **Campus Manager** starts the process of creating a new building by providing the system with the following information:
-* Building name
-* Building Code
 
 #### Preconditions
 * Campus Manager is authenticated.
 * The building must exist in the system.
 
 #### Postconditions
-* The information about the building is stored in the system.
+* The information about the floor is stored in the system.
 
 ## 2. Analysis
 
