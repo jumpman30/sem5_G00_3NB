@@ -1,9 +1,7 @@
 # UC 390 - Pesquisar Robots
 
 ## 1. Requirements
-The **Campus Manager** starts the process of creating a new building by providing the system with the following information:
-* Building name
-* Building Code
+
 
 #### Preconditions
 * Campus Manager is authenticated.

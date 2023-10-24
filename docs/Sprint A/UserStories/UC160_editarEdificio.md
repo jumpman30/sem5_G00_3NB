@@ -1,9 +1,7 @@
 # UC 160 - Editar Edificio
 
 ## 1. Requirements
-The **Campus Manager** starts the process of creating a new building by providing the system with the following information:
-* Building name
-* Building Code
+
 
 #### Preconditions
 * Campus Manager is authenticated.
@@ -23,7 +21,7 @@ The **Campus Manager** starts the process of creating a new building by providin
 ### 3.1 Information
 
 ### 3.2 Views
-
+![VP-US160](../ProcessViews/VP-US160-EditBuilding.svg)
 ### 3.3 Patterns/Libs
 
 ## Tests
