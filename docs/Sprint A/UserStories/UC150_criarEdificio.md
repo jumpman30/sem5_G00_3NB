@@ -14,6 +14,9 @@ The **Campus Manager** starts the process of creating a new building by providin
 ## 2. Analysis
 
 ### 2.1. Information
+[Source](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=25047#p31684)
+* **Building code:** mandatory, max 5 chars (leters, numbers and space)
+* **Building name:** optional, max 50 alfanumeric chars
 
 ### 2.2. Analysis
 
@@ -22,7 +25,7 @@ The **Campus Manager** starts the process of creating a new building by providin
 ### 3.1 Information
 
 ### 3.2 Views
-
+![VP-US150](../ProcessViews/VP-US150-CreateBuilding.svg)
 ### 3.3 Patterns/Libs
 
 ## Tests
