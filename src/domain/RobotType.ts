@@ -7,7 +7,7 @@ import {RobotTypeId} from "./RobotTypeId";
 import {Guard, IGuardResult} from "../core/logic/Guard";
 import { TaskTypes } from "./TaskTypes";
 
-interface RobotTypeProps {
+export interface RobotTypeProps {
     robotType: string;
     brand: string;
     model: string;
@@ -61,18 +61,15 @@ export class RobotType extends Entity<RobotTypeProps> {
             {argument: brand, argumentName: 'brand'},
             {argument: model, argumentName: 'model'},
             {argument: robotType, argumentName: 'robotType'},
-            {argument: taskTypes, argumentName: 'taskTypes'},
         ];
 
-        const guardNullResult = Guard.againstNullOrUndefinedBulk(guardedProps);
+        const guardNullResult = Guard.againstNullOrUndefinedOrEmptyBulk(guardedProps);
 
         if (!guardNullResult.succeeded) {
             return Result.fail<RobotType>(guardNullResult.message)
         } 
 
         const taskTypesValidation = this.validateTaskTypes(taskTypes);
-        console.log("here?")
-        console.log(taskTypesValidation)
         if (!taskTypesValidation.succeeded) {
             return Result.fail<RobotType>(taskTypesValidation.message)
         } 
@@ -81,7 +78,7 @@ export class RobotType extends Entity<RobotTypeProps> {
             return Result.fail<RobotType>("Robot type should have at max 25 characteres.(alphanumeric only)")
         }
 
-        if(brand.length > 50 || model.length > 100){
+        if((brand.length > 50 || brand.length === 0) || (model.length > 100 || model.length===0)){
             return Result.fail<RobotType>("Robot brand and model should have at max 50 and 100 characteres respectively.")
         }
 
@@ -94,7 +91,7 @@ export class RobotType extends Entity<RobotTypeProps> {
     }
 
     private static validateTaskTypes(taskTypes: string[]): IGuardResult {
-        if(taskTypes.length > 2 || taskTypes.length === 0){
+        if(!taskTypes || taskTypes.length > 2 || taskTypes.length === 0){
             return {
                 succeeded: false,
                 message: `Robot type should have at least 1 and at most 2 task types`,
