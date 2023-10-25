@@ -24,7 +24,7 @@ export default class RobotTypeRepo implements IRobotTypeRepo {
   }
 
   public async exists(robotType: RobotType): Promise<boolean> {
-    const query = { brand: robotType.brand, model: robotType.model, robotType: robotType.robotType };
+    const query = { robotType: robotType.robotType };
     console.log(query)
     const RobotTypeDocument = await this.RobotTypeSchema.findOne(
       query as FilterQuery<IRobotTypePersistence & Document>,
@@ -40,7 +40,7 @@ export default class RobotTypeRepo implements IRobotTypeRepo {
     try {
       if (RobotTypeDocument === null) {
         const rawRobotType: any = RobotTypeMap.toPersistence(robotType);
-
+        console.log(rawRobotType)
         const RobotTypeCreated = await this.RobotTypeSchema.create(rawRobotType);
 
         return RobotTypeMap.toDomain(RobotTypeCreated);

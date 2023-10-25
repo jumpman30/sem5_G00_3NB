@@ -4,12 +4,14 @@ import {UniqueEntityID} from "../core/domain/UniqueEntityID";
 import {Result} from "../core/logic/Result";
 import {RobotTypeId} from "./RobotTypeId";
 
-import {Guard} from "../core/logic/Guard";
+import {Guard, IGuardResult} from "../core/logic/Guard";
+import { TaskTypes } from "./TaskTypes";
 
 interface RobotTypeProps {
+    robotType: string;
     brand: string;
     model: string;
-    robotType: string;
+    taskTypes: string []
 }
 
 export class RobotType extends Entity<RobotTypeProps> {
@@ -48,13 +50,18 @@ export class RobotType extends Entity<RobotTypeProps> {
     set robotType(value: string) {
         this.props.robotType = value;
     }
+    
+    get taskTypes(): string [] {
+        return this.props.taskTypes;
+    }
 
     public static create(props: RobotTypeProps, id?: UniqueEntityID): Result<RobotType> {
-        const { brand, model, robotType } = props;
+        const { brand, model, robotType, taskTypes } = props;
         const guardedProps = [
             {argument: brand, argumentName: 'brand'},
             {argument: model, argumentName: 'model'},
             {argument: robotType, argumentName: 'robotType'},
+            {argument: taskTypes, argumentName: 'taskTypes'},
         ];
 
         const guardNullResult = Guard.againstNullOrUndefinedBulk(guardedProps);
@@ -62,7 +69,14 @@ export class RobotType extends Entity<RobotTypeProps> {
         if (!guardNullResult.succeeded) {
             return Result.fail<RobotType>(guardNullResult.message)
         } 
-        
+
+        const taskTypesValidation = this.validateTaskTypes(taskTypes);
+        console.log("here?")
+        console.log(taskTypesValidation)
+        if (!taskTypesValidation.succeeded) {
+            return Result.fail<RobotType>(taskTypesValidation.message)
+        } 
+
         if(!this.isAlphanumeric(robotType) || robotType.length > 25){
             return Result.fail<RobotType>("Robot type should have at max 25 characteres.(alphanumeric only)")
         }
@@ -75,7 +89,27 @@ export class RobotType extends Entity<RobotTypeProps> {
         return Result.ok<RobotType>(truck)
     }
 
-    private static isAlphanumeric(str) {
+    private static isAlphanumeric(str: string): boolean {
         return /^[A-Za-z0-9\s]*$/.test(str);
-      }
+    }
+
+    private static validateTaskTypes(taskTypes: string[]): IGuardResult {
+        if(taskTypes.length > 2 || taskTypes.length === 0){
+            return {
+                succeeded: false,
+                message: `Robot type should have at least 1 and at most 2 task types`,
+              };
+        }
+        for (const taskType of taskTypes) {
+            if (!Object.values(TaskTypes).includes(taskType)) {
+                return {
+                    succeeded: false,
+                    message: `Robot type ${taskType} is not recognized as a valid task type, please add a PickupAndDelivery and/or a Surveillance type.`,
+                  };
+            }
+        }
+        return {
+            succeeded: true,
+          };
+    }
 }

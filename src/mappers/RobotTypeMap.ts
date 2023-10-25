@@ -15,7 +15,8 @@ export class RobotTypeMap extends Mapper<RobotType> {
       id: robotType.robotTypeId.toString(),
       model: robotType.model,
       brand: robotType.brand,
-      robotType: robotType.robotType
+      robotType: robotType.robotType,
+      taskTypes: robotType.taskTypes
     } as IRobotTypeDto;
   }
 
@@ -32,7 +33,8 @@ export class RobotTypeMap extends Mapper<RobotType> {
       domainId: robotType.robotTypeId.toString(),
       model: robotType.model,
       brand: robotType.brand,
-      robotType: robotType.robotType
+      robotType: robotType.robotType,
+      taskTypes: robotType.taskTypes
     };
   }
 }
