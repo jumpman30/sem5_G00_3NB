@@ -42,6 +42,7 @@
 ### 3.1 Information
 
 ### 3.2 Views
+![VP-US350](./UC350-ProcessView.svg)
 
 ### 3.3 Patterns/Libs
 
