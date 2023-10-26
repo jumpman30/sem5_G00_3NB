@@ -3,7 +3,7 @@ import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 import { Result } from '../core/logic/Result';
 import { UserId } from './userId';
 import { UserEmail } from './userEmail';
-import { Role } from '../domain/role';
+import { Role } from './role';
 import { UserPassword } from './userPassword';
 import { Guard } from '../core/logic/Guard';
 

@@ -155,6 +155,7 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
+    "^.+\\.jsx?$": "babel-jest",
     '^.+\\.ts?$': 'ts-jest',
     '^.+\\.(js|jsx)$': 'babel-jest',
   },

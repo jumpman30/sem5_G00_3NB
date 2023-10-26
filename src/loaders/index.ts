@@ -15,6 +15,11 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/userSchema',
   };
 
+  const roomSchema = {
+    name: 'roomSchema',
+    schema: '../persistence/schemas/roomSchema',
+  };
+
   const roleSchema = {
     // compare with the approach followed in repos and services
     name: 'roleSchema',
@@ -26,7 +31,7 @@ export default async ({ expressApp }) => {
     name: 'robotSchema',
     schema: '../persistence/schemas/robotSchema',
   }
-  
+
   const robotTypeSchema = {
     name: 'RobotTypeSchema',
     schema: '../persistence/schemas/robotTypeSchema',
@@ -35,6 +40,11 @@ export default async ({ expressApp }) => {
   const roleController = {
     name: config.controllers.role.name,
     path: config.controllers.role.path,
+  };
+
+  const roomController = {
+    name: config.controllers.room.name,
+    path: config.controllers.room.path,
   };
 
   const robotController = {
@@ -57,16 +67,26 @@ export default async ({ expressApp }) => {
     path: config.repos.user.path,
   };
 
+  const roomRepo = {
+    name: config.repos.room.name,
+    path: config.repos.room.path,
+  };
+
   const roleService = {
     name: config.services.role.name,
     path: config.services.role.path,
+  };
+
+  const roomService = {
+    name: config.services.room.name,
+    path: config.services.room.path,
   };
 
   const robotService = {
     name: config.services.robot.name,
     path: config.services.robot.path,
   }
-  
+
   const robotTypeController = {
     name: config.controllers.robotType.name,
     path: config.controllers.robotType.path,
@@ -84,12 +104,11 @@ export default async ({ expressApp }) => {
 
   await dependencyInjectorLoader({
     mongoConnection,
-    schemas: [userSchema, roleSchema, robotSchema, robotTypeSchema],
-    controllers: [roleController, robotController, robotTypeController],
-    repos: [roleRepo, userRepo, robotRepo, robotTypeRepo],
-    services: [roleService, robotService, robotTypeService],
+    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema],
+    controllers: [roleController, roomController, robotController, robotTypeController],
+    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo],
+    services: [roleService, roomService, robotService, robotTypeService]
   });
-  
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
 
   await expressLoader({ app: expressApp });

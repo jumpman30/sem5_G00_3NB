@@ -30,7 +30,7 @@ const isAuth = expressjwt({
   secret: config.jwtSecret, // The _secret_ to sign the JWTs
   requestProperty: 'token', // Use req.token to store the JWT
   getToken: getTokenFromHeader, // How to extract the JWT from the request,
-  algorithms: ['HS256']
+  algorithms: ['HS256'],
 });
 
 export default isAuth;
