@@ -26,7 +26,7 @@
 
 ### 2.1. Information & analysis
 
-- POST endpoint in path /robotType
+- POST endpoint in path /api/robotType
 - Json body with the following information:
     ```
         {
@@ -47,5 +47,22 @@
 ### 3.3 Patterns/Libs
 
 ## Tests
+
+### Unit
+
+#### Domain
+- validate business rules of Robot Type attributes
+
+#### Repository
+- validate isolated behaviour of repository functions with mocked schema in case of success
+
+#### Service
+- validate isolated behaviour of service functions with mocked repository in case of success
+- validate isolated behaviour of service functions with mocked repository with bad arguments, check failure errors
+
+#### Controller
+- validate isolated behaviour of controller functions with mocked service in case of success and status code
+- validate isolated behaviour of controller functions with mocked service with bad arguments, check failure errors and status code
+
 
 ### Integration Testing

@@ -9,8 +9,11 @@ import { RobotTypeMap } from '../mappers/RobotTypeMap';
 import AlreadyExistsException from '../core/infra/AlreadyExistsException'
 
 @Service()
-export default class RobotTypeService implements IRobotTypeService {
-  constructor(@Inject(config.repos.robotType.name) private robotTypeRepo: IRobtTypeRepo) {}
+export default class robotTypeService implements IRobotTypeService {
+  constructor(
+    @Inject(config.repos.robotType.name) 
+    private robotTypeRepo: IRobtTypeRepo)
+     {}
 
   public async createRobotType(robotTypeDTO: IRobotTypeDto): Promise<Result<IRobotTypeDto>> {
     try {
