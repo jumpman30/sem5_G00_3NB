@@ -21,14 +21,30 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/roleSchema',
   };
 
+  const robotSchema = {
+    // compare with the approach followed in repos and services
+    name: 'robotSchema',
+    schema: '../persistence/schemas/robotSchema',
+  };
+
   const roleController = {
     name: config.controllers.role.name,
     path: config.controllers.role.path,
   };
 
+  const robotController = {
+    name: config.controllers.robot.name,
+    path: config.controllers.robot.path,
+  };
+
   const roleRepo = {
     name: config.repos.role.name,
     path: config.repos.role.path,
+  };
+
+  const robotRepo = {
+    name: config.repos.robot.name,
+    path: config.repos.robot.path,
   };
 
   const userRepo = {
@@ -41,12 +57,17 @@ export default async ({ expressApp }) => {
     path: config.services.role.path,
   };
 
+  const robotService = {
+    name: config.services.robot.name,
+    path: config.services.robot.path,
+  };
+
   await dependencyInjectorLoader({
     mongoConnection,
-    schemas: [userSchema, roleSchema],
-    controllers: [roleController],
-    repos: [roleRepo, userRepo],
-    services: [roleService],
+    schemas: [userSchema, roleSchema, robotSchema],
+    controllers: [roleController, robotController],
+    repos: [roleRepo, userRepo, robotRepo],
+    services: [roleService, robotService],
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
 

@@ -47,7 +47,6 @@ export class Robot extends AggregateRoot<RobotProps> {
     this.props.numeroSerie = RobotNumeroSerie.create(value).getValue();
   }
 
-
   private constructor (props: RobotProps, id?: UniqueEntityID) {
     super(props, id);
   }
