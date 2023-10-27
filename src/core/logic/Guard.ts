@@ -33,11 +33,40 @@ export class Guard {
     }
   }
 
+  public static againstNullOrUndefinedOrEmpty(
+    argument: string,
+    argumentName: string,
+  ): IGuardResult {
+    if (argument === null || argument === undefined || argument.length === 0) {
+      return {
+        succeeded: false,
+        message: `${argumentName} is null or undefined or empty`,
+      };
+    } else {
+      return { succeeded: true };
+    }
+  }
+
+
   public static againstNullOrUndefinedBulk(
     args: GuardArgumentCollection,
   ): IGuardResult {
     for (let arg of args) {
       const result = this.againstNullOrUndefined(
+        arg.argument,
+        arg.argumentName,
+      );
+      if (!result.succeeded) return result;
+    }
+
+    return { succeeded: true };
+  }
+
+  public static againstNullOrUndefinedOrEmptyBulk(
+    args: GuardArgumentCollection,
+  ): IGuardResult {
+    for (let arg of args) {
+      const result = this.againstNullOrUndefinedOrEmpty(
         arg.argument,
         arg.argumentName,
       );

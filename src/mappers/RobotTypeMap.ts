@@ -1,0 +1,45 @@
+import { Mapper } from '../core/infra/Mapper';
+
+import { Document, Model } from 'mongoose';
+
+import { UniqueEntityID } from '../core/domain/UniqueEntityID';
+import { RobotType } from '../domain/RobotType';
+
+import IRobotTypeDto from '../dto/IRobotTypeDTO';
+
+import { IRobotTypePersistence } from '../dataschema/IRobotTypePersistence';
+
+export class RobotTypeMap extends Mapper<RobotType> {
+  public static toDTO(robotType: RobotType): IRobotTypeDto {
+    console.log("here?")
+    console.log(robotType)
+    console.log(robotType.robotTypeId.toString())
+    return {
+      id: robotType.robotTypeId.toString(),
+      model: robotType.model,
+      brand: robotType.brand,
+      robotType: robotType.robotType,
+      taskTypes: robotType.taskTypes
+    } as IRobotTypeDto;
+  }
+
+  public static toDomain(robotType: any | Model<IRobotTypePersistence & Document>): RobotType {
+    console.log("robotType")
+    console.log(robotType)
+    const roleOrError = RobotType.create(robotType, new UniqueEntityID(robotType._id));
+
+    roleOrError.isFailure ? console.log(roleOrError.error) : '';
+
+    return roleOrError.isSuccess ? roleOrError.getValue() : null;
+  }
+
+  public static toPersistence(robotType: RobotType): any {
+    return {
+      domainId: robotType.robotTypeId.toString(),
+      model: robotType.model,
+      brand: robotType.brand,
+      robotType: robotType.robotType,
+      taskTypes: robotType.taskTypes
+    };
+  }
+}

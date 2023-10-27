@@ -1,8 +1,7 @@
 import { IRobotPersistence } from '../../dataschema/IRobotPersistence';
 import mongoose from 'mongoose';
-import {Robot} from "../../domain/robot/robot";
 
-const Truck = new mongoose.Schema(
+const Robot = new mongoose.Schema(
   {
     domainId: {
       type: String,
@@ -16,21 +15,28 @@ const Truck = new mongoose.Schema(
       unique: true,
     },
 
-    designacao: {
+    designation: {
       type: String,
-      required: [true, 'Inserir designacao'],
+      required: [true, 'Inserir designation'],
       index: true,
     },
 
-    numeroSerie: {
+    serialNumber: {
       type: Number,
       required: [true, 'Inserir numero serie'],
       index: true,
     },
 
-    estado: {
+    state: {
       type: Boolean,
-      required: [true,'Inserir estado'],
+      required: [true,'Inserir state'],
+      index: true,
+    },
+
+    robotType: {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'RobotType',
+      required: [true,'insert robot type'],
       index: true,
     }
   },

@@ -49,6 +49,10 @@ export default {
       name: "RobotController",
       path: "../controllers/robotController"
     },
+    robotType: {
+      name: 'RobotTypeController',
+      path: '../controllers/robotTypeController',
+    },
   },
 
   repos: {
@@ -64,6 +68,10 @@ export default {
       name: "RobotRepo",
       path: "../repos/robotRepo"
     },
+    robotType: {
+      name: 'RobotTypeRepo',
+      path: '../repos/robotTypeRepo',
+    },
   },
 
   services: {
@@ -74,6 +82,10 @@ export default {
     robot: {
       name: "RobotService",
       path: "../services/robotService"
+    },
+    robotType: {
+      name: 'RobotTypeService',
+      path: '../services/robotTypeService',
     },
   },
 };

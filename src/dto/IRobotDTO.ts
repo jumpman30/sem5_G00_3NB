@@ -1,7 +1,10 @@
+import { RobotType } from "../domain/RobotType";
+
 export interface IRobotDTO {
   nickname: string;
-  designacao: string;
-  estado: boolean;
-  numeroSerie: number;
+  designation: string;
+  state: boolean;
+  serialNumber: number;
+  robotType: RobotType;
 }
 
