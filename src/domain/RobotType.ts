@@ -6,6 +6,7 @@ import {RobotTypeId} from "./RobotTypeId";
 
 import {Guard, IGuardResult} from "../core/logic/Guard";
 import { TaskTypes } from "./TaskTypes";
+import { TextUtil } from "../utils/TextUtil";
 
 export interface RobotTypeProps {
     robotType: string;
@@ -74,7 +75,7 @@ export class RobotType extends Entity<RobotTypeProps> {
             return Result.fail<RobotType>(taskTypesValidation.message)
         } 
 
-        if(!this.isAlphanumeric(robotType) || robotType.length > 25){
+        if(!TextUtil.isAlphanumeric(robotType) || robotType.length > 25){
             return Result.fail<RobotType>("Robot type should have at max 25 characteres.(alphanumeric only)")
         }
 
@@ -83,13 +84,7 @@ export class RobotType extends Entity<RobotTypeProps> {
         }
 
         const robotTypeModel = new RobotType(props, id);
-        console.log("robotTypeModel")
-        console.log(robotTypeModel.id)
         return Result.ok<RobotType>(robotTypeModel)
-    }
-
-    private static isAlphanumeric(str: string): boolean {
-        return /^[A-Za-z0-9\s]*$/.test(str);
     }
 
     private static validateTaskTypes(taskTypes: string[]): IGuardResult {

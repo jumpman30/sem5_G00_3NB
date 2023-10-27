@@ -4,7 +4,7 @@ export interface IRobotDTO {
   nickname: string;
   designation: string;
   state: boolean;
-  serialNumber: number;
+  serialNumber: string;
   robotType: RobotType;
 }
 

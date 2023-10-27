@@ -9,7 +9,7 @@ import { RobotTypeMap } from '../../src/mappers/RobotTypeMap';
 jest.mock('mongoose');
 jest.mock('../../src/mappers/RobotTypeMap.ts')
 
-describe('RobotTypeRepo', () => {
+describe('RobotTypeRepo tests', () => {
   let robotTypeRepo: RobotTypeRepo;
   let mockRobotTypeSchema: Model<IRobotTypePersistence & Document<any, any, any>>; // Ensure the Document type is compatible
 

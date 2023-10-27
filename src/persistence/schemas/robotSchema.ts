@@ -25,6 +25,7 @@ const Robot = new mongoose.Schema(
       type: Number,
       required: [true, 'Inserir numero serie'],
       index: true,
+      unique: true
     },
 
     state: {

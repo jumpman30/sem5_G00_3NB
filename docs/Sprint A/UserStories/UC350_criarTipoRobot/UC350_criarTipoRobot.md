@@ -1,4 +1,4 @@
-# UC 150 - Criar Edificio
+# UC 350 - Criar tipo de robot
 *Como gestor de frota pretendo adicionar um novo tipo de robot indicando a sua designação e que tipos de tarefas pode executar da lista prédefinida de tarefas*
 
 ## 1. Requirements
@@ -42,9 +42,27 @@
 ### 3.1 Information
 
 ### 3.2 Views
+
+#### Level 1
+![VP-US350](../../Views/Level%201/PV/UC350-ProcessViewL1.svg)
+#### Level 2
+![VP-US350](../../Views/Level%202/PV/UC350-ProcessViewL2.svg)
+#### Level 3
 ![VP-US350](./UC350-ProcessView.svg)
 
 ### 3.3 Patterns/Libs
+
+ - Aggregate root
+
+ - Value object  
+
+ - High cohesion and low coupling
+   - By applying a layered architecture it was intended to organize the sections of the code with the best separation of responsibilities and with the lowest dependency between layers. 
+
+- Information expert
+  - The designed solution aims to assign the correct responsibility given the information the classes hold.
+
+- DTO pattern.
 
 ## Tests
 

@@ -4,7 +4,7 @@ export interface ICreateRobotResponseDto {
   nickname: string;
   designation: string;
   state: boolean;
-  serialNumber: number;
+  serialNumber: string;
   robotType: IRobotTypeDTO;
 }
 

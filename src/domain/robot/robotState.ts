@@ -17,7 +17,7 @@ export class RobotState extends ValueObject<RobotStateProps>{
   }
 
   public static create(robotstate: boolean): Result<RobotState> {
-    let guardResult = Guard.againstNullOrUndefined(robotstate, '');
+    let guardResult = Guard.againstNullOrUndefined(robotstate, 'robotstate');
 
     if (guardResult.succeeded) {
       return Result.ok<RobotState>(new RobotState({ active: robotstate}))

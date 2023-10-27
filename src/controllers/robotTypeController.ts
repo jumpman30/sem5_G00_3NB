@@ -7,7 +7,6 @@ import IRobotTypeController from './IControllers/IRobotTypeController';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { ParsedQs } from 'qs';
 import IRobotTypeService from '../services/IServices/IRobotTypeService';
-import { BaseController } from '../core/infra/BaseController';
 import IRobotTypeDto from '../dto/IRobotTypeDTO';
 import AlreadyExistsException from '../core/infra/AlreadyExistsException'
 
@@ -33,6 +32,7 @@ export default class RobotTypeController
       }
 
       const robotTypeDto = robotTypeOrError.getValue();
+      console.log(res)
       return res.json(robotTypeDto).status(201);
     } catch (e) {
       if(e instanceof AlreadyExistsException){
