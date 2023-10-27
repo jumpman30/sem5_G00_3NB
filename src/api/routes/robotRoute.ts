@@ -5,7 +5,6 @@ import { Container } from 'typedi';
 import IRobotController from '../../controllers/IControllers/IRobotController';
 
 import config from "../../../config";
-import { MockJobCreatedEvent } from '../../core/domain/events/tests/mocks/events/mockJobCreatedEvent';
 
 const robot = Router();
 
@@ -22,9 +21,10 @@ export default (app: Router) => {
     celebrate({
       body: Joi.object({
         nickname: Joi.string().required().error(new Error('Nickname inválido')),
-        designacao: Joi.string().required().error(new Error('Designacao inválida')),
-        numeroSerie: Joi.number().required().error(new Error('Numero série inválido')),
-        estado: Joi.boolean().required().error(new Error('Estado inválido')),
+        designation: Joi.string().required().error(new Error('designation inválida')),
+        serialNumber: Joi.number().required().error(new Error('Numero série inválido')),
+        state: Joi.boolean().required().error(new Error('state inválido')),
+        robotType: Joi.string().required().error(new Error('invalid robot type')),
       })
     }),
     (req, res, next) => ctrl.createRobot(req, res, next) );
@@ -33,9 +33,9 @@ export default (app: Router) => {
     celebrate({
       body: Joi.object({
         nickname: Joi.string().required().error(new Error('Nickname inválido')),
-        designacao: Joi.string().required().error(new Error('Designacao inválida')),
-        numeroSerie: Joi.number().required().error(new Error('Numero série inválido')),
-        estado: Joi.boolean().required().error(new Error('Estado inválido')),
+        designation: Joi.string().required().error(new Error('designation inválida')),
+        serialNumber: Joi.number().required().error(new Error('Numero série inválido')),
+        state: Joi.boolean().required().error(new Error('state inválido')),
       }),
     }),
     (req, res, next) => ctrl.updateRobot(req, res, next) );

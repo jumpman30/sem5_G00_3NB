@@ -17,6 +17,7 @@ export default class RobotTypeRepo implements IRobotTypeRepo {
     private RobotTypeSchema: Model<IRobotTypePersistence & Document>,
   ) {}
 
+
   private createBaseQuery(): any {
     return {
       where: {},
@@ -34,9 +35,9 @@ export default class RobotTypeRepo implements IRobotTypeRepo {
   }
 
   public async save(robotType: RobotType): Promise<RobotType> {
+
     const query = { domainId: robotType.robotTypeId.toString() };
     const RobotTypeDocument = await this.RobotTypeSchema.findOne(query);
-
     try {
       if (RobotTypeDocument === null) {
         const rawRobotType: any = RobotTypeMap.toPersistence(robotType);
@@ -63,6 +64,17 @@ export default class RobotTypeRepo implements IRobotTypeRepo {
       query as FilterQuery<IRobotTypePersistence & Document>,
     );
 
+    if (RobotTypeRecord != null) {
+      return RobotTypeMap.toDomain(RobotTypeRecord);
+    } else return null;
+  }
+
+  public async findByRobotType(robotType: string): Promise<RobotType> {
+    const query = { robotType };
+    const RobotTypeRecord = await this.RobotTypeSchema.findOne(
+      query as FilterQuery<IRobotTypePersistence & Document>,
+    );
+      console.log(RobotTypeRecord)
     if (RobotTypeRecord != null) {
       return RobotTypeMap.toDomain(RobotTypeRecord);
     } else return null;

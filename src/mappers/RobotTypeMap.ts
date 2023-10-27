@@ -11,6 +11,9 @@ import { IRobotTypePersistence } from '../dataschema/IRobotTypePersistence';
 
 export class RobotTypeMap extends Mapper<RobotType> {
   public static toDTO(robotType: RobotType): IRobotTypeDto {
+    console.log("here?")
+    console.log(robotType)
+    console.log(robotType.robotTypeId.toString())
     return {
       id: robotType.robotTypeId.toString(),
       model: robotType.model,
@@ -21,7 +24,9 @@ export class RobotTypeMap extends Mapper<RobotType> {
   }
 
   public static toDomain(robotType: any | Model<IRobotTypePersistence & Document>): RobotType {
-    const roleOrError = RobotType.create(robotType, new UniqueEntityID(robotType.domainId));
+    console.log("robotType")
+    console.log(robotType)
+    const roleOrError = RobotType.create(robotType, new UniqueEntityID(robotType._id));
 
     roleOrError.isFailure ? console.log(roleOrError.error) : '';
 

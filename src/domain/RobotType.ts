@@ -20,7 +20,7 @@ export class RobotType extends Entity<RobotTypeProps> {
     }
 
     get id(): UniqueEntityID {
-        return super._id;
+        return this._id;
     }
 
     get robotTypeId(): RobotTypeId {
@@ -82,8 +82,10 @@ export class RobotType extends Entity<RobotTypeProps> {
             return Result.fail<RobotType>("Robot brand and model should have at max 50 and 100 characteres respectively.")
         }
 
-        const truck = new RobotType(props, id);
-        return Result.ok<RobotType>(truck)
+        const robotTypeModel = new RobotType(props, id);
+        console.log("robotTypeModel")
+        console.log(robotTypeModel.id)
+        return Result.ok<RobotType>(robotTypeModel)
     }
 
     private static isAlphanumeric(str: string): boolean {

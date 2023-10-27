@@ -34,9 +34,9 @@ export default class RobotRepo implements IRobotRepo {
         return RobotMap.toDomain(robotCreated);
       } else {
         robotDocument.nickname = robot.nickname;
-        robotDocument.estado = robot.estado;
-        robotDocument.designacao = robot.designacao;
-        robotDocument.numeroSerie = robot.numeroSerie;
+        robotDocument.state = robot.state;
+        robotDocument.designation = robot.designation;
+        robotDocument.serialNumber = robot.serialNumber;
 
         await robotDocument.save();
 
@@ -59,8 +59,8 @@ export default class RobotRepo implements IRobotRepo {
     const idX = nickname instanceof RobotNickname ? (<RobotNickname>nickname).value : nickname;
 
     const query = { nickname: idX };
-    const robotRecord = await this.robotSchema.findOne( query );
-
+    const robotRecord = (await this.robotSchema.findOne( query ).populate("robotType"));
+    console.log(robotRecord)
     if( robotRecord != null) {
       return RobotMap.toDomain(robotRecord);
     }

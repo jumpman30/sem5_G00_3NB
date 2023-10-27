@@ -7,6 +7,8 @@ import IRobotService from '../services/IServices/IRobotService';
 import {IRobotDTO} from '../dto/IRobotDTO';
 
 import { Result } from "../core/logic/Result";
+import { ICreateRobotRequestDto } from '../dto/ICreateRobotRequestDto';
+import { ICreateRobotResponseDto } from '../dto/ICreateRobotResponseDto';
 
 @Service()
 export default class RobotController implements IRobotController /* TODO: extends ../core/infra/BaseController */ {
@@ -16,7 +18,7 @@ export default class RobotController implements IRobotController /* TODO: extend
 
   public async createRobot(req: Request, res: Response, next: NextFunction) {
     try {
-      const RobotOrError = await this.RobotServiceInstance.createRobot(req.body as IRobotDTO) as Result<IRobotDTO>;
+      const RobotOrError = await this.RobotServiceInstance.createRobot(req.body as ICreateRobotRequestDto) as Result<ICreateRobotResponseDto>;
 
       if (RobotOrError.isFailure) {
         return res.status(402).send();
@@ -71,7 +73,7 @@ export default class RobotController implements IRobotController /* TODO: extend
       }
 
       const RobotDTO = RobotOrError.getValue();
-      return res.status(201).json( RobotDTO );
+      return res.status(200).json( RobotDTO );
     }
     catch (e) {
       return next(e);
