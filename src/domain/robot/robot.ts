@@ -3,14 +3,14 @@ import { UniqueEntityID } from "../../core/domain/UniqueEntityID";
 import { Result } from "../../core/logic/Result";
 import { IRobotDTO } from "../../dto/IRobotDTO";
 import { RobotNickname } from "./robotNickname";
-import { Robotdesignation } from "./robotDesignation";
+import { RobotDesignation } from "./robotDesignation";
 import { RobotState } from "./robotState";
 import {RobotSerialNumber} from "./robotSerialNumber";
 import { RobotType } from "../RobotType";
 
-interface RobotProps {
+export interface RobotProps {
   nickname: RobotNickname;
-  designation: Robotdesignation;
+  designation: RobotDesignation;
   state: RobotState;
   serialNumber: RobotSerialNumber;
   robotType: RobotType;
@@ -31,7 +31,7 @@ export class Robot extends AggregateRoot<RobotProps> {
     return this.props.designation.value;
   }
   set designation ( value: string) {
-    this.props.designation = Robotdesignation.create(value).getValue();
+    this.props.designation = RobotDesignation.create(value).getValue();
   }
 
   get state (): boolean {
@@ -41,10 +41,10 @@ export class Robot extends AggregateRoot<RobotProps> {
     this.props.state = RobotState.create(value).getValue();
   }
 
-  get serialNumber (): number {
+  get serialNumber (): string {
     return this.props.serialNumber.value;
   }
-  set serialNumber ( value: number) {
+  set serialNumber ( value: string) {
     this.props.serialNumber = RobotSerialNumber.create(value).getValue();
   }
 
@@ -58,15 +58,15 @@ export class Robot extends AggregateRoot<RobotProps> {
 
   public static create (robotDTO: IRobotDTO, id?: UniqueEntityID): Result<Robot> {
     const nickname = RobotNickname.create(robotDTO.nickname);
-    const designation = Robotdesignation.create(robotDTO.designation);
+    const designation = RobotDesignation.create(robotDTO.designation);
     const state = RobotState.create(robotDTO.state);
     const serialNumber = RobotSerialNumber.create(robotDTO.serialNumber);
     const robotType = RobotType.create(robotDTO.robotType, robotDTO.robotType.id);
 
-    console.log(robotType)
+    let mergedElements = this.anyFails([nickname, designation, state, serialNumber, robotType]);
 
-    if(!robotType.isSuccess){
-      return Result.fail(robotType.getValue())
+    if(!mergedElements.isSuccess){
+      return Result.fail(mergedElements.errorValue())
     }
 
     const robot = new Robot({
@@ -78,6 +78,13 @@ export class Robot extends AggregateRoot<RobotProps> {
     }, id);
 
     return Result.ok<Robot>(robot);
+  }
+
+  private static anyFails(args : Result<any>[]) : Result<any>{
+    for (let arg of args) {
+      if (!arg.isSuccess) return arg;
+   }
+    return Result.ok();
   }
 
 }
