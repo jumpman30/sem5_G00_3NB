@@ -80,16 +80,14 @@ export default class RobotController implements IRobotController /* TODO: extend
     }
   };
 
-  public async inactivateRobot(req: Request, res: Response, next: NextFunction) {
+  public async inhibtRobot(req: Request, res: Response, next: NextFunction) {
     try {
-      const RobotOrError = await this.RobotServiceInstance.inactivateRobot(req.params.nickname) as Result<IRobotDTO>;
+      const RobotOrError = await this.RobotServiceInstance.inhibtRobot(req.params.nickname) as Result<IRobotDTO>;
 
       if (RobotOrError.isFailure) {
         return res.status(404).send();
       }
-
-      const RobotDTO = RobotOrError.getValue();
-      return res.status(201).json( RobotDTO );
+      return res.status(204).send();
     }
     catch (e) {
       return next(e);

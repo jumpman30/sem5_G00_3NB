@@ -62,6 +62,10 @@
 - Information expert
   - The designed solution aims to assign the correct responsibility given the information the classes hold.
 
+- Interface Segregation Principle
+
+- Dependency Inversion Principle
+
 - DTO pattern.
 
 ## Tests

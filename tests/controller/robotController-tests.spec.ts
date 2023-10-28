@@ -94,4 +94,35 @@ describe('robotController', () => {
       expect(resJsonSpy.calledWith(robotTypeExpected)).to.be.true
     }); 
   });
+
+  describe('inhibtRobot', () => {
+
+    it('should return an status 404 for non existing robot', async () => {
+      mockRobotService.inhibtRobot.resolves(Result.fail<IRobotDTO>("Robot type not found."));
+      
+      let req = {params: {nickname: "robotA"}} as unknown as Request<any, any, any, any, Record<string, any>>;
+      let next = jest.fn() as NextFunction;
+
+      let resSpy = sinon.spy(res, 'status')
+
+      await robotController.inhibtRobot(req, res, next);
+
+      expect(resSpy.called).to.be.true
+      expect(resSpy.calledWith(404)).to.be.true
+    }); 
+    
+    it('should return an status 204 no content for patched robots', async () => {
+      mockRobotService.inhibtRobot.resolves(Result.ok<IRobotDTO>());
+      
+      let req = {params: {nickname: "robotA"}} as unknown as Request<any, any, any, any, Record<string, any>>;
+      let next = jest.fn() as NextFunction;
+
+      let resSpy = sinon.spy(res, 'status')
+
+      await robotController.inhibtRobot(req, res, next);
+
+      expect(resSpy.called).to.be.true
+      expect(resSpy.calledWith(204)).to.be.true
+    }); 
+  });
 });

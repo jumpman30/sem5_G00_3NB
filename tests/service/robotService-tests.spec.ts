@@ -7,6 +7,7 @@ import { IRobotDTO } from '../../src/dto/IRobotDTO';
 import RobotRepo from '../../src/repos/robotRepo';
 import RobotTypeRepo from '../../src/repos/robotTypeRepo';
 import { ICreateRobotRequestDto } from '../../src/dto/ICreateRobotRequestDto';
+import { Robot } from '../../src/domain/robot/robot';
 
 describe('robotTypeService', () => {
   let service: RobotService;
@@ -50,6 +51,26 @@ describe('robotTypeService', () => {
 
       expect(result.isFailure).to.be.true
       expect(result.errorValue()).to.be.equal("Robot type not found.")
+    });
+  });
+
+  describe('inhibtRobot', () => {
+    it('should return an error for non existent robot', async () => {
+      mockRobotRepo.findByNickname.resolves(undefined);
+
+      let result = await service.inhibtRobot('robotA'); 
+
+      expect(result.isFailure).to.be.true
+      expect(result.errorValue()).to.be.equal("Robot not found.")
+    });
+  });
+
+  describe('inhibtRobot', () => {
+    it('should return an error for non existent robot', async () => {
+      mockRobotRepo.findByNickname.resolves(Robot.create(robotData).getValue());
+      let result = await service.inhibtRobot('robotA'); 
+
+      expect(result.isSuccess).to.be.true
     });
   });
 });

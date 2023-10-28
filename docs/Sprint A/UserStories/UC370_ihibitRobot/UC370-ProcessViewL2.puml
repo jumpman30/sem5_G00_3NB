@@ -1,0 +1,24 @@
+@startuml
+Actor "UI Gestor de frota" as User
+participant "SPA" as Spa <<component>>
+participant "Gestão de frota" as Controller <<component>>
+activate User
+User -> Spa: inhibt robot
+activate Spa
+Spa -> User: request data (robot nickname)
+
+User -> Spa: adds data (robot nickname)
+
+Spa -> Controller : PATCH /api/inhibt/:nickname
+activate Controller
+
+Controller -> Controller : edit(robotNickname)
+Controller -> Controller : save(editedRobot)
+
+Controller -> Spa : noContent(204)
+deactivate Controller
+
+Spa -> User : Successful message
+deactivate Spa
+deactivate User
+@enduml
