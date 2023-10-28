@@ -43,6 +43,11 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/robotTypeSchema',
   };
 
+  const buildingSchema = {
+    name: 'buildingSchema',
+    schema: '../persistence/schemas/buildingSchema',
+  };
+
   const roleController = {
     name: config.controllers.role.name,
     path: config.controllers.role.path,
@@ -56,6 +61,11 @@ export default async ({ expressApp }) => {
   const roomController = {
     name: config.controllers.room.name,
     path: config.controllers.room.path,
+  };
+
+  const buildingController = {
+    name: config.controllers.building.name,
+    path: config.controllers.building.path,
   };
 
   const robotController = {
@@ -88,6 +98,11 @@ export default async ({ expressApp }) => {
     path: config.repos.floor.path,
   };
 
+  const buildingRepo = {
+    name: config.repos.building.name,
+    path: config.repos.building.path,
+  };
+
   const roleService = {
     name: config.services.role.name,
     path: config.services.role.path,
@@ -101,6 +116,11 @@ export default async ({ expressApp }) => {
   const robotService = {
     name: config.services.robot.name,
     path: config.services.robot.path,
+  }
+
+  const buildingService = {
+    name: config.services.building.name,
+    path: config.services.building.path,
   }
 
   const floorService = {
@@ -125,10 +145,10 @@ export default async ({ expressApp }) => {
 
   await dependencyInjectorLoader({
     mongoConnection,
-    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema],
-    controllers: [roleController, roomController, robotController, robotTypeController, floorController],
-    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo],
-    services: [roleService, roomService, robotService, robotTypeService, floorService]
+    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema, buildingSchema],
+    controllers: [roleController, roomController, robotController, robotTypeController, floorController, buildingController],
+    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo, buildingRepo],
+    services: [roleService, roomService, robotService, robotTypeService, floorService, buildingService]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
 

@@ -2,6 +2,7 @@ import { RoomId } from '../../src/domain/roomId';
 import { Location } from '../../src/domain/location';
 import { Room } from '../../src/domain/room';
 import { FloorId } from '../../src/domain/floorId';
+import { BuildingId } from '../../src/domain/buildingId';
 
 const buildRoom = (data?: Partial<Room>) => {
   return  {
@@ -35,6 +36,25 @@ const buildFloor = (data?) => {
   }
 };
 
+const buildBuilding = (data?) => {
+  return {
+    id: new BuildingId('test'),
+    designation: 'test',
+    length: 'test',
+    width: 'test',
+    ...data
+  }
+};
+
+const buildBuildingDto = (data?) => {
+  return {
+    designation: 'test',
+    length: 'test',
+    width: 'test',
+    ...data
+  }
+};
+
 const buildFloorDto = (data?) => {
   return {
     buildingId: 'test',
@@ -44,4 +64,11 @@ const buildFloorDto = (data?) => {
 };
 
 
-export default { buildRoom, buildRoomDto, buildFloor, buildFloorDto }
+export default {
+  buildRoom,
+  buildRoomDto,
+  buildFloor,
+  buildFloorDto,
+  buildBuilding,
+  buildBuildingDto
+}
