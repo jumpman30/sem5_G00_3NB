@@ -1,4 +1,4 @@
-# UC 150 - Criar Edificio
+# UC 150 - Criar Edificio (SG3-18)
 
 ## 1. Requirements
 The **Campus Manager** starts the process of creating a new building by providing the system with the following information:
@@ -17,6 +17,8 @@ The **Campus Manager** starts the process of creating a new building by providin
 [Source](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=25047#p31684)
 * **Building code:** mandatory, max 5 chars (leters, numbers and space)
 * **Building name:** optional, max 50 alfanumeric chars
+[Source](https://moodle.isep.ipp.pt/mod/forum/search.php?id=5536&search=criar+edificio)
+* **Building max size:** mandatory, lenght*width
 
 ### 2.2. Analysis
 
