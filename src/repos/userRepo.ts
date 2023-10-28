@@ -37,7 +37,6 @@ export default class UserRepo implements IUserRepo {
 
   public async save(user: User): Promise<User> {
     const query = { domainId: user.id.toString() };
-
     const userDocument = await this.userSchema.findOne(query);
 
     try {
