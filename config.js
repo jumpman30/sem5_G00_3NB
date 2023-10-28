@@ -19,7 +19,7 @@ export default {
   /**
    * That long string from mlab
    */
-  databaseURL: process.env.MONGODB_URI || 'mongodb://localhost:27017/test',
+  databaseURL: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/test',
 
   /**
    * Your secret sauce
@@ -45,6 +45,14 @@ export default {
       name: 'RoleController',
       path: '../controllers/roleController',
     },
+    robot: {
+      name: "RobotController",
+      path: "../controllers/robotController"
+    },
+    robotType: {
+      name: 'RobotTypeController',
+      path: '../controllers/robotTypeController',
+    },
   },
 
   repos: {
@@ -56,12 +64,28 @@ export default {
       name: 'UserRepo',
       path: '../repos/userRepo',
     },
+    robot: {
+      name: "RobotRepo",
+      path: "../repos/robotRepo"
+    },
+    robotType: {
+      name: 'RobotTypeRepo',
+      path: '../repos/robotTypeRepo',
+    },
   },
 
   services: {
     role: {
       name: 'RoleService',
       path: '../services/roleService',
+    },
+    robot: {
+      name: "RobotService",
+      path: "../services/robotService"
+    },
+    robotType: {
+      name: 'RobotTypeService',
+      path: '../services/robotTypeService',
     },
   },
 };

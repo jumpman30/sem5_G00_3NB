@@ -1,0 +1,81 @@
+@startuml
+participant "User Interface" as UI
+participant "Router" as Router
+participant "RobotTypeController" as Controller
+participant "RobotTypeService" as Service
+
+participant "RobotTypeRepository" as Repository
+participant "RobotTypeMapper" as Mapper
+participant "RobotTypeSchema" as Schema
+participant "RobotTypeModel" as Model
+participant "RobotTypeCreateRequestDTO" as CreateRequestDTO
+participant "Persistence" as Persistence
+
+activate UI
+UI -> Router: POST /robotType (json)
+activate Router
+Router -> Router: validate(json)
+Router -> Controller: ctrl.createBuilding(json)
+activate Controller
+
+Controller -> Service: reponseOrError = createRobotType\n(req.body as IRobotTypeDto)
+activate Service
+create Model
+Service -> Model: robotTypeOrError = RobotType.Create(dto)
+alt robotTypeOrError.isFailure
+Service -> Controller: res.status(422)
+deactivate Service
+Controller -> Router: res.status(422)
+deactivate Controller
+Router -> UI :status 422 (Unprocessable Entity)
+deactivate Router
+end
+Service -> Repository: entity =\n create(robotTypeOrError.getValue())
+activate Service
+activate Repository
+Repository -> Schema : exists = findOne(robotType.Id)
+activate Schema
+Schema -> Persistence:  findOne(Id)
+deactivate Schema
+alt exists 
+Repository -> Service: res.status(409)
+deactivate Service
+Service -> Controller: res.status(409)
+deactivate Service
+Controller -> Router: res.status(409)
+deactivate Controller
+Router -> UI :status 409 (Conflict)
+deactivate Router 
+end
+Repository -> Mapper: rawSchema = toPersistance(entity)
+activate Mapper
+return rawSchema
+Repository -> Schema : schema = RobotTypeSchema\n.create(rawSchema)
+activate Schema
+Schema -> Persistence : save(schema)
+deactivate Schema
+Repository -> Mapper: entity = toModel(schema)
+activate Mapper
+Mapper -> Model: entity: <<new>>
+activate Model
+deactivate Model
+deactivate Mapper
+
+Repository --> Service: entity
+deactivate Repository
+
+Service -> Mapper: responseDto = roleMap.toDto(entity)
+activate Mapper
+create CreateResponseDTO
+Mapper -> CreateResponseDTO: responseDTO <<new>>
+deactivate Mapper
+
+Service --> Controller: responseDTO
+deactivate Service
+
+Controller --> Router: responseDTO
+deactivate Controller
+Router --> UI: HTTP 200 OK\njson(responseDTO)
+deactivate Router
+deactivate UI
+@enduml

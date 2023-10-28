@@ -2,7 +2,6 @@
 
 ## 1. Requirements
 
-
 #### Preconditions
 * Campus Manager is authenticated.
 * The building must exist in the system.
@@ -21,7 +20,7 @@
 ### 3.1 Information
 
 ### 3.2 Views
-![VP-US170](../ProcessViews/VP-US170-ListAllBuildings.svg)
+![VP-US170](.VP-US170-ListAllBuildings.svg)
 ### 3.3 Patterns/Libs
 
 ## Tests

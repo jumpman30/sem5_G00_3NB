@@ -6,6 +6,7 @@
 * Campus Manager is authenticated.
 * The floors must exist in the system.
 
+
 #### Postconditions
 * The information about the passage is stored in the system.
 

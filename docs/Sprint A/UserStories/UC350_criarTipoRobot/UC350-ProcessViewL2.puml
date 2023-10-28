@@ -1,0 +1,25 @@
+@startuml
+Actor "UI Gestor de frota" as User
+participant "SPA" as Spa <<component>>
+participant "Gestão de frota" as Controller <<component>>
+activate User
+User -> Spa: create robot type
+activate Spa
+Spa -> User: request data
+
+User -> Spa: adds data
+
+Spa -> Controller : POST /robotType
+activate Controller
+
+Controller -> Controller : validate(robotType)
+Controller -> Controller : create(robotType)
+Controller -> Controller : save(robotType)
+
+Controller -> Spa : created(201)
+deactivate Controller
+
+Spa -> User : Successful message
+deactivate Spa
+deactivate User
+@enduml

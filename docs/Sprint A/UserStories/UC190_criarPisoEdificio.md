@@ -2,6 +2,7 @@
 
 ## 1. Requirements
 
+
 #### Preconditions
 * Campus Manager is authenticated.
 * The building must exist in the system.
