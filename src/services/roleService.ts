@@ -2,7 +2,7 @@ import { Service, Inject } from 'typedi';
 import config from '../../config';
 import IRoleDTO from '../dto/IRoleDTO';
 import { Role } from '../domain/role';
-import IRoleRepo from '../services/IRepos/IRoleRepo';
+import IRoleRepo from './IRepos/IRoleRepo';
 import IRoleService from './IServices/IRoleService';
 import { Result } from '../core/logic/Result';
 import { RoleMap } from '../mappers/RoleMap';

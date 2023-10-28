@@ -14,12 +14,12 @@ participant "BuildingCreateRequestDTO" as CreateRequestDTO
 participant "Persistence" as Persistence
 
 activate UI
-UI -> Router: POST /Building (json)
+UI -> Router: POST /building (json)
 activate Router
 Router -> Controller: responseDTO =\ncreateBuilding(json)
 activate Controller
-Controller -> Controller: validate(json)
-Controller -> Mapper: requestDTO = createCreateDTO()
+Controller -> Controller: validate(buildingDTO)
+Controller -> Mapper: buildingOrError = create(CreateDTO)
 activate Mapper
 create CreateRequestDTO
 Mapper -> CreateRequestDTO: requestDTO: <<new>>

@@ -24,7 +24,8 @@ export default {
   /**
    * Your secret sauce
    */
-  jwtSecret: process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
+  jwtSecret:
+    process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
 
   /**
    * Used by winston logger
@@ -39,22 +40,30 @@ export default {
   api: {
     prefix: '/api',
   },
-
+  /**
+   * Controllers
+   */
   controllers: {
     role: {
       name: 'RoleController',
       path: '../controllers/roleController',
     },
     robot: {
-      name: "RobotController",
-      path: "../controllers/robotController"
+      name: 'RobotController',
+      path: '../controllers/robotController',
     },
     robotType: {
       name: 'RobotTypeController',
       path: '../controllers/robotTypeController',
     },
+    building: {
+      name: 'BuildingController',
+      path: '../controllers/buildingController',
+    },
   },
-
+  /**
+   * Repositories
+   */
   repos: {
     role: {
       name: 'RoleRepo',
@@ -65,27 +74,37 @@ export default {
       path: '../repos/userRepo',
     },
     robot: {
-      name: "RobotRepo",
-      path: "../repos/robotRepo"
+      name: 'RobotRepo',
+      path: '../repos/robotRepo',
     },
     robotType: {
       name: 'RobotTypeRepo',
       path: '../repos/robotTypeRepo',
     },
+    building: {
+      name: 'BuildingRepo',
+      path: '../repos/buildingRepo',
+    },
   },
-
+  /**
+   * Services
+   */
   services: {
     role: {
       name: 'RoleService',
       path: '../services/roleService',
     },
     robot: {
-      name: "RobotService",
-      path: "../services/robotService"
+      name: 'RobotService',
+      path: '../services/robotService',
     },
     robotType: {
       name: 'RobotTypeService',
       path: '../services/robotTypeService',
+    },
+    building: {
+      name: 'BuildingService',
+      path: '../services/buildingService',
     },
   },
 };

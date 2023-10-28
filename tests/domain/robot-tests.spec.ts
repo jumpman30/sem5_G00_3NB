@@ -115,11 +115,10 @@ const testCases = [
 ]
 
 describe('RobotType', () => {
-  
+
   test.each(testCases)('creates a Robot with invalid data', async (data) => {
     const result = Robot.create(data.robotData);
     expect(result.isSuccess).toBe(false);
     expect(result.errorValue()).toBe(data.expectedMessage);
   });
 });
-

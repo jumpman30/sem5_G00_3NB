@@ -4,6 +4,7 @@
 The **Campus Manager** starts the process of creating a new building by providing the system with the following information:
 * Building name
 * Building Code
+* Building size (length * width)
 
 #### Preconditions
 * Campus Manager is authenticated.
@@ -21,6 +22,16 @@ The **Campus Manager** starts the process of creating a new building by providin
 * **Building max size:** mandatory, lenght*width
 
 ### 2.2. Analysis
+- POST endpoint in path /api/building
+- Json body with the following information:
+    ```
+        {
+            code: string
+            name: string
+            lenght: number
+            width: number
+        }
+    ```
 
 ## 3. Design
 
@@ -29,6 +40,13 @@ The **Campus Manager** starts the process of creating a new building by providin
 ### 3.2 Views
 ![VP-US150](../ProcessViews/VP-US150-CreateBuilding.svg)
 ### 3.3 Patterns/Libs
+ - Aggregate root
+ - Value object
+ - High cohesion and low coupling
+   - By applying a layered architecture it was intended to organize the sections of the code with the best separation of responsibilities and with the lowest dependency between layers.
+- Information expert
+  - The designed solution aims to assign the correct responsibility given the information the classes hold.
+- DTO pattern.
 
 ## Tests
 
