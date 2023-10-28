@@ -4,8 +4,8 @@ import user from './routes/userRoute';
 import role from './routes/roleRoute';
 import robot from './routes/robotRoute';
 import robotType from './routes/robotTypeRoute';
-import room from './routes/roomRoute';
 import roomRoute from './routes/roomRoute';
+import floorRoute from './routes/floorRoute';
 
 export default () => {
   const app = Router();
@@ -16,6 +16,7 @@ export default () => {
   robot(app);
   robotType(app);
   roomRoute(app);
+  floorRoute(app);
 
   return app;
 };

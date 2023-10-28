@@ -4,6 +4,7 @@ import { Result } from '../core/logic/Result';
 import { Guard } from '../core/logic/Guard';
 import { BuildingId } from './buildingId';
 import { FloorId } from './floorId';
+import { RoomId } from './roomId';
 
 interface FloorProps {
   buildingId: string;
@@ -15,8 +16,15 @@ export class Floor extends AggregateRoot<FloorProps> {
     return this._id;
   }
 
-  get buildingId(): FloorId {
-    return BuildingId.caller(this.id);
+  get floorId(): FloorId {
+    return FloorId.caller(this.id);
+  }
+  get buildingId(): string {
+    return this.props.buildingId;
+  }
+
+  get number(): string {
+    return this.props.number;
   }
 
   private constructor(props: FloorProps, id?: UniqueEntityID) {

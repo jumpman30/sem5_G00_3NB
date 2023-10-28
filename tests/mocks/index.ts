@@ -1,6 +1,7 @@
 import { RoomId } from '../../src/domain/roomId';
 import { Location } from '../../src/domain/location';
 import { Room } from '../../src/domain/room';
+import { FloorId } from '../../src/domain/floorId';
 
 const buildRoom = (data?: Partial<Room>) => {
   return  {
@@ -25,5 +26,22 @@ const buildRoomDto = (data?) => {
   }
 }
 
+const buildFloor = (data?) => {
+  return {
+    id: new FloorId('test'),
+    buildingId: 'test',
+    number: 'test',
+      ...data
+  }
+};
 
-export default { buildRoom, buildRoomDto }
+const buildFloorDto = (data?) => {
+  return {
+    buildingId: 'test',
+    number: 'test',
+    ...data
+  }
+};
+
+
+export default { buildRoom, buildRoomDto, buildFloor, buildFloorDto }

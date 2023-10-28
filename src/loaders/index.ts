@@ -15,6 +15,12 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/userSchema',
   };
 
+  const floorSchema = {
+    // compare with the approach followed in repos and services
+    name: 'floorSchema',
+    schema: '../persistence/schemas/floorSchema',
+  };
+
   const roomSchema = {
     name: 'roomSchema',
     schema: '../persistence/schemas/roomSchema',
@@ -40,6 +46,11 @@ export default async ({ expressApp }) => {
   const roleController = {
     name: config.controllers.role.name,
     path: config.controllers.role.path,
+  };
+
+  const floorController = {
+    name: config.controllers.floor.name,
+    path: config.controllers.floor.path,
   };
 
   const roomController = {
@@ -72,6 +83,11 @@ export default async ({ expressApp }) => {
     path: config.repos.room.path,
   };
 
+  const floorRepo = {
+    name: config.repos.floor.name,
+    path: config.repos.floor.path,
+  };
+
   const roleService = {
     name: config.services.role.name,
     path: config.services.role.path,
@@ -85,6 +101,11 @@ export default async ({ expressApp }) => {
   const robotService = {
     name: config.services.robot.name,
     path: config.services.robot.path,
+  }
+
+  const floorService = {
+    name: config.services.floor.name,
+    path: config.services.floor.path,
   }
 
   const robotTypeController = {
@@ -104,10 +125,10 @@ export default async ({ expressApp }) => {
 
   await dependencyInjectorLoader({
     mongoConnection,
-    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema],
-    controllers: [roleController, roomController, robotController, robotTypeController],
-    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo],
-    services: [roleService, roomService, robotService, robotTypeService]
+    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema],
+    controllers: [roleController, roomController, robotController, robotTypeController, floorController],
+    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo],
+    services: [roleService, roomService, robotService, robotTypeService, floorService]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
 

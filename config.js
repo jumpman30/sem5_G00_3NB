@@ -45,6 +45,10 @@ export default {
       name: 'RoleController',
       path: '../controllers/roleController',
     },
+    floor: {
+      name: 'FloorController',
+      path: '../controllers/floorController',
+    },
     room: {
       name: 'RoomController',
       path: '../controllers/roomController',
@@ -79,7 +83,11 @@ export default {
     room: {
       name: 'RoomRepo',
       path: '../repos/roomRepo'
-    }
+    },
+    floor: {
+      name: 'FloorRepo',
+      path: '../repos/floorRepo',
+    },
 
   },
 
@@ -99,6 +107,10 @@ export default {
     robotType: {
       name: 'RobotTypeService',
       path: '../services/robotTypeService',
+    },
+    floor: {
+      name: 'FloorService',
+      path: '../services/floorService',
     },
   },
 };
