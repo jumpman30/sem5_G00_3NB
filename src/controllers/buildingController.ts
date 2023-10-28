@@ -16,6 +16,8 @@ export default class BuildingController extends BaseController
   constructor(
     @Inject(config.services.building.name)
     private buildingService: IBuildingService,
+    @Inject(config.services.floor.name)
+    private floorService: IFloorService
   ) {
     super();
   }
@@ -39,4 +41,47 @@ export default class BuildingController extends BaseController
       return next(e);
     }
   }
+
+  public async findBuildingByKey(req: Request, res: Response, next: NextFunction) {
+    try {
+        const buildingId= req.query.buildingId as string;
+
+        if (buildingId === undefined) {
+            return res.status(404).json("Please insert a valid building in the parameters.");
+        }
+
+        const buildingOrError = await this.buildingService.findBuildingByKey(buildingId);
+
+        if (buildingOrError.isFailure) {
+            return res.status(404).json(buildingOrError.error);
+        }
+
+        const buildingDTO = buildingOrError.getValue();
+        return res.status(200).json(buildingDTO);
+    } catch (e) {
+        return next(e);
+    }
+}
+
+public async getFloorsByBuildingId(req: Request, res: Response, next: NextFunction) {
+  try {
+
+    const buildingId = req.query.buildingId as string;
+
+    if (buildingId === undefined) {
+      return res.status(404).json("Building not found");
+    } else {
+
+      const floors = await this.floorService.getFloorsByBuildingId(buildingId);
+
+      if (floors.isFailure) {
+        return Result.fail<IFloorDto[]>(floors.errorValue());
+      }
+      const floorDTOs = floors.getValue();
+      return Result.ok<IFloorDto[]>(floorDTOs);
+    }
+  } catch (e) {
+    throw e;
+  }
+}
 }

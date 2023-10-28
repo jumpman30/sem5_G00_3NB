@@ -4,4 +4,5 @@ import { IBuildingDto } from '../../dto/IBuildingDto';
 
 export default interface IBuildingService {
   save(buildingDto: IBuildingDto): Promise<Result<{ buildingId: string }>>;
+  findBuildingByKey(buildingId: string): Promise<Result<IBuildingDto>>
 }

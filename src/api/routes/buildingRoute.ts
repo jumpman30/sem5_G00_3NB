@@ -24,4 +24,14 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.createBuilding(req, res, next),
   );
+
+  route.get(
+    '/getFloorsByBuildingId', // Define your desired endpoint URL
+    celebrate({
+      query: Joi.object({
+        buildingId: Joi.string().required(),
+      }),
+    }),
+    (req, res, next) => ctrl.getFloorsByBuildingId(req, res, next),
+  );
 };
