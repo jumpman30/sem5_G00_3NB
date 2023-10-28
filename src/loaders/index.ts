@@ -21,6 +21,12 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/floorSchema',
   };
 
+  const passageSchema = {
+    // compare with the approach followed in repos and services
+    name: 'passageSchema',
+    schema: '../persistence/schemas/passageSchema',
+  };
+
   const roomSchema = {
     name: 'roomSchema',
     schema: '../persistence/schemas/roomSchema',
@@ -98,6 +104,12 @@ export default async ({ expressApp }) => {
     path: config.repos.floor.path,
   };
 
+
+  const passageRepo = {
+    name: config.repos.passage.name,
+    path: config.repos.passage.path,
+  };
+
   const buildingRepo = {
     name: config.repos.building.name,
     path: config.repos.building.path,
@@ -133,6 +145,11 @@ export default async ({ expressApp }) => {
     path: config.controllers.robotType.path,
   };
 
+  const passageController = {
+    name: config.controllers.passage.name,
+    path: config.controllers.passage.path,
+  };
+
   const robotTypeRepo = {
     name: config.repos.robotType.name,
     path: config.repos.robotType.path,
@@ -143,12 +160,17 @@ export default async ({ expressApp }) => {
     path: config.services.robotType.path,
   };
 
+  const passageService = {
+    name: config.services.passage.name,
+    path: config.services.passage.path,
+  };
+
   await dependencyInjectorLoader({
     mongoConnection,
-    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema, buildingSchema],
-    controllers: [roleController, roomController, robotController, robotTypeController, floorController, buildingController],
-    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo, buildingRepo],
-    services: [roleService, roomService, robotService, robotTypeService, floorService, buildingService]
+    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema, buildingSchema, passageSchema],
+    controllers: [roleController, roomController, robotController, robotTypeController, floorController, buildingController, passageController],
+    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo, buildingRepo, passageRepo],
+    services: [roleService, roomService, robotService, robotTypeService, floorService, buildingService, passageService]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
 

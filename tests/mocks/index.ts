@@ -3,6 +3,7 @@ import { Location } from '../../src/domain/location';
 import { Room } from '../../src/domain/room';
 import { FloorId } from '../../src/domain/floorId';
 import { BuildingId } from '../../src/domain/buildingId';
+import { PassageId } from '../../src/domain/passageId';
 
 const buildRoom = (data?: Partial<Room>) => {
   return  {
@@ -33,6 +34,51 @@ const buildFloor = (data?) => {
     buildingId: 'test',
     number: 'test',
       ...data
+  }
+};
+
+const buildPassage = (data?) => {
+  return {
+    id: new PassageId('test'),
+    building1Id: 'test-building1',
+    building2Id: 'test-building2',
+    floor1Id: 'test-floor1Id',
+    floor2Id: 'test-floor2Id',
+    locationBuilding1: [
+      {
+        x: '3',
+        y: '3'
+      }
+    ],
+    locationBuilding2: [
+      {
+        x: '3',
+        y: '3'
+      }
+    ],
+    ...data
+  }
+};
+
+const buildPassageDto = (data?) => {
+  return {
+    building1Id: 'test-building1',
+    building2Id: 'test-building2',
+    floor1Id: 'test-floor1Id',
+    floor2Id: 'test-floor2Id',
+    locationBuilding1:  [
+      {
+        x: '3',
+        y: '3'
+      }
+    ],
+    locationBuilding2: [
+      {
+        x: '3',
+        y: '3'
+      }
+    ],
+    ...data
   }
 };
 
@@ -70,5 +116,7 @@ export default {
   buildFloor,
   buildFloorDto,
   buildBuilding,
-  buildBuildingDto
+  buildBuildingDto,
+  buildPassage,
+  buildPassageDto
 }
