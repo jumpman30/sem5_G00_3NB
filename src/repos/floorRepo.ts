@@ -25,4 +25,22 @@ export default class FloorRepo implements IFloorRepo {
       throw e;
     }
   }
+
+  public async findByBuildingId(buildingId: string): Promise<Floor[] | null> {
+    try {
+      // Use Mongoose to query floors by buildingId
+      const floors = await this.floorSchema.find({ buildingId }).exec();
+
+      if (floors && floors.length > 0) {
+        // Convert the retrieved documents to domain objects
+        const domainFloors = floors.map((floorDb) => FloorMap.toDomain(floorDb));
+        return domainFloors;
+      } else {
+        return null; // No matching floors found
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }
