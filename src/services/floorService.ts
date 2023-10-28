@@ -12,7 +12,7 @@ import { FloorMap } from '../mappers/FloorMap';
 export default class FloorService implements IFloorService {
   constructor(
     @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
-    @Inject('buildingService') private buildingService: IBuildingService
+    @Inject('buildingService') private buildingService: IBuildingService,
     @Inject('logger') private logger,
   ) {}
 
