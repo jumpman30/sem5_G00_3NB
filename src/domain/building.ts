@@ -15,8 +15,16 @@ export class Building extends AggregateRoot<BuildingProps> {
     return this._id;
   }
 
-  get buildingId(): BuildingId {
-    return BuildingId.caller(this.id);
+  get designation(): string {
+    return this.props.designation;
+  }
+
+  get width(): string {
+    return this.props.width;
+  }
+
+  get length(): string {
+    return this.props.length;
   }
 
   private constructor(props: BuildingProps, id?: UniqueEntityID) {
