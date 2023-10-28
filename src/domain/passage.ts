@@ -9,8 +9,9 @@ import { PassageId } from './passageId';
 interface PassageProps {
   building1Id: string;
   building2Id: string;
-  floorId: string;
-  //Represents the entrance/exit of the corridor
+  floor1Id: string;
+  floor2Id: string;
+  //Represents the entrance/exit of the passage
   //It should only be coordinates of type { x, m-1} being m the width of the building
   locationBuilding1: [Location];
   locationBuilding2: [Location];
@@ -36,7 +37,8 @@ export class Passage extends AggregateRoot<PassageProps> {
     const guardedProps = [
       { argument: props.building1Id, argumentName: 'building1Id' },
       { argument: props.building2Id, argumentName: 'building2Id' },
-      { argument: props.floorId, argumentName: 'floorId' },
+      { argument: props.floor1Id, argumentName: 'floor1Id' },
+      { argument: props.floor2Id, argumentName: 'floor2Id' },
       { argument: props.locationBuilding1, argumentName: 'floorId' },
       { argument: props.locationBuilding1, argumentName: 'location' },
     ];
