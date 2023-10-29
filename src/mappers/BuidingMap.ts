@@ -6,11 +6,12 @@ import { IBuildingDto } from '../dto/IBuildingDto';
 import { Document, Model } from "mongoose";
 import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';
+import { BuildingId } from '../domain/buildingId';
 
 export class BuildingMap extends Mapper<Building> {
   public static toPersistence(building: Building): any {
     return {
-      domainId: building.id.toString(),
+      domainId: building.domainId,
       designation: building.designation,
       width: building.width,
       length: building.length,
@@ -19,7 +20,7 @@ export class BuildingMap extends Mapper<Building> {
 
   public static toDTO( building: Building): IBuildingDto {
     return {
-      domainId: building.id.toString(),
+      buildingId: building.domainId,
       designation: building.designation,
       length: building.length,
       width: building.width

@@ -1,5 +1,5 @@
-# UC 350 - Criar tipo de robot
-*Como gestor de frota pretendo adicionar um novo tipo de robot indicando a sua designação e que tipos de tarefas pode executar da lista prédefinida de tarefas*
+# UC 220 - List pisos de edificio com passagem
+*Listar pisos de edifício com passagem para outros edifícios*
 
 ## 1. Requirements
 
@@ -9,17 +9,21 @@
 * Campus manager is authenticated.
 
 #### Postconditions
-* The information about the type of robot is stored in the system.
 
 ## 2. Analysis
 
 ### 2.1. Information & analysis
 
-- POST endpoint in path /api/robotType
+- GET endpoint in path /api/buildings/:id/passages
 
 ## 3. Design
 
 ### 3.1 Information
+
+- access methods needed:
+    - list all passages from building - PassagesRepo
+    - list all floors with ids - FloorRepo
+    - map data to ListFloorsWithPassagesDto - FloorMap
 
 ### 3.2 Views
 

@@ -5,6 +5,7 @@ import { Guard } from '../core/logic/Guard';
 import { BuildingId } from './buildingId';
 
 interface BuildingProps {
+  domainId: string;
   designation: string;
   length: string;
   width: string;
@@ -25,6 +26,10 @@ export class Building extends AggregateRoot<BuildingProps> {
 
   get length(): string {
     return this.props.length;
+  }
+
+  get domainId(): string {
+    return this.props.domainId;
   }
 
   private constructor(props: BuildingProps, id?: UniqueEntityID) {

@@ -38,7 +38,7 @@ describe('BuildingRepo', () => {
 
       expect(mockBuildingSchema.create).toHaveBeenCalledTimes(1);
       expect(mockBuildingSchema.create).toHaveBeenCalledWith({
-        domainId: building.id.toString(),
+        domainId: building.domainId,
         designation: building.designation,
         length: building.length,
         width: building.width,
