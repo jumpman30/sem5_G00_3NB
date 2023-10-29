@@ -26,7 +26,7 @@ export default class ElevatorController extends BaseController
 
   public async createElevator(req: Request, res: Response, next: NextFunction) {
     try {
-      const elevatorOrError = (await this.elevatorService.save(
+      const elevatorOrError = (await this.elevatorService.createElevator(
         {...req.body, buildingId: req.params.buildingId} as IElevatorDto,
       )) as Result<IElevatorDto>;
         console.log(elevatorOrError)
