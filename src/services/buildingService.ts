@@ -5,8 +5,8 @@ import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
 import IBuildingService from './IServices/IBuildingService';
 import IBuildingRepo from './IRepos/IBuildingRepo';
-import { IBuildingDto } from '../dto/IBuildingDto';
-import { Building } from '../domain/building';
+import { IBuildingDto } from '../dto/building/IBuildingDto';
+import { Building } from '../domain/building/Building';
 import { BuildingMap } from '../mappers/BuidingMap';
 import { IPassageDto } from '../dto/IPassageDto';
 import IPassageRepo from './IRepos/IPassageRepo';
@@ -69,7 +69,7 @@ public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto
     if (building === null) {
       return Result.fail<IFloorDto[]>("Building not found.");
     } else {
-      
+
       const floors = await this.floorService.getFloorsByBuildingId(buildingId);
 
       if (floors.isFailure) {
@@ -85,7 +85,7 @@ public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto
 
 public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<Result<IBuildingDto[]>> {
   try {
-    const minFloorNumber = parseInt(minFloor, 10); 
+    const minFloorNumber = parseInt(minFloor, 10);
     const maxFloorNumber = parseInt(maxFloor, 10);
 
     if (isNaN(minFloorNumber) || isNaN(maxFloorNumber)) {
@@ -93,7 +93,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
     }
 
     const buildings = await this.buildingRepo.getAllBuildings();
-   
+
     if (buildings.length === 0) {
       return Result.fail<IBuildingDto[]>("No buildings found.");
     }
@@ -101,7 +101,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
     const filteredBuildings = [];
 
     for (const building of buildings) {
-   
+
       const floors = await this.floorService.getFloorsByBuildingId(building.id.toString());
 
       if (!floors.isFailure) {
@@ -122,7 +122,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
   public async getPassageFloors(buildingId: string): Promise<Result<IPassageFloorDto[]>> {
     try{
       let passages = await this.passageRepo.findByBuilding(buildingId);
-      
+
       if (!passages) {
         return Result.fail("Passages not found");
       }

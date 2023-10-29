@@ -7,18 +7,19 @@ const Building = new mongoose.Schema(
       type: String,
       unique: true,
     },
-
-    designation: {
+    code: {
       type: String,
       required: [true, 'Please enter designation'],
       index: true,
     },
-
+    name: {
+      type: String,
+      required: [false, 'Please enter name'],
+    },
     length: {
       type: String,
       required: [true, 'Please enter length'],
     },
-
     width: {
       type: String,
       required: [true, 'Please enter width'],

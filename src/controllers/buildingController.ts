@@ -2,14 +2,15 @@ import { Request, Response, NextFunction } from 'express';
 import { Inject, Service } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
-import { BaseController } from '../core/infra/BaseController';
+import { BaseController } from '../core/infra/BaseController'
+;
 import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
+
 import IBuildingController from './IControllers/IBuildingController';
 import IBuildingService from '../services/IServices/IBuildingService';
-import { IBuildingDto } from '../dto/IBuildingDto';
-import { ParamsDictionary } from 'express-serve-static-core';
-import { ParsedQs } from 'qs';
+import IBuildingDto from '../dto/buildingDto/IBuildingDto';
+import { ICreateBuildingRequestDto } from '../dto/buildingDto/ICreateBuildingRequestDto';
 
 @Service()
 export default class BuildingController extends BaseController
@@ -179,7 +180,7 @@ export default class BuildingController extends BaseController
       return next(e);
     }
   }
-  
+
   public async getPassagesByBuildingId(
     req: Request,
     res: Response,
