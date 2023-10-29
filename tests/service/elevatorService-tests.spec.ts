@@ -41,7 +41,7 @@ describe("elevatorService", () => {
 
       let elevatorType = validElevatorDto as IElevatorDto;
 
-      let result = await service.save(elevatorType);
+      let result = await service.createElevator(elevatorType);
       expect(result.errorValue()).to.equal("Building does not exist.");
     });
 
@@ -61,7 +61,7 @@ describe("elevatorService", () => {
 
       let elevatorType = validElevatorDto as IElevatorDto;
 
-      let result = await service.save(elevatorType);
+      let result = await service.createElevator(elevatorType);
       console.log(result)
       expect(result.isFailure).to.be.true;
       expect(result.errorValue()).to.equal("Elevator serial number needs to be alphanumeric with no spaces and at maximum 50 characteres long");

@@ -1,0 +1,26 @@
+@startuml
+Actor "UI Gestor de frota" as User
+participant "SPA" as Spa <<component>>
+participant "Gestão de campus" as Controller <<component>>
+activate User
+User -> Spa: create elevator in a building
+activate Spa
+Spa -> User: request data
+
+User -> Spa: adds data
+
+Spa -> Controller : POST /building/:id/elevator (json)
+activate Controller
+
+Controller -> Controller : validate(elevator)
+Controller -> Controller : validate(elevator.buildingId)
+Controller -> Controller : create(elevator)
+Controller -> Controller : save(elevator)
+
+Controller -> Spa : OK(201) created with created elevator
+deactivate Controller
+
+Spa -> User : Shows created data
+deactivate Spa
+deactivate User
+@enduml

@@ -16,7 +16,7 @@ export default class ElevatorService implements IElevatorService {
     @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
   ) {}
 
-  public async save(elevatorDto: IElevatorDto): Promise<Result<IElevatorDto>> {
+  public async createElevator(elevatorDto: IElevatorDto): Promise<Result<IElevatorDto>> {
     if(!await this.buildingRepo.exists(elevatorDto.buildingId)){
       return Result.fail<IElevatorDto>("Building does not exist.")
     }
