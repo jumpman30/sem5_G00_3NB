@@ -7,6 +7,7 @@ import { Floor } from '../domain/floor';
 import IFloorRepo from './IRepos/IFloorRepo';
 import IBuildingService from './IServices/IBuildingService';
 import { FloorMap } from '../mappers/FloorMap';
+import { floor } from 'lodash';
 
 @Service()
 export default class FloorService implements IFloorService {
@@ -20,7 +21,9 @@ export default class FloorService implements IFloorService {
 
     const floorOrError = Floor.create({
       buildingId: floorDto.buildingId,
-      number: floorDto.number
+      number: floorDto.number,
+      minimum: floorDto.minimum,
+      maximum: floorDto.maximum
     });
 
     if (floorOrError.isFailure) {

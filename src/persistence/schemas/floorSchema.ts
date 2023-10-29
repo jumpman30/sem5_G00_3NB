@@ -18,6 +18,14 @@ const Floor = new mongoose.Schema(
       type: String,
       required: [true, 'Please enter number'],
     },
+    minimum: {
+      type: String,
+      required: [true, 'Please enter minimum floors'],
+    },
+    maximum: {
+      type: String,
+      required: [true, 'Please enter maximum floors'],
+    },
   },
   { timestamps: true },
 );

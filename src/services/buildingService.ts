@@ -42,7 +42,7 @@ export default class BuildingService implements IBuildingService {
         const building = await this.buildingRepo.findByDomainId(buildingId);
 
         if (building === null) {
-            return Result.fail<IBuildingDto>("Truck not found.");
+            return Result.fail<IBuildingDto>("Building not found.");
         } else {
             const buildingDTOResult = BuildingMap.toDTO(building) as IBuildingDto;
             return Result.ok<IBuildingDto>(buildingDTOResult)
@@ -74,4 +74,40 @@ public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto
   }
 }
 
+public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<Result<IBuildingDto[]>> {
+  try {
+    const minFloorNumber = parseInt(minFloor, 10); 
+    const maxFloorNumber = parseInt(maxFloor, 10);
+
+    if (isNaN(minFloorNumber) || isNaN(maxFloorNumber)) {
+      return Result.fail<IBuildingDto[]>("Invalid minimum or maximum floor values.");
+    }
+
+    const buildings = await this.buildingRepo.getAllBuildings();
+   
+    if (buildings.length === 0) {
+      return Result.fail<IBuildingDto[]>("No buildings found.");
+    }
+
+    const filteredBuildings = [];
+
+    for (const building of buildings) {
+   
+      const floors = await this.floorService.getFloorsByBuildingId(building.id.toString());
+
+      if (!floors.isFailure) {
+        const numFloors = floors.getValue().length;
+
+        if (numFloors >= minFloorNumber && numFloors <= maxFloorNumber) {
+          filteredBuildings.push(building);
+        }
+      }
+    }
+
+    return Result.ok<IBuildingDto[]>(filteredBuildings);
+  } catch (e) {
+    throw e;
+  }
+
+}
 }
