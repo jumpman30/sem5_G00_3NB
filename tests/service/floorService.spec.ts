@@ -3,10 +3,14 @@ import IRoomRepo from '../../src/services/IRepos/IRoomRepo';
 import mocks from '../mocks';
 import FloorService from '../../src/services/floorService';
 import IFloorRepo from '../../src/services/IRepos/IFloorRepo';
+import BuildingService from '../../src/services/buildingService';
+import IBuildingRepo from '../../src/services/IRepos/IBuildingRepo';
 
 describe('FloorService', () => {
   let floorService: FloorService;
+  let buildingService: BuildingService;
   let mockFloorRepo: jest.Mocked<IFloorRepo>;
+  let mockBuildingRepo: jest.Mocked<IBuildingRepo>;
   let mockLogger: jest.Mocked<Console>;
 
   beforeEach(() => {
@@ -18,7 +22,9 @@ describe('FloorService', () => {
       log: jest.fn(),
     } as any;
 
-    floorService = new FloorService(mockFloorRepo, mockLogger);
+    floorService = new FloorService(mockFloorRepo,buildingService, mockLogger);
+    buildingService=new BuildingService(mockBuildingRepo,mockLogger,floorService);
+    
   });
 
   afterEach(() => {

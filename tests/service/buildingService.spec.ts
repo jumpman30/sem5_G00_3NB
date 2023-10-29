@@ -8,7 +8,9 @@ import IBuildingRepo from '../../src/services/IRepos/IBuildingRepo';
 
 describe('BuildingService', () => {
   let buildingService: BuildingService;
+  let floorservice: FloorService;
   let mockBuildingRepo: jest.Mocked<IBuildingRepo>;
+  let floorRepo: jest.Mocked<IFloorRepo>;
   let mockLogger: jest.Mocked<Console>;
 
   beforeEach(() => {
@@ -20,7 +22,8 @@ describe('BuildingService', () => {
       log: jest.fn(),
     } as any;
 
-    buildingService = new BuildingService(mockBuildingRepo, mockLogger);
+    floorservice=new FloorService(floorRepo,buildingService,mockLogger);
+    buildingService = new BuildingService(mockBuildingRepo, mockLogger,floorservice);
   });
 
   afterEach(() => {
