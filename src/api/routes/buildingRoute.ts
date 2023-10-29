@@ -3,12 +3,14 @@ import { celebrate, Joi } from 'celebrate';
 import { Container } from 'typedi';
 import config from '../../../config';
 import IBuildingController from '../../controllers/IControllers/IBuildingController';
+import IElevatorController from '../../controllers/IControllers/IElevatorController';
 
 const route = Router();
 
 export default (app: Router) => {
   app.use('/building', route);
 
+  const elevatorCtrl = Container.get(config.controllers.elevator.name) as IElevatorController;
   const ctrl = Container.get(config.controllers.building.name) as IBuildingController;
 
   route.post(
@@ -51,4 +53,22 @@ export default (app: Router) => {
     }),
   }),
   (req, res, next) => ctrl.getPassagesByBuildingId(req,res,next));
+
+
+  route.post(
+    '/:buildingId/elevator',
+    celebrate({
+      params: Joi.object({
+        buildingId: Joi.string().required(),
+      }),
+      body: Joi.object({
+        availableFloorNumbers: Joi.array().items(Joi.string().required()),
+        serialNumber: Joi.string().optional().default(""),
+        description: Joi.string().optional().default(""),
+        model: Joi.string().optional().default(""),
+        brand: Joi.string().optional().default(""),
+      }),
+    }),
+    (req, res, next) => elevatorCtrl.createElevator(req, res, next),
+  );
 };

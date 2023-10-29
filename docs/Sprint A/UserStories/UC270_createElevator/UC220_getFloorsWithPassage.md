@@ -1,9 +1,17 @@
-# UC 220 - List pisos de edificio com passagem
-*Listar pisos de edifício com passagem para outros edifícios*
+# UC 270 - Criar elevador em edifício
+*Criar elevador em edifício*
 
 ## 1. Requirements
 
-- esta listagem deve mostrar a informação sobre o piso (edificio, piso, descrição) e a que outros edificios/pisos tem passagem - [Forum question](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=25451)
+- "bom dia,
+  - edificio (obrigatório)
+  - número identificativo (obrigatório, único no edificio)
+  - lista de pisos do edificio servidos pelo elevador (obrigatório)
+  - marca (opcional, alfanumerico, 50 caracteres)
+  - modelo (opcional, mas obrigatório se marca for introduzido, alfanumerico, 50 caracteres)
+  - número de série do fabricante (opcional, alfanumerico, 50 caracteres)
+  - breve descrição (opcional, alfanumerico, 250 caracteres)
+ - [Forum question](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=25298#p32051)
 
 #### Preconditions
 * Campus manager is authenticated.
@@ -14,7 +22,19 @@
 
 ### 2.1. Information & analysis
 
-- GET endpoint in path /api/buildings/:id/passages
+- POST endpoint in path /api/buildings/:id/elevator
+- Body :
+```
+   {
+   edificio (obrigatório)
+   número identificativo (obrigatório, único no edificio)
+   lista de pisos do edificio servidos pelo elevador (obrigatório)
+   marca (opcional, alfanumerico, 50 caracteres)
+   modelo (opcional, mas obrigatório se marca for introduzido, alfanumerico, 50 caracteres)
+   número de série do fabricante (opcional, alfanumerico, 50 caracteres)
+   breve descrição (opcional, alfanumerico, 250 caracteres)
+  }
+```
 
 ## 3. Design
 
