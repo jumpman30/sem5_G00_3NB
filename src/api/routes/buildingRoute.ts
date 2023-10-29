@@ -9,16 +9,26 @@ const route = Router();
 export default (app: Router) => {
   app.use('/building', route);
 
-  const ctrl = Container.get(config.controllers.building.name) as IBuildingController;
+  const ctrl = Container.get(
+    config.controllers.building.name,
+  ) as IBuildingController;
 
   route.post(
     '',
     celebrate({
       body: Joi.object({
-        buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
+        buildingId: Joi.string()
+          .regex(/^[A-Za-z0-9\s]*$/)
+          .max(5)
+          .required()
+          .error(
+            new Error(
+              'building needs to have an id with max 5 alphanumeric chars',
+            ),
+          ),
         designation: Joi.string().required(),
         width: Joi.string().required(),
-        length: Joi.string().required()
+        length: Joi.string().required(),
       }),
     }),
     (req, res, next) => ctrl.createBuilding(req, res, next),
@@ -44,11 +54,13 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.getBuildingsByMinMax(req, res, next),
   );
-  route.get('/:id/passages',
-  celebrate({
-    params: Joi.object({
-      id: Joi.string().required(),
+  route.get(
+    '/:id/passages',
+    celebrate({
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
     }),
-  }),
-  (req, res, next) => ctrl.getPassagesByBuildingId(req,res,next));
+    (req, res, next) => ctrl.getPassagesByBuildingId(req, res, next),
+  );
 };
