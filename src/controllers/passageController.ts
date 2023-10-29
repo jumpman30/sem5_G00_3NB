@@ -60,4 +60,22 @@ export default class PassageController extends BaseController
       return next(e);
     }
   }
+
+  async findPassagesBetweenTwoBuildings(req: Request, res: Response, next: NextFunction){
+     try {
+       const passagesOrError = await this.passageService.findPassageBetweenBuildings(
+         req.body.searchBuildingId1,
+         req.body.searchBuildingId2,
+       );
+
+       if (passagesOrError.isFailure) {
+         return this.fail(passagesOrError.error.toString());
+       }
+
+       return this.ok(res, passagesOrError.getValue());
+     } catch (e) {
+       throw e;
+     }
+  }
+
 }

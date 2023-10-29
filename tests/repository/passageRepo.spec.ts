@@ -16,7 +16,8 @@ describe('FloorRepo', () => {
   beforeEach(() => {
     mockPassageSchema = {
       create: jest.fn(),
-      updateOne: jest.fn()
+      updateOne: jest.fn(),
+      find: jest.fn()
     } as any;
     mockLogger = {
       error: jest.fn(),
@@ -41,7 +42,7 @@ describe('FloorRepo', () => {
       expect(mockPassageSchema.create).toHaveBeenCalledTimes(1);
       expect(mockPassageSchema.create).toHaveBeenCalledWith(PassageMap.toPersistence(passage));
     });
-    it('should throw an error if `passageSchema.create` fails', async () => {
+    it('should throw an error if operation fails', async () => {
       const passage = mocks.buildPassage();
 
       jest.spyOn(mockPassageSchema, 'create').mockImplementation(() => {
@@ -65,13 +66,36 @@ describe('FloorRepo', () => {
       expect(mockPassageSchema.updateOne).toHaveBeenCalledWith( { domainId: 'test-id' }, { floor1Id: 'test-id' });
     });
 
-    it('should throw an error if the update fails', async () => {
+    it('should throw an error if operation fails', async () => {
       jest.spyOn(mockPassageSchema, 'updateOne').mockImplementation(() => {
        throw new Error('test-fail')
       });
 
       try {
         await passageRepo.update({ }, { });
+      } catch (e) {
+        expect(e.message).toEqual('test-fail');
+      }
+    });
+  });
+
+  describe('find', () => {
+    it('should call `passageSchema.find()`', async () => {
+      jest.spyOn(mockPassageSchema, 'find').mockResolvedValue([{floor1Id: 'test-id' }] as any);
+
+      await passageRepo.find( { key: 'test' }, { projection: 'test' } as any);
+
+      expect(mockPassageSchema.find).toHaveBeenCalledTimes(1);
+      expect(mockPassageSchema.find).toHaveBeenCalledWith( { key: 'test' }, { projection: 'test' });
+    });
+
+    it('should throw an error if the operation fails', async () => {
+      jest.spyOn(mockPassageSchema, 'find').mockImplementation(() => {
+        throw new Error('test-fail')
+      });
+
+      try {
+        await passageRepo.find({ }, { } as any);
       } catch (e) {
         expect(e.message).toEqual('test-fail');
       }

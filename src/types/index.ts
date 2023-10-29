@@ -4,3 +4,10 @@ import { Passage } from '../domain/passage';
 export type UpdateBuildingFilter = {
   domainId: string
 };
+
+
+export type PassageDbProjection = {
+  locationBuilding1: number;
+  locationBuilding2: number;
+  floor1Id: number;
+}
