@@ -24,7 +24,8 @@ export default {
   /**
    * Your secret sauce
    */
-  jwtSecret: process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
+  jwtSecret:
+    process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
 
   /**
    * Used by winston logger
@@ -39,7 +40,9 @@ export default {
   api: {
     prefix: '/api',
   },
-
+  /**
+   * Controllers
+   */
   controllers: {
     role: {
       name: 'RoleController',
@@ -62,15 +65,17 @@ export default {
       path: '../controllers/roomController',
     },
     robot: {
-      name: "RobotController",
-      path: "../controllers/robotController"
+      name: 'RobotController',
+      path: '../controllers/robotController',
     },
     robotType: {
       name: 'RobotTypeController',
       path: '../controllers/robotTypeController',
     },
   },
-
+  /**
+   * Repositories
+   */
   repos: {
     role: {
       name: 'RoleRepo',
@@ -78,7 +83,7 @@ export default {
     },
     passage: {
       name: 'PassageRepo',
-      path: '../repos/PassageRepo',
+      path: '../repos/passageRepo',
     },
     building: {
       name: 'BuildingRepo',
@@ -89,8 +94,8 @@ export default {
       path: '../repos/userRepo',
     },
     robot: {
-      name: "RobotRepo",
-      path: "../repos/robotRepo"
+      name: 'RobotRepo',
+      path: '../repos/robotRepo',
     },
     robotType: {
       name: 'RobotTypeRepo',
@@ -98,15 +103,16 @@ export default {
     },
     room: {
       name: 'RoomRepo',
-      path: '../repos/roomRepo'
+      path: '../repos/roomRepo',
     },
     floor: {
       name: 'FloorRepo',
       path: '../repos/floorRepo',
     },
-
   },
-
+  /**
+   * Services
+   */
   services: {
     role: {
       name: 'RoleService',
@@ -125,8 +131,8 @@ export default {
       path: '../services/roomService',
     },
     robot: {
-      name: "RobotService",
-      path: "../services/robotService"
+      name: 'RobotService',
+      path: '../services/robotService',
     },
     robotType: {
       name: 'RobotTypeService',
