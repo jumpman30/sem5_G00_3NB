@@ -27,4 +27,22 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.createPassage(req, res, next),
   );
+
+  route.put(
+    '/:domainId',
+    celebrate({
+      params: Joi.object({
+        domainId: Joi.string().required(), // Validating the ID parameter
+      }),
+      body: Joi.object({
+        building1Id: Joi.string().optional(),
+        building2Id: Joi.string().optional(),
+        floor1Id: Joi.string().optional(),
+        floor2Id: Joi.string().optional(),
+        locationBuilding1: Joi.array().optional(),
+        locationBuilding2: Joi.array().optional()
+      }),
+    }),
+    (req, res, next) => ctrl.updatePassageByDomainId(req, res, next),
+  );
 };

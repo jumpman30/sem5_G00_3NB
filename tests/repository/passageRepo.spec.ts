@@ -16,6 +16,7 @@ describe('FloorRepo', () => {
   beforeEach(() => {
     mockPassageSchema = {
       create: jest.fn(),
+      updateOne: jest.fn()
     } as any;
     mockLogger = {
       error: jest.fn(),
@@ -43,7 +44,6 @@ describe('FloorRepo', () => {
     it('should throw an error if `passageSchema.create` fails', async () => {
       const passage = mocks.buildPassage();
 
-
       jest.spyOn(mockPassageSchema, 'create').mockImplementation(() => {
         throw new Error('test-error');
       });
@@ -52,6 +52,28 @@ describe('FloorRepo', () => {
         await passageRepo.save(passage as any);
       } catch (e){
         expect(e.message).toEqual('test-error');
+      }
+    });
+  });
+  describe('update', () => {
+    it('should call `passageSchema.updateOne()`', async () => {
+      jest.spyOn(mockPassageSchema, 'updateOne').mockResolvedValue({ modifiedCount: 1} as any);
+
+      await passageRepo.update( { floor1Id: 'test-id' }, { domainId: 'test-id' });
+
+      expect(mockPassageSchema.updateOne).toHaveBeenCalledTimes(1);
+      expect(mockPassageSchema.updateOne).toHaveBeenCalledWith( { domainId: 'test-id' }, { floor1Id: 'test-id' });
+    });
+
+    it('should throw an error if the update fails', async () => {
+      jest.spyOn(mockPassageSchema, 'updateOne').mockImplementation(() => {
+       throw new Error('test-fail')
+      });
+
+      try {
+        await passageRepo.update({ }, { });
+      } catch (e) {
+        expect(e.message).toEqual('test-fail');
       }
     });
   });

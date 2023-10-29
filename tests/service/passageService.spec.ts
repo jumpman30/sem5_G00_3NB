@@ -1,10 +1,7 @@
-import RoomService from '../../src/services/roomService';
-import IRoomRepo from '../../src/services/IRepos/IRoomRepo';
 import mocks from '../mocks';
-import FloorService from '../../src/services/floorService';
-import IFloorRepo from '../../src/services/IRepos/IFloorRepo';
 import PassageService from '../../src/services/passageService';
 import IPassageRepo from '../../src/services/IRepos/IPassageRepo';
+import { Result } from '../../src/core/logic/Result';
 
 describe('PassageService', () => {
   let passageService: PassageService;
@@ -14,6 +11,7 @@ describe('PassageService', () => {
   beforeEach(() => {
     mockPassageRepo = {
       save: jest.fn(),
+      update: jest.fn()
     } as any;
     mockLogger = {
       error: jest.fn(),
@@ -49,6 +47,33 @@ describe('PassageService', () => {
       await passageService.save(mockPassageDto);
 
       expect(mockPassageRepo.save).toHaveBeenCalledTimes(1)
+    });
+  });
+
+  describe('update', () => {
+    it('should call `passageRepo.update()`', async () => {
+      jest.spyOn(mockPassageRepo, 'update').mockResolvedValue(1 as any);
+
+      await passageService.update({ test: 'test'} as any, {test: 'test'} as any);
+
+      expect(mockPassageRepo.update).toHaveBeenCalledTimes(1);
+      expect(mockPassageRepo.update).toHaveBeenCalledWith({ test: 'test'}, {test: 'test'});
+    });
+
+    it('should return fail result if no document is updated', async () => {
+      jest.spyOn(mockPassageRepo, 'update').mockResolvedValue(0 as any);
+
+      const result = await passageService.update({ test: 'test'} as any, {test: 'test'} as any);
+
+      expect(result).toEqual(Result.fail('No document was updated'));
+    });
+
+    it('should return number of documents updated', async () => {
+      jest.spyOn(mockPassageRepo, 'update').mockResolvedValue(1 as any);
+
+      const result = await passageService.update({ test: 'test'} as any, {test: 'test'} as any);
+
+      expect(result).toEqual(Result.ok({updatedCount: 1}));
     });
   });
 });

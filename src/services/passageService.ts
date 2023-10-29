@@ -1,14 +1,12 @@
 import { Service, Inject } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
-import IFloorService from './IServices/IFloorService';
-import { IFloorDto } from '../dto/IFloorDto';
-import { Floor } from '../domain/floor';
-import IFloorRepo from './IRepos/IFloorRepo';
 import IPassageService from './IServices/IPassageService';
 import IPassageRepo from './IRepos/IPassageRepo';
 import { IPassageDto } from '../dto/IPassageDto';
 import { Passage } from '../domain/passage';
+import { IUpdatePassageDto } from '../dto/IUpdatePassageDto';
+import { UpdateBuildingFilter } from '../types';
 
 @Service()
 export default class PassageService implements IPassageService {
@@ -16,6 +14,7 @@ export default class PassageService implements IPassageService {
     @Inject(config.repos.passage.name) private passageRepo: IPassageRepo,
     @Inject('logger') private logger,
   ) {}
+
 
   public async save(passageDto: IPassageDto): Promise<Result<{ passageId: string }>> {
 
@@ -38,5 +37,14 @@ export default class PassageService implements IPassageService {
     } catch (e) {
       throw e;
     }
+  }
+
+  public async update(updatePassageDto: IUpdatePassageDto, filter: UpdateBuildingFilter): Promise<Result<{ updatedCount: number }>> {
+      const updatedCount = await this.passageRepo.update(updatePassageDto, filter);
+
+      if(updatedCount <= 0){
+        return Result.fail('No document was updated');
+      }
+      return Result.ok({ updatedCount })
   }
 }
