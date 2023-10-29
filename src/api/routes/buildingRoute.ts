@@ -15,6 +15,7 @@ export default (app: Router) => {
     '',
     celebrate({
       body: Joi.object({
+        buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
         designation: Joi.string().required(),
         width: Joi.string().required(),
         length: Joi.string().required()
@@ -43,4 +44,11 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.getBuildingsByMinMax(req, res, next),
   );
+  route.get('/:id/passages',
+  celebrate({
+    params: Joi.object({
+      id: Joi.string().required(),
+    }),
+  }),
+  (req, res, next) => ctrl.getPassagesByBuildingId(req,res,next));
 };

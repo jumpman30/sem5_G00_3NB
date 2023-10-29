@@ -55,9 +55,7 @@ export class Floor extends AggregateRoot<FloorProps> {
       return Result.fail<Floor>(guardResult.message);
     } else {
       const floor = new Floor(
-        {
-          ...props,
-        },
+        props,
         id,
       );
 

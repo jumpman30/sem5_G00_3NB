@@ -8,18 +8,27 @@ import IBuildingRepo from './IRepos/IBuildingRepo';
 import { IBuildingDto } from '../dto/IBuildingDto';
 import { Building } from '../domain/building';
 import { BuildingMap } from '../mappers/BuidingMap';
+import { IPassageDto } from '../dto/IPassageDto';
+import IPassageRepo from './IRepos/IPassageRepo';
+import { PassageMap } from '../mappers/PassageMap';
+import IFloorRepo from './IRepos/IFloorRepo';
+import { FloorMap } from '../mappers/FloorMap';
+import { IPassageFloorDto } from '../dto/IPassageFloorDto';
 
 @Service()
 export default class BuildingService implements IBuildingService {
   constructor(
     @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
     @Inject('floorService') private floorService: IFloorService,
+    @Inject(config.repos.passage.name) private passageRepo: IPassageRepo,
+    @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
     @Inject('logger') private logger,
   ) {}
 
   public async save(buildingDto: IBuildingDto): Promise<Result<{ buildingId: string }>> {
 
     const buildingOrError = Building.create({
+      domainId: buildingDto.buildingId,
       designation: buildingDto.designation,
       width: buildingDto.width,
       length: buildingDto.length
@@ -110,4 +119,30 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
   }
 
 }
+  public async getPassageFloors(buildingId: string): Promise<Result<IPassageFloorDto[]>> {
+    try{
+      let passages = await this.passageRepo.findByBuilding(buildingId);
+      
+      if (!passages) {
+        return Result.fail("Passages not found");
+      }
+
+      let floorsToSearch = passages.map((passage) => {
+        if(passage.building1Id === buildingId){
+          return passage.floor1Id
+        }
+
+        return passage.floor2Id
+      })
+
+      let floorsInfo = await Promise.all(floorsToSearch.map(async (floorId) => {
+        let floor = await this.floorRepo.findById(floorId);
+        return FloorMap.toDto(floor);
+      }));
+
+      return Result.ok<IPassageFloorDto[]>( passages.map( passage => PassageMap.toFloorPassageRequestDTO(passage, floorsInfo)) );
+    } catch (e) {
+      throw e;
+    }
+  }
 }

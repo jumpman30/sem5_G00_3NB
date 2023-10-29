@@ -94,6 +94,7 @@ const buildBuilding = (data?) => {
 
 const buildBuildingDto = (data?) => {
   return {
+    domainId: "id",
     designation: 'test',
     length: 'test',
     width: 'test',

@@ -35,4 +35,19 @@ export default class PassageRepo implements IPassageRepo {
   }
 
 
+  public async findByBuilding(buildingId: string): Promise<Passage[]> {
+    const query = { 
+      $or: [
+        { building1Id: buildingId },
+        { building2Id: buildingId }
+     ]};
+
+    const passages = (await this.passageSchema.find( query ));
+    if(passages) {
+      return passages.map(passage => PassageMap.toDomain(passage));
+    }
+    else{
+      return null;
+    }
+  }
 }

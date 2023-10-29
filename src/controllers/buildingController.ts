@@ -105,4 +105,19 @@ public async getBuildingsByMinMax(req: Request, res: Response, next: NextFunctio
     return next(e);
   }
 }
+  public async getPassagesByBuildingId(req: Request, res: Response, next: NextFunction){
+    try {
+      const PassagesOrError = await this.buildingService.getPassageFloors(req.params.id);
+
+      if (PassagesOrError.isFailure) {
+        return res.status(404).send();
+      }
+
+      const RobotDTO = PassagesOrError.getValue();
+      return res.status(201).json( RobotDTO );
+    }
+    catch (e) {
+      return next(e);
+    }
+  }
 }
