@@ -105,6 +105,8 @@ const buildFloorDto = (data?) => {
   return {
     buildingId: 'test',
     number: 'test',
+    minimum: 1,
+    maximum: 4,
     ...data
   }
 };

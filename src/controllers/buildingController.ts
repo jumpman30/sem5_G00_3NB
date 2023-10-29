@@ -84,4 +84,25 @@ public async getFloorsByBuildingId(req: Request, res: Response, next: NextFuncti
   }
 }
 
+public async getBuildingsByMinMax(req: Request, res: Response, next: NextFunction) {
+  try {
+    const minFloor = req.query.minFloor as string;
+    const maxFloor = req.query.maxFloor as string;
+
+    if (minFloor === undefined || maxFloor === undefined) {
+      return res.status(400).json("Minimum and maximum floors are required.");
+    }
+
+    const result = await this.buildingService.getBuildingsByMinMax(minFloor, maxFloor);
+
+    if (result.isSuccess) {
+      const buildingDTOs = result.getValue();
+      return this.ok(res, buildingDTOs);
+    } else {
+      return this.fail(result.error.toString());
+    }
+  } catch (e) {
+    return next(e);
+  }
+}
 }

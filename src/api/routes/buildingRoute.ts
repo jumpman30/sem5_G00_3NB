@@ -32,4 +32,15 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.getFloorsByBuildingId(req, res, next),
   );
+
+  route.get(
+    '/getBuildingsByMinMax',
+    celebrate({
+      query: Joi.object({
+        minFloor: Joi.string().required(),
+        maxFloor: Joi.string().required(),
+      }),
+    }),
+    (req, res, next) => ctrl.getBuildingsByMinMax(req, res, next),
+  );
 };
