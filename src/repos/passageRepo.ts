@@ -1,5 +1,5 @@
 import { Service, Inject } from 'typedi';
-import { Document, Model } from 'mongoose';
+import { Document, FilterQuery, Model } from 'mongoose';
 import { IPassagePersistence } from '../dataschema/IPassagePersistence';
 import IPassageRepo from '../services/IRepos/IPassageRepo';
 import { Passage } from '../domain/passage';
@@ -24,4 +24,15 @@ export default class PassageRepo implements IPassageRepo {
       throw e;
     }
   }
+
+  public async update(passage: Partial<Omit<Passage, 'id'>>, filter: FilterQuery<Passage>): Promise<number> {
+    try {
+      const result = await this.passageSchema.updateOne(filter, passage);
+      return result.modifiedCount;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+
 }
