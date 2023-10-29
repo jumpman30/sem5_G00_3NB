@@ -1,30 +1,38 @@
+# UC 230- Carregar mapa piso
+A JSON file with info abou floors, rooms, elevators and exits, should be loaded into the system.
+
+## 1. Requirements
+
+ [moodle](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=25150)
+ [file](https://www.dei.isep.ipp.pt/~jpp/LAPR5/mazes/LAPR5.json)
+ It must be a JSON file.
+
 #### Preconditions
 * Campus manager is authenticated.
+* Buildings, floors, rooms and elevators already should exist in the system.
 
 #### Postconditions
-* The information about the buildings with minimum and maximum floors is stored in the system.
+* The information about the buildings,floors,rooms and elevators is loaded and stored in the system.
 
 ## 2. Analysis
 
 ### 2.1. Information & analysis
 
-- GET endpoint in path /api/buildings/getBuildingsByMinMax
-
- [source](https://moodle.isep.ipp.pt/mod/forum/discuss.php?d=25150)
- Each building has a floor minimum and maximum.
+- PATCH endpoint in path /api/file
 
 ## 3. Design
 
 ### 3.1 Information
 
+
 ### 3.2 Views
 
 #### Level 1
-![VP-US180](./VP_Nivel1.png)
+![VP-US230](./VP_Nivel1.png)
 #### Level 2
-![VP-US180](./VP_Nivel2.png)
+![VP-US230](./VP_Nivel2.png)
 #### Level 3
-![VP-US180](./VP_Nivel3.png)
+![VP-US230](./VP_Nivel3.png)
 
 ### 3.3 Patterns/Libs
 
@@ -38,14 +46,15 @@
 - Information expert
   - The designed solution aims to assign the correct responsibility given the information the classes hold.
 
+- Interface Segregation Principle
+
+- Dependency Inversion Principle
+
 - DTO pattern.
 
 ## Tests
 
 ### Unit
-
-#### Domain
-- validate business rules attributes of minimum and maximum floors of a building.
 
 #### Repository
 - validate isolated behaviour of repository functions with mocked schema in case of success
