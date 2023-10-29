@@ -19,7 +19,7 @@ import { IPassageFloorDto } from '../dto/IPassageFloorDto';
 export default class BuildingService implements IBuildingService {
   constructor(
     @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
-    @Inject('floorService') private floorService: IFloorService,
+    @Inject(config.services.floor.name) private floorService: IFloorService,
     @Inject(config.repos.passage.name) private passageRepo: IPassageRepo,
     @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
     @Inject('logger') private logger,
