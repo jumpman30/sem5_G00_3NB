@@ -11,6 +11,7 @@ import IBuildingService from '../../src/services/IServices/IBuildingService';
 describe('FloorController', () => {
   let buildingController: BuildingController;
   let mockBuildingService: jest.Mocked<IBuildingService>;
+  let mockFloorService: jest.Mocked<IFloorService>;
   let mockReq: Partial<Request>;
   let mockRes: Partial<Response>;
   let mockNext: NextFunction;
@@ -27,7 +28,11 @@ describe('FloorController', () => {
     mockBuildingService = {
       save: jest.fn(),
     } as any;
-    buildingController = new BuildingController(mockBuildingService);
+    mockFloorService = {
+      save: jest.fn(),
+    } as any;
+   
+    buildingController = new BuildingController(mockBuildingService,mockFloorService);
   });
 
   afterEach(() => {

@@ -5,11 +5,14 @@ import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
 import { Floor } from '../domain/floor';
 import IFloorRepo from './IRepos/IFloorRepo';
+import IBuildingService from './IServices/IBuildingService';
+import { FloorMap } from '../mappers/FloorMap';
 
 @Service()
 export default class FloorService implements IFloorService {
   constructor(
     @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
+    @Inject('buildingService') private buildingService: IBuildingService,
     @Inject('logger') private logger,
   ) {}
 
@@ -31,4 +34,24 @@ export default class FloorService implements IFloorService {
       throw e;
     }
   }
+
+  public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto[]>> {
+    try {
+    const buildingExists = await this.buildingService.findBuildingByKey(buildingId);
+
+    if (!buildingExists) {
+      return Result.fail<IFloorDto[]>(`Building with ID ${buildingId} does not exist.`);
+    }
+
+    const floors = await this.floorRepo.findByBuildingId(buildingId);
+    if (!floors) {
+      return Result.fail<IFloorDto[]>(`No floors found for building with ID ${buildingId}.`);
+    }
+    const floorDTOs = floors.map((floor) => FloorMap.toDTO(floor));
+
+      return Result.ok<IFloorDto[]>(floorDTOs);
+    } catch (e) {
+      throw e;
+    }
+}
 }

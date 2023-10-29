@@ -1,5 +1,5 @@
 import { Service, Inject } from 'typedi';
-import { Document, Model } from 'mongoose';
+import { Document, Model,FilterQuery } from 'mongoose';
 import IBuildingRepo from '../services/IRepos/IBuildingRepo';
 import { Building } from '../domain/building';
 import { BuildingId } from '../domain/buildingId';
@@ -23,5 +23,16 @@ export default class BuildingRepo implements IBuildingRepo {
     } catch (e) {
       throw e;
     }
+  }
+
+  public async findByDomainId(buildingId: Building | string): Promise<Building> {
+    const query = { domainId: buildingId };
+    const buildingRecord = await this.buildingSchema.findOne(
+      query as FilterQuery<IBuildingPersistence & Document>,
+    );
+
+    if (buildingRecord != null) {
+      return BuildingMap.toDomain(buildingId);
+    } else return null;
   }
 }

@@ -25,4 +25,21 @@ export default class FloorRepo implements IFloorRepo {
       throw e;
     }
   }
+  public async findByBuildingId(buildingId: string): Promise<Floor[] | null> {
+    try {
+    
+      const floors = await this.floorSchema.find({ buildingId }).exec();
+
+      if (floors && floors.length > 0) {
+      
+        const domainFloors = floors.map((floorDb) => FloorMap.toDomain(floorDb));
+        return domainFloors;
+      } else {
+        return null; 
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

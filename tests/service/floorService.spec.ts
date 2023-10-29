@@ -3,9 +3,11 @@ import IRoomRepo from '../../src/services/IRepos/IRoomRepo';
 import mocks from '../mocks';
 import FloorService from '../../src/services/floorService';
 import IFloorRepo from '../../src/services/IRepos/IFloorRepo';
+import BuildingService from '../../src/services/buildingService';
 
 describe('FloorService', () => {
   let floorService: FloorService;
+  let buildingService: BuildingService;
   let mockFloorRepo: jest.Mocked<IFloorRepo>;
   let mockLogger: jest.Mocked<Console>;
 
@@ -17,8 +19,11 @@ describe('FloorService', () => {
       error: jest.fn(),
       log: jest.fn(),
     } as any;
+    buildingService= {
+      save: jest.fn(),
+    } as any;
 
-    floorService = new FloorService(mockFloorRepo, mockLogger);
+    floorService = new FloorService(mockFloorRepo,buildingService, mockLogger);
   });
 
   afterEach(() => {

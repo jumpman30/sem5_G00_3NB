@@ -1,9 +1,11 @@
 import mocks from '../mocks';
 import BuildingService from '../../src/services/buildingService';
+import FloorService from '../../src/services/floorService';
 import IBuildingRepo from '../../src/services/IRepos/IBuildingRepo';
 
 describe('BuildingService', () => {
   let buildingService: BuildingService;
+  let floorService: FloorService;
   let mockBuildingRepo: jest.Mocked<IBuildingRepo>;
   let mockLogger: jest.Mocked<Console>;
 
@@ -15,8 +17,11 @@ describe('BuildingService', () => {
       error: jest.fn(),
       log: jest.fn(),
     } as any;
+    floorService= {
+      save: jest.fn(),
+    } as any;
 
-    buildingService = new BuildingService(mockBuildingRepo, mockLogger);
+    buildingService = new BuildingService(mockBuildingRepo,floorService, mockLogger);
   });
 
   afterEach(() => {
