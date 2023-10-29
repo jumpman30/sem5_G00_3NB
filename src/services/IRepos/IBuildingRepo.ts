@@ -1,8 +1,9 @@
-import { FloorId } from '../../domain/floorId';
-import { Building } from '../../domain/building';
+import { Building } from '../../domain/building/Building';
 
 export default interface IBuildingRepo {
-  save(building: Building): Promise<FloorId>;
+  save(user: Building): Promise<Building>;
   findByDomainId(buildingId: Building | string): Promise<Building>;
   getAllBuildings(): Promise<Building[]>;
+  findByCode(code: string): Promise<Building>;
+  getAll(): Promise<Building[]>;
 }
