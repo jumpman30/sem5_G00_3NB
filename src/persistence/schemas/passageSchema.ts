@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { IRoomPersistence } from '../../dataschema/IRoomPersistence';
 import { IPassagePersistence } from '../../dataschema/IPassagePersistence';
 
 const Passage = new mongoose.Schema(
@@ -19,7 +18,12 @@ const Passage = new mongoose.Schema(
       required: [true, 'Please enter building id'],
     },
 
-    floorId: {
+    floor1Id: {
+      type: String,
+      required: [true, 'Please enter floor id'],
+    },
+
+    floor2Id: {
       type: String,
       required: [true, 'Please enter floor id'],
     },

@@ -1,8 +1,4 @@
-import RoomService from '../../src/services/roomService';
-import IRoomRepo from '../../src/services/IRepos/IRoomRepo';
 import mocks from '../mocks';
-import FloorService from '../../src/services/floorService';
-import IFloorRepo from '../../src/services/IRepos/IFloorRepo';
 import BuildingService from '../../src/services/buildingService';
 import IBuildingRepo from '../../src/services/IRepos/IBuildingRepo';
 

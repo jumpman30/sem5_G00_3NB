@@ -4,7 +4,6 @@
   "description": "Bulletproof node.js",
   "main": "src/app.ts",
   "scripts": {
-    "dev-test": "ts-node dev-test.ts",
     "build": "tsc",
     "heroku-postbuild": "npm run build",
     "start": "nodemon",
