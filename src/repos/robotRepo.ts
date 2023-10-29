@@ -60,12 +60,13 @@ export default class RobotRepo implements IRobotRepo {
 
     const query = { nickname: idX };
     const robotRecord = (await this.robotSchema.findOne( query ).populate("robotType"));
-    console.log(robotRecord)
-    if( robotRecord != null) {
+
+    if(robotRecord != null) {
       return RobotMap.toDomain(robotRecord);
     }
-    else
+    else{
       return null;
+    }
   }
 
   exists(t: Robot): Promise<boolean> {

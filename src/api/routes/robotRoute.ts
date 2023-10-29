@@ -40,14 +40,15 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.updateRobot(req, res, next) );
 
-  // Inactivate Robot
-  robot.delete('/i/:nickname',
+
+    // Inhibt Robot
+    robot.patch('/inhibt/:nickname',
     celebrate({
       params: Joi.object({
         nickname: Joi.string().required(),
       }),
     }),
-    (req, res, next) => ctrl.inactivateRobot(req,res,next));
+    (req, res, next) => ctrl.inhibtRobot(req,res,next));
 
   // Activate Robot
   robot.patch('/a/:nickname',

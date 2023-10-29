@@ -1,0 +1,76 @@
+@startuml
+participant "User Interface" as UI
+participant "Router" as Router
+participant "RobotController" as Controller
+participant "RobotService" as Service
+
+participant "RobotRepository" as Repository
+participant "RobotMapper" as Mapper
+participant "RobotSchema" as Schema
+participant "RobotModel" as Model
+participant "PersistenceDocument" as PersistenceDocument
+participant "RobotCreateRequestDTO" as CreateRequestDTO
+participant "Persistence" as Persistence
+
+activate UI
+UI -> Router: PATCH /api/inhibt/:nickname
+activate Router
+Router -> Controller: ctrl.inhibtRobot(nickname)
+activate Controller
+
+Controller -> Service: reponseOrError = inhibtRobot\n(nickname)
+activate Service
+Service -> Repository: entity =\n findByNickname(nickname)
+activate Repository
+Repository -> Schema : entity = findByNickname(nickname)
+activate Schema
+Schema -> Persistence:  findByNickname(nickname)
+activate Persistence
+Schema <- Persistence: entity
+deactivate Persistence
+Schema -> Repository: entity
+deactivate Schema
+Repository -> Service : entity
+deactivate Repository
+alt robot doesnt exist
+Service -> Controller: res.status(404)
+deactivate Service
+Controller -> Router: res.status(404)
+deactivate Controller
+Router -> UI :status 404 (Not found)
+deactivate Router
+end
+
+Service -> Model: entity.state=false
+activate Service
+Service -> Repository: save(entity)
+activate Repository
+Repository -> Schema : schema = RobotSchema\n.findOne(entity)
+activate Schema
+Schema -> Repository : entityDocuemnt
+deactivate Schema
+Repository -> PersistenceDocument : state = entity.state
+activate PersistenceDocument
+deactivate PersistenceDocument
+Repository -> Schema : schema = RobotSchema\n.findOne(entity)
+activate Schema
+deactivate Schema
+Repository -> Mapper: entity = toModel(schema)
+activate Mapper
+Mapper -> Model: entity: <<new>>
+activate Model
+deactivate Model
+deactivate Mapper
+
+Repository --> Service: entity
+deactivate Repository
+
+Service --> Controller
+deactivate Service
+
+Controller --> Router
+deactivate Controller
+Router --> UI: HTTP 204 No content
+deactivate Router
+deactivate UI
+@enduml

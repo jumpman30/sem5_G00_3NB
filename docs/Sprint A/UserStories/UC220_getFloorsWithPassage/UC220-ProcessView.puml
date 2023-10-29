@@ -1,0 +1,39 @@
+@startuml
+participant "User Interface" as UI
+participant "Router" as Router
+participant "FloorController" as Controller
+participant "FloorService" as Service
+
+participant "FloorRepository" as Repository
+participant "BuildingRepository" as BuildingRepository
+participant "PassageRepository" as PassageRepository
+participant "FloorMapper" as Mapper
+participant "PassageMapper" as PassageMapper
+participant "BuildingMapper" as BuildingMapper
+participant "Persistence" as Persistence
+
+activate UI
+UI -> Router: GET /api/buildings/:id/floors/passages
+activate Router
+Router -> Controller: ctrl.listFloorsWithPassages(buildingId)
+activate Controller
+
+Controller -> Service: response = getFloorsWithPassages(buildingId)
+activate Service
+Service -> Repository: getFloorsByBuildingId(buildingId)
+activate Repository
+Repository -> Service: buildinFloors: Floor []
+deactivate Repository
+Service -> Service : floorsWithPassage = buildingFloors.filter(
+Service -> Repository: floors = findFloorsWithPassages(buildingId)
+activate Repository
+Repository --> Service: floors
+deactivate Repository
+Service --> Controller: floors
+deactivate Service
+Controller --> Router: floors
+deactivate Controller
+Router --> UI: HTTP 200 OK (floors)
+deactivate Router
+deactivate UI
+@enduml

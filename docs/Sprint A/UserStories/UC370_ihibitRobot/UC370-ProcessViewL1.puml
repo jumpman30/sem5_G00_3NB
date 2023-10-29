@@ -1,0 +1,17 @@
+@startuml
+Actor "UI Gestor de frota" as User
+participant "System RObDroneGo3" as Controller <<component>>
+activate User
+User -> Controller: inhibt robot
+activate Controller
+User <- Controller: request data (robot nickname)
+
+User -> Controller: adds data (robot nickname)
+
+Controller -> Controller : edit(robotNickname)
+Controller -> Controller : save(editedRobot)
+
+User <- Controller : Successful message
+deactivate Controller
+deactivate User
+@enduml

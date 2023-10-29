@@ -7,35 +7,27 @@ const Building = new mongoose.Schema(
       type: String,
       unique: true,
     },
-
-    code: {
+      code: {
       type: String,
       required: [true, 'Inserir code'],
       index: true,
       unique: true,
     },
-
     name: {
       type: String,
       required: [false],
     },
-
     length: {
-      type: Number,
-      required: [true, 'Inserir comprimento'],
-      index: true,
+      type: String,
+      required: [true, 'Please enter length'],
     },
-
     width: {
-      type: Number,
-      required: [true, 'Inserir comprimento'],
-      index: true,
+      type: String,
+      required: [true, 'Please enter width'],
     },
   },
   { timestamps: true },
 );
 
-export default mongoose.model<IBuildingPersistence & mongoose.Document>(
-  'Building',
-  Building,
-);
+export default mongoose.model<IBuildingPersistence & mongoose.Document>('Building', Building);
+

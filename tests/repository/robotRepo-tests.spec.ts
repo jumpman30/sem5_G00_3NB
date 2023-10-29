@@ -42,13 +42,23 @@ describe('RobotRepo tests ', () => {
   it('should save a Robot', async () => {
     const mockRobotDocument = { ...robotType } as unknown as IRobotPersistence & Document<any, any, any>;
     mockRobotSchema.findOne = jest.fn().mockImplementation(() => null);
-    mockRobotSchema.create = jest.fn().mockImplementation((robotType) => Promise.resolve("batata"));
+    mockRobotSchema.create = jest.fn().mockImplementation((robotType) => Promise.resolve("robot"));
     RobotMap.toDomain = jest.fn().mockReturnValue(mockRobotDocument);
     mockRobotDocument.save = jest.fn().mockResolvedValue(mockRobotDocument);
 
     const savedRobot = await robotRepo.save(Robot.create(robotData).getValue());
     
     expect(savedRobot).toEqual(mockRobotDocument);
+  });
+
+  it('find by nickname with not existent robot should return null', async () => {
+    const mockRobotDocument = { ...robotData } as unknown as IRobotPersistence & Document<any, any, any>;
+    mockRobotSchema.findOne = jest.fn().mockReturnThis();
+    mockRobotSchema.populate = jest.fn().mockImplementation(() => null);
+
+    const robot = await robotRepo.findByNickname("robert");
+    
+    expect(robot).toBeNull();
   });
  
 });

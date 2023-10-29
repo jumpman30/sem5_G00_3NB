@@ -19,13 +19,12 @@ export default {
   /**
    * That long string from mlab
    */
-  databaseURL: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/test',
+  databaseURL: process.env.MONGODB_URI || 'mongodb://localhost:27017/lapr5_db',
 
   /**
    * Your secret sauce
    */
-  jwtSecret:
-    process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
+  jwtSecret: process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
 
   /**
    * Used by winston logger
@@ -48,6 +47,18 @@ export default {
       name: 'RoleController',
       path: '../controllers/roleController',
     },
+    passage: {
+      name: 'PassageController',
+      path: '../controllers/passageController',
+    },
+    floor: {
+      name: 'FloorController',
+      path: '../controllers/floorController',
+    },
+    room: {
+      name: 'RoomController',
+      path: '../controllers/roomController',
+    },
     robot: {
       name: 'RobotController',
       path: '../controllers/robotController',
@@ -69,6 +80,10 @@ export default {
       name: 'RoleRepo',
       path: '../repos/roleRepo',
     },
+    passage: {
+      name: 'PassageRepo',
+      path: '../repos/PassageRepo',
+    },
     user: {
       name: 'UserRepo',
       path: '../repos/userRepo',
@@ -85,6 +100,15 @@ export default {
       name: 'BuildingRepo',
       path: '../repos/buildingRepo',
     },
+    room: {
+      name: 'RoomRepo',
+      path: '../repos/roomRepo'
+    },
+    floor: {
+      name: 'FloorRepo',
+      path: '../repos/floorRepo',
+    },
+
   },
   /**
    * Services
@@ -94,6 +118,18 @@ export default {
       name: 'RoleService',
       path: '../services/roleService',
     },
+    passage: {
+      name: 'PassageService',
+      path: '../services/passageService',
+    },
+    building: {
+      name: 'BuildingService',
+      path: '../services/buildingService',
+    },
+    room: {
+      name: 'RoomService',
+      path: '../services/roomService',
+    },
     robot: {
       name: 'RobotService',
       path: '../services/robotService',
@@ -102,9 +138,9 @@ export default {
       name: 'RobotTypeService',
       path: '../services/robotTypeService',
     },
-    building: {
-      name: 'BuildingService',
-      path: '../services/buildingService',
+    floor: {
+      name: 'FloorService',
+      path: '../services/floorService',
     },
   },
 };

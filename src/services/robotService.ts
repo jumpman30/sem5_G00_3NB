@@ -58,8 +58,6 @@ export default class RobotService implements IRobotService {
 
       const robotDto = { ...createRobotDto, robotType: robotTypeOrNull} as IRobotDTO;
 
-      console.log("robotDto")
-      console.log(robotDto)
       const RobotOrError = Robot.create(robotDto);
 
       if (RobotOrError.isFailure) {
@@ -81,7 +79,7 @@ export default class RobotService implements IRobotService {
     try {
       const Robot = await this.RobotRepo.findByNickname(RobotDTO.nickname);
 
-      if (Robot === null) {
+      if (!Robot) {
         return Result.fail<IRobotDTO>("Robot not found");
       }
       else {
@@ -99,20 +97,18 @@ export default class RobotService implements IRobotService {
     }
   }
 
-  public async inactivateRobot(nickname: string): Promise<Result<IRobotDTO>> {
+  public async inhibtRobot(nickname: string): Promise<Result<IRobotDTO>> {
     try {
+      const robot = await this.RobotRepo.findByNickname(nickname);
 
-      const Robot = await this.RobotRepo.findByNickname(nickname);
-
-      if (Robot === null) {
-        return Result.fail<IRobotDTO>("Robot not found");
-      }else {
-        Robot.state = false;
-        await this.RobotRepo.save(Robot);
-
-        const RobotDTOResult = RobotMap.toDTO( Robot ) as IRobotDTO;
-        return Result.ok<IRobotDTO>( RobotDTOResult )
+      if (!robot) {
+        return Result.fail<IRobotDTO>("Robot not found.");
       }
+
+      robot.state = false;
+      await this.RobotRepo.save(robot);
+
+      return Result.ok<IRobotDTO>()
     } catch (e) {
       throw e;
     }
