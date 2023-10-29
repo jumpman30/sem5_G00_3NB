@@ -37,7 +37,7 @@ describe('BuildingService', () => {
           length: undefined
         }));
       } catch (e) {
-        expect(e.error).toEqual('length is null or undefined');
+        expect(e.error).toEqual('code is null or undefined');
       }
     });
 

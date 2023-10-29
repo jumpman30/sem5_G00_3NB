@@ -2,9 +2,8 @@ import { AggregateRoot } from '../core/domain/AggregateRoot';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 import { Result } from '../core/logic/Result';
 import { Guard } from '../core/logic/Guard';
-import { BuildingId } from './buildingId';
 import { FloorId } from './floorId';
-import { RoomId } from './roomId';
+import { BuildingId } from './building/BuildingId';
 
 interface FloorProps {
   buildingId: string;

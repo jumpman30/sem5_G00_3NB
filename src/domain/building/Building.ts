@@ -8,12 +8,6 @@ import { BuildingCode } from './BuildingCode';
 import {BuildingName} from "./BuildingName";
 import {BuildingWidth} from "./BuildingWidth";
 import {BuildingLength} from "./BuildingLength";
-import {IRobotDTO} from "../../dto/IRobotDTO";
-import {RobotNickname} from "../robot/robotNickname";
-import {RobotDesignation} from "../robot/robotDesignation";
-import {RobotState} from "../robot/robotState";
-import {RobotSerialNumber} from "../robot/robotSerialNumber";
-import {RobotType} from "../RobotType";
 import IBuildingDto from "../../dto/building/IBuildingDto";
 
 export interface BuildingProps {

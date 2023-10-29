@@ -1,17 +1,39 @@
-import { Mapper } from '../core/infra/Mapper';
-import { Document, Model } from 'mongoose';
+import {Mapper} from '../core/infra/Mapper';
+import {Document, Model} from 'mongoose';
 
-import { IBuildingDTO } from '../dto/IBuildingDTO';
+import {Building} from '../domain/building/Building';
+import {UniqueEntityID} from '../core/domain/UniqueEntityID';
 
-import { Building } from '../domain/Building';
-import { UniqueEntityID } from '../core/domain/UniqueEntityID';
-import { BuildingCode } from '../domain/BuildingCode';
-
-import { ICreateBuildingResponseDto } from '../dto/ICreateBuildingResponseDto';
-import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';
+import IBuildingDto from '../dto/building/IBuildingDto';
+import {ICreateBuildingResponseDto} from '../dto/building/ICreateBuildingResponseDto';
+import {IBuildingPersistence} from '../dataschema/IBuildingPersistence';
 
 export class BuildingMap extends Mapper<Building> {
-  public static toDTO(building: Building): IBuildingDTO {
+  public static toDTO(building: Building): IBuildingDto {
+    return {
+      domainId: building.id.toString(),
+      code: building.code.toString(),
+      name: building.name.toString(),
+      length: building.length.valueOf(),
+      width: building.width.valueOf()
+    };
+  }
+
+  public static toResponseDTO(building: Building): ICreateBuildingResponseDto {
+    return {
+      ...BuildingMap.toDTO(building),
+    } as ICreateBuildingResponseDto;
+  }
+
+  public static toDomain (raw: any | Model<IBuildingPersistence & Document>): Building {
+
+    const buildingOrError = Building.create(raw, new UniqueEntityID(raw.domainId));
+    buildingOrError.isFailure ? console.log(buildingOrError.error) : '';
+
+    return buildingOrError.isSuccess ? buildingOrError.getValue() : null;
+  }
+
+  public static toPersistence(building: Building): any {
     return {
       domainId: building.id.toString(),
       code: building.code,
@@ -19,40 +41,5 @@ export class BuildingMap extends Mapper<Building> {
       length: building.length,
       width: building.width,
     };
-  }
-
-  public static toResponseDTO(building: Building): ICreateBuildingResponseDto {
-    const dto: ICreateBuildingResponseDto = BuildingMap.toDTO(building);
-    return dto;
-  }
-
-  public static toDomain(
-    raw: any | Model<IBuildingPersistence & Document>,
-  ): Building {
-    const buildingCodeOrError = BuildingCode.create(raw.code);
-    const buildingOrError = Building.create(
-      {
-        code: buildingCodeOrError.getValue(),
-        name: raw.name,
-        length: raw.length,
-        width: raw.width,
-      },
-      new UniqueEntityID(raw.domainId),
-    );
-
-    buildingOrError.isFailure ? console.log(buildingOrError.error) : '';
-
-    return buildingOrError.isSuccess ? buildingOrError.getValue() : null;
-  }
-
-  public static toPersistence(building: Building): any {
-    const buildingPojso = {
-      domainId: building.id.toString(),
-      code: building.code.value,
-      name: building.name,
-      length: building.length,
-      width: building.width,
-    };
-    return buildingPojso;
   }
 }
