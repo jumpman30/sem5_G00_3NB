@@ -7,6 +7,10 @@ export class TextUtil {
   
   public static isAlphanumeric(str: string): boolean {
     return /^[A-Za-z0-9\s]*$/.test(str);
-}
+  }
+
+  public static isAlphanumericNoSpaces(str: string): boolean {
+    return /^[A-Za-z0-9]*$/.test(str);
+  }
 
 }

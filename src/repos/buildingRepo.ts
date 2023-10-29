@@ -44,4 +44,16 @@ export default class BuildingRepo implements IBuildingRepo {
       throw e;
     }
   }
+
+  public async exists(buildingId: string): Promise<boolean> {
+    console.log("here????")
+    console.log(buildingId)
+    const query = { domainId: buildingId };
+    const buildingDocument = await this.buildingSchema.findOne(
+      query as FilterQuery<IBuildingPersistence & Document>,
+    );
+    
+      console.log(buildingDocument)
+    return !!buildingDocument === true;
+  }
 }
