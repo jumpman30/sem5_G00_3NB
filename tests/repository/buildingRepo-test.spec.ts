@@ -3,7 +3,7 @@
 import BuildingRepo from "../../src/repos/buildingRepo";
 import {Model, Document} from "mongoose";
 import {IBuildingPersistence} from "../../src/dataschema/IBuildingPersistence";
-import IBuildingDto from "../../src/dto/building/IBuildingDto";
+import IBuildingDto from "../../src/dto/IBuildingDto";
 import {BuildingMap} from "../../src/mappers/BuildingMap";
 import {Building} from "../../src/domain/building/Building";
 

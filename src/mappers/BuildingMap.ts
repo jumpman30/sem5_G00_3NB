@@ -4,14 +4,12 @@ import {Document, Model} from 'mongoose';
 import {Building} from '../domain/building/Building';
 import {UniqueEntityID} from '../core/domain/UniqueEntityID';
 
-import IBuildingDto from '../dto/building/IBuildingDto';
-import {ICreateBuildingResponseDto} from '../dto/building/ICreateBuildingResponseDto';
+import IBuildingDto, {IBuildingResponseDto} from '../dto/IBuildingDto';
 import {IBuildingPersistence} from '../dataschema/IBuildingPersistence';
 
 export class BuildingMap extends Mapper<Building> {
   public static toDTO(building: Building): IBuildingDto {
     return {
-      domainId: building.id.toString(),
       code: building.code.toString(),
       name: building.name.toString(),
       length: building.length.valueOf(),
@@ -19,10 +17,10 @@ export class BuildingMap extends Mapper<Building> {
     };
   }
 
-  public static toResponseDTO(building: Building): ICreateBuildingResponseDto {
+  public static toResponseDTO(building: Building): IBuildingResponseDto {
     return {
       ...BuildingMap.toDTO(building),
-    } as ICreateBuildingResponseDto;
+    } as IBuildingResponseDto;
   }
 
   public static toDomain (raw: any | Model<IBuildingPersistence & Document>): Building {

@@ -3,11 +3,8 @@ import { Building } from '../../domain/building/Building';
 import { FloorId } from '../../domain/floorId';
 
 export default interface IBuildingRepo extends Repo<Building> {
-  save(user: Building): Promise<Building>;
+  save(building: Building): Promise<Building>;
   findByCode(code: string): Promise<Building>;
-  getAll(): Promise<Building[]>;
-  save(building: Building): Promise<FloorId>;
-  exists(buildingId: string): Promise<boolean>;
-  findByDomainId(buildingId: Building | string): Promise<Building>;
+  exists(building: Building): Promise<boolean>;
   getAllBuildings(): Promise<Building[]>;
 }

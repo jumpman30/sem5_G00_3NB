@@ -1,10 +1,10 @@
-import { Service, Inject } from 'typedi';
-import { Document, FilterQuery, Model } from 'mongoose';
+import {Inject, Service} from 'typedi';
+import {Document, Model} from 'mongoose';
 
-import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';
+import {IBuildingPersistence} from '../dataschema/IBuildingPersistence';
 
-import { Building } from '../domain/building/Building';
-import { BuildingMap } from '../mappers/BuildingMap';
+import {Building} from '../domain/building/Building';
+import {BuildingMap} from '../mappers/BuildingMap';
 
 import IBuildingRepo from '../services/IRepos/IBuildingRepo';
 
@@ -14,7 +14,6 @@ export default class BuildingRepo implements IBuildingRepo {
   constructor(
     @Inject('buildingSchema')
     private buildingSchema: Model<IBuildingPersistence & Document>,
-    @Inject('logger') private logger,
   ) {}
 
   public async save(building: Building): Promise<Building> {
@@ -30,7 +29,7 @@ export default class BuildingRepo implements IBuildingRepo {
 
         return BuildingMap.toDomain(buildingCreated);
       } else {
-        buildingDocument.code = building.code;
+        buildingDocument.code = building.code.toString();
         buildingDocument.name = building.name;
         buildingDocument.length = building.length;
         buildingDocument.width = building.width;
@@ -58,21 +57,18 @@ export default class BuildingRepo implements IBuildingRepo {
     const record = await this.buildingSchema.find();
 
     if (record != null) {
-      const resultDTO = record.map(item => BuildingMap.toDomain(item));
-      return resultDTO;
+      return record.map(item => BuildingMap.toDomain(item));
     } else {
       return null;
     }
   }
+  exists(b: Building): Promise<boolean> {
+    if (b === null) throw new Error('Building is null');
 
-  exists(t: Building): Promise<boolean> {
-    if (t === null) throw new Error('Building is null');
-
-    if (this.findByCode(t.code) === null) {
+    if (this.findByCode(b.code.toString()) === null) {
       return Promise.resolve(false);
     }
 
     return Promise.resolve(true);
   }
-
 }

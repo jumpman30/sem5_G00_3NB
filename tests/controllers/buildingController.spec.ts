@@ -7,7 +7,6 @@ import FloorController from '../../src/controllers/floorController';
 import IFloorService from '../../src/services/IServices/IFloorService';
 import BuildingController from '../../src/controllers/buildingController';
 import IBuildingService from '../../src/services/IServices/IBuildingService';
-import { IPassageFloorDto } from '../../src/dto/IPassageFloorDto';
 
 describe('FloorController', () => {
   let buildingController: BuildingController;
@@ -28,12 +27,11 @@ describe('FloorController', () => {
     mockNext = jest.fn();
     mockBuildingService = {
       save: jest.fn(),
-      getPassageFloors: jest.fn()
     } as any;
     mockFloorService = {
       save: jest.fn(),
     } as any;
-   
+
     buildingController = new BuildingController(mockBuildingService,mockFloorService);
   });
 

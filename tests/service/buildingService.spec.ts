@@ -1,83 +1,74 @@
-import mocks from '../mocks';
-import BuildingService from '../../src/services/buildingService';
-import FloorService from '../../src/services/floorService';
-import IBuildingRepo from '../../src/services/IRepos/IBuildingRepo';
-import IPassageRepo from '../../src/services/IRepos/IPassageRepo';
-import IFloorRepo from '../../src/services/IRepos/IFloorRepo';
-import { PassageMap } from '../../src/mappers/PassageMap';
+import { mock, instance, when, verify, anything } from 'ts-mockito';
+import BuildingService from "../../src/services/buildingService";
+import IBuildingRepo from "../../src/services/IRepos/IBuildingRepo";
+import IFloorRepo from "../../src/services/IRepos/IFloorRepo";
+import {IBuildingCreateRequestDto, IBuildingUpdateRequestDto} from "../../src/dto/IBuildingDto";
+import {BuildingMap} from "../../src/mappers/BuildingMap";
 
 describe('BuildingService', () => {
   let buildingService: BuildingService;
-  let floorService: FloorService;
-  let mockBuildingRepo: jest.Mocked<IBuildingRepo>;
-  let mockPassageRepo: jest.Mocked<IPassageRepo>;
-  let mockFloorRepo: jest.Mocked<IFloorRepo>;
-  let mockLogger: jest.Mocked<Console>;
+  let mockedBuildingRepo: IBuildingRepo;
+  let mockedFloorRepo: IFloorRepo;
 
   beforeEach(() => {
-    mockBuildingRepo = {
-      save: jest.fn(),
-    } as any;
-    mockPassageRepo = {
-      findByBuilding: jest.fn(),
-    } as any;
-    mockFloorRepo = {
-      findById: jest.fn(),
-    } as any;
-    mockLogger = {
-      error: jest.fn(),
-      log: jest.fn(),
-    } as any;
-    floorService= {
-      save: jest.fn(),
-    } as any;
+    // Mock the repositories and logger
+    mockedBuildingRepo = mock<IBuildingRepo>();
+    mockedFloorRepo = mock<IFloorRepo>();
 
-    buildingService = new BuildingService(mockBuildingRepo,floorService,mockPassageRepo,mockFloorRepo, mockLogger);
+    // Create an instance of BuildingService with mocked dependencies
+    buildingService = new BuildingService(
+        instance(mockedBuildingRepo),
+        instance(mockedFloorRepo),
+    );
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  describe('createBuilding', () => {
+    it('should fail if building already exists', async () => {
+      const buildingDto: IBuildingCreateRequestDto = {
+        code: 'B123',
+        name: 'Building 123',
+        length: 100,
+        width: 100,
+      };
 
-  describe('save', () => {
+      // Mock the findByCode method to simulate an existing building
+      when(mockedBuildingRepo.findByCode(buildingDto.code)).thenResolve(BuildingMap.toDomain(buildingDto));
 
-    it('should throw an error if it fails to build a building', async () => {
+      // Call the createBuilding method
+      const result = await buildingService.createBuilding(buildingDto);
 
-      try {
-        await buildingService.save(mocks.buildBuildingDto({
-          length: undefined
-        }));
-      } catch (e) {
-        expect(e.error).toEqual('code is null or undefined');
-      }
+      // Assertions
+      expect(result.isFailure).toBeTruthy();
+      expect(result.errorValue()).toBe('Building already exists');
+      verify(mockedBuildingRepo.findByCode(buildingDto.code)).once();
     });
 
-    it(' should call `buildingRepo.save`', async () => {
-      const mockBuildDto = mocks.buildBuildingDto();
+    // Add more tests for different scenarios...
+  });
 
-      jest.spyOn(mockBuildingRepo, 'save').mockResolvedValue('test-id' as any);
+  describe('updateBuilding', () => {
+    it('should fail if building is not found', async () => {
+      const buildingCode = 'B123';
+      const buildingDto: IBuildingUpdateRequestDto = {
+        name: 'Updated Building 123',
+        length: 150,
+        width: 150,
+      };
 
-      await buildingService.save(mockBuildDto);
+      // Mock the findByCode method to simulate a building not found scenario
+      when(mockedBuildingRepo.findByCode(buildingCode)).thenResolve(null);
 
-      expect(mockBuildingRepo.save).toHaveBeenCalledTimes(1)
+      // Call the updateBuilding method
+      const result = await buildingService.updateBuilding(buildingCode, buildingDto);
+
+      // Assertions
+      expect(result.isFailure).toBeTruthy();
+      expect(result.errorValue()).toBe('Building not found');
+      verify(mockedBuildingRepo.findByCode(buildingCode)).once();
     });
+
+    // Add more tests for different scenarios...
   });
 
-  it('should throw an error if it fails to find passages for a building', async () => {
-      mockPassageRepo.findByBuilding=jest.fn().mockImplementation((buildingId) => Promise.resolve());
-
-      const result = await buildingService.getPassageFloors("id");
-      
-      expect(result.isFailure).toBeTruthy()
-  });
-
-  it('should call passageRepo.findByBuilding and passageRepo.findById to find passages for a building', async () => {
-    mockPassageRepo.findByBuilding=jest.fn().mockImplementation((buildingId) => Promise.resolve([{"_id":{"value":"48825069-3590-47a1-8b0e-260610207c16"},"props":{"_id":"653e4648fb075170fafc9c5e","domainId":"48825069-3590-47a1-8b0e-260610207c16","building1Id":"LEI","building2Id":"LEC","floor1Id":"6426a035-02d0-4c50-bdff-aaa5cb6e971d","floor2Id":"18ef4495-b52c-4dfb-9fe6-e583ee389a7a","locationBuilding1":[],"locationBuilding2":[],"createdAt":"2023-10-29T11:47:20.559Z","updatedAt":"2023-10-29T11:47:20.559Z","__v":0},"_domainEvents":[]},{"_id":{"value":"16c99fb2-66f2-4b0b-9d99-e7d6396185b4"},"props":{"_id":"653e46a9fb075170fafc9c66","domainId":"16c99fb2-66f2-4b0b-9d99-e7d6396185b4","building1Id":"DEI","building2Id":"LEI","floor1Id":"36599468-ca33-4675-9c94-06986f9597eb","floor2Id":"6426a035-02d0-4c50-bdff-aaa5cb6e971d","locationBuilding1":[],"locationBuilding2":[],"createdAt":"2023-10-29T11:48:57.117Z","updatedAt":"2023-10-29T11:48:57.117Z","__v":0},"_domainEvents":[]}]));
-    PassageMap.toFloorPassageRequestDTO = jest.fn();
-    await buildingService.getPassageFloors("id");
-    
-    expect(mockPassageRepo.findByBuilding).toHaveBeenCalledTimes(1)
-    expect(mockFloorRepo.findById).toHaveBeenCalledTimes(2)
-
-  });
+  // Add tests for other methods...
 });

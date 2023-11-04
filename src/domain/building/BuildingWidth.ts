@@ -22,7 +22,7 @@ export class BuildingWidth extends ValueObject<BuildingWidthProps> {
     }
     if (!BuildingWidth.isValid(width)) {
       return Result.fail<BuildingWidth>(
-        'Building width must be a Integer and greater than 0.',
+        'Building width must be an Integer and greater than 0.',
       );
     }
     return Result.ok<BuildingWidth>(new BuildingWidth({ width: width}));

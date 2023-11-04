@@ -3,7 +3,7 @@ import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 import { Result } from '../core/logic/Result';
 import { Guard } from '../core/logic/Guard';
 import { FloorId } from './floorId';
-import { BuildingId } from './building/BuildingId';
+import { BuildingCode } from './building/BuildingCode';
 
 interface FloorProps {
   buildingId: string;
@@ -54,7 +54,9 @@ export class Floor extends AggregateRoot<FloorProps> {
       return Result.fail<Floor>(guardResult.message);
     } else {
       const floor = new Floor(
-        props,
+        {
+          ...props,
+        },
         id,
       );
 

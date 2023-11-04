@@ -20,7 +20,7 @@ export class BuildingLength extends ValueObject<BuildingLengthProps> {
     }
     if (!BuildingLength.isValid(length)) {
       return Result.fail<BuildingLength>(
-        'Building length must be a Integer and greater than 0.',
+        'Building length must be an Integer and greater than 0.',
       );
     }
     return Result.ok<BuildingLength>(new BuildingLength({length: length}));

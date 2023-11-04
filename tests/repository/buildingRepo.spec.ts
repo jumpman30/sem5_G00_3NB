@@ -1,62 +1,170 @@
-import FloorRepo from '../../src/repos/floorRepo';
-import { Model } from 'mongoose';
-import mocks from '../mocks';
-import { IFloorPersistence } from '../../src/dataschema/IFloorPersistence';
-import BuildingRepo from '../../src/repos/buildingRepo';
-import { IBuildingPersistence } from '../../src/dataschema/IBuildingPersistence';
-
-
+import BuildingRepo from "../../src/repos/buildingRepo";
+import {IBuildingPersistence} from "../../src/dataschema/IBuildingPersistence";
+import {anything, instance, mock, verify, when} from "ts-mockito";
+import {Model, Document} from "mongoose";
+import {BuildingMap} from "../../src/mappers/BuildingMap";
 
 describe('BuildingRepo', () => {
   let buildingRepo: BuildingRepo;
-  let mockBuildingSchema: jest.Mocked<Model<IBuildingPersistence>>;
-  let mockLogger: jest.Mocked<Console>;
+  let mockedBuildingSchema: Model<IBuildingPersistence & Document>;
 
   beforeEach(() => {
-    mockBuildingSchema = {
-      create: jest.fn(),
-    } as any;
-    mockLogger = {
-      error: jest.fn(),
-      log: jest.fn(),
-    } as any;
+    mockedBuildingSchema = mock<Model<IBuildingPersistence & Document>>();
 
-    buildingRepo = new BuildingRepo(mockBuildingSchema as any, mockLogger);
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
+    buildingRepo = new BuildingRepo(
+        instance(mockedBuildingSchema),
+    );
   });
 
   describe('save', () => {
-    it('should call `floorSchema.create`', async () => {
-      const building = mocks.buildBuilding();
-
-      jest.spyOn(mockBuildingSchema, 'create').mockResolvedValue({ domainId: 'test-id' } as any);
-
-      await buildingRepo.save(building as any);
-
-      expect(mockBuildingSchema.create).toHaveBeenCalledTimes(1);
-      expect(mockBuildingSchema.create).toHaveBeenCalledWith({
-        domainId: building.domainId,
-        designation: building.designation,
-        length: building.length,
-        width: building.width,
+    it('should create a new building if it does not exist', async () => {
+      const building = BuildingMap.toDomain({
+        code: 'B123',
+        name: 'Building 123',
+        length: 100,
+        width: 100,
       });
+      const buildingPersistence = BuildingMap.toPersistence(building);
+
+      when(mockedBuildingSchema.findOne(anything())).thenResolve(null);
+      when(mockedBuildingSchema.create(anything())).thenResolve(buildingPersistence);
+
+      const result = await buildingRepo.save(building);
+
+      verify(mockedBuildingSchema.findOne(anything())).once();
+      verify(mockedBuildingSchema.create(anything())).once();
+      expect(result).toEqual(building);
     });
-    it('should throw an error if `floorSchema.create` fails', async () => {
-      const building = mocks.buildBuilding();
 
-
-      jest.spyOn(mockBuildingSchema, 'create').mockImplementation(() => {
-        throw new Error('test-error');
+    it('should update an existing building if it exists', async () => {
+      const building = BuildingMap.toDomain({
+        code: 'B123',
+        name: 'Building 123',
+        length: 100,
+        width: 100,
       });
+      const buildingDocument = {
+        ...BuildingMap.toPersistence(building),
+        save: jest.fn().mockResolvedValue(building),
+      };
 
-      try {
-        await buildingRepo.save(building as any);
-      } catch (e){
-        expect(e.message).toEqual('test-error');
-      }
+      when(mockedBuildingSchema.findOne(anything())).thenResolve(buildingDocument);
+
+      const result = await buildingRepo.save(building);
+
+      verify(mockedBuildingSchema.findOne(anything())).once();
+      expect(buildingDocument.save).toHaveBeenCalled();
+      expect(result).toEqual(building);
+    });
+
+    // Add more tests for different scenarios...
+  });
+
+  describe('findByCode', () => {
+    it('should return a building when a building with the given code exists', async () => {
+      const buildingCode = 'B123';
+      const buildingPersistence = {
+        code: buildingCode,
+        name: 'Building 123',
+        length: 100,
+        width: 100,
+      };
+      const buildingDomain = BuildingMap.toDomain(buildingPersistence);
+
+      when(mockedBuildingSchema.findOne({code: buildingCode})).thenResolve(buildingPersistence as any);
+
+      const result = await buildingRepo.findByCode(buildingCode);
+      expect(result).toEqual(buildingDomain);
+
+      verify(mockedBuildingSchema.findOne({code: buildingCode})).once();
+    });
+
+    it('should return null when no building with the given code exists', async () => {
+      const buildingCode = 'B456';
+
+      when(mockedBuildingSchema.findOne({code: buildingCode})).thenResolve(null);
+
+      const result = await buildingRepo.findByCode(buildingCode);
+
+      console.log('Result from findByCode:', result);
+
+      verify(mockedBuildingSchema.findOne({code: buildingCode})).once();
+      expect(result).toBeNull();
     });
   });
+
+  describe('getAllBuildings', () => {
+    it('should return all buildings', async () => {
+      const buildingRecords = [
+        {
+          code: 'B123',
+          name: 'Building 123',
+          length: 100,
+          width: 100,
+        },
+        {
+          code: 'B456',
+          name: 'Building 456',
+          length: 200,
+          width: 200,
+        },
+      ];
+      const buildingDomains = buildingRecords.map(BuildingMap.toDomain);
+
+      when(mockedBuildingSchema.find()).thenResolve(buildingRecords as any);
+
+      const result = await buildingRepo.getAllBuildings();
+
+      verify(mockedBuildingSchema.find()).once();
+      expect(result).toEqual(buildingDomains);
+    });
+
+    it('should return an empty array if no buildings are found', async () => {
+      when(mockedBuildingSchema.find()).thenResolve(null);
+
+      const result = await buildingRepo.getAllBuildings();
+
+      verify(mockedBuildingSchema.find()).once();
+      expect(result).toEqual(null);
+    });
+  });
+
+  describe('exists', () => {
+    it('should return true if a building exists', async () => {
+      const building = BuildingMap.toDomain({
+        code: 'B123',
+        name: 'Building 123',
+        length: 100,
+        width: 100,
+      });
+
+      when(mockedBuildingSchema.findOne({ code: building.code })).thenResolve({} as any);
+
+      const result = await buildingRepo.exists(building);
+
+      verify(mockedBuildingSchema.findOne({ code: building.code })).once();
+      expect(result).toBeTruthy();
+    });
+
+    it('should return false if a building does not exist', async () => {
+      const building = BuildingMap.toDomain({
+        code: 'B789',
+        name: 'Building 789',
+        length: 300,
+        width: 300,
+      });
+
+      when(mockedBuildingSchema.findOne({ code: building.code })).thenResolve(null);
+
+      const result = await buildingRepo.exists(building);
+
+      verify(mockedBuildingSchema.findOne({ code: building.code })).once();
+      expect(result).toBeFalsy();
+    });
+
+    it('should throw an error if the building is null', async () => {
+      await expect(buildingRepo.exists(null)).rejects.toThrow('Building is null');
+    });
+  });
+
 });

@@ -1,18 +1,14 @@
-import { ValueObject } from '../../core/domain/ValueObject';
-import { Result } from '../../core/logic/Result';
-import { Guard } from '../../core/logic/Guard';
+import { UniqueEntityID } from '../../core/domain/UniqueEntityID';
+import {Result} from "../../core/logic/Result";
+import {Guard} from "../../core/logic/Guard";
 
-interface BuildingCodeProps {
-  code: string;
-}
+/*
+ * Building Code is the Building ID
+ */
+export class BuildingCode extends UniqueEntityID {
 
-export class BuildingCode extends ValueObject<BuildingCodeProps> {
-  get value(): string {
-    return this.props.code;
-  }
-
-  private constructor(props: BuildingCodeProps) {
-    super(props);
+  private constructor(code: string) {
+    super(code);
   }
 
   public static create(code: string): Result<BuildingCode> {
@@ -21,9 +17,9 @@ export class BuildingCode extends ValueObject<BuildingCodeProps> {
       return Result.fail<BuildingCode>(guardResult.message);
     }
     if (!BuildingCode.isValid(code)) {
-      return Result.fail<BuildingCode>("Building code is mandatory and has a maximum of 5 chars (leters, numbers and space).")
+      return Result.fail<BuildingCode>("Building code is mandatory and has a maximum of 5 chars (letters, numbers and space).")
     } else {
-      return Result.ok<BuildingCode>(new BuildingCode({ code: code }));
+      return Result.ok<BuildingCode>(new BuildingCode(code));
     }
   }
 
