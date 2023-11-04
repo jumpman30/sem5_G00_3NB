@@ -5,6 +5,9 @@ import IPassageRepo from '../services/IRepos/IPassageRepo';
 import { Passage } from '../domain/passage';
 import { PassageId } from '../domain/passageId';
 import { PassageMap } from '../mappers/PassageMap';
+import { PassageDbProjection } from '../types';
+import { cleanObject } from '../utils/Object.utils';
+import { map } from 'lodash';
 
 @Service()
 export default class PassageRepo implements IPassageRepo {
@@ -36,7 +39,7 @@ export default class PassageRepo implements IPassageRepo {
 
 
   public async findByBuilding(buildingId: string): Promise<Passage[]> {
-    const query = { 
+    const query = {
       $or: [
         { building1Id: buildingId },
         { building2Id: buildingId }
@@ -48,6 +51,17 @@ export default class PassageRepo implements IPassageRepo {
     }
     else{
       return null;
+    }
+  }
+
+  public async find(filter: FilterQuery<Passage>, projection?: PassageDbProjection): Promise<Partial<Passage>[]> {
+    try {
+      const passages = await this.passageSchema.find(filter, projection);
+      return passages
+        .map(passage => PassageMap.toDomainProjection(passage))
+        .map(mappedPassage => cleanObject<Partial<Passage>>(mappedPassage));
+    } catch (e){
+      throw e;
     }
   }
 }

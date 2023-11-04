@@ -1,0 +1,19 @@
+@startuml
+Actor "UI Gestor de frota" as User
+participant "System RObDroneGo3" as Controller <<component>>
+activate User
+User -> Controller: create elevator in a building
+activate Controller
+User <- Controller: request data
+
+User -> Controller: adds data
+
+Controller -> Controller : validate(elevator)
+Controller -> Controller : validate(elevator.buildingId)
+Controller -> Controller : create(elevator)
+Controller -> Controller : save(elevator)
+
+User <- Controller : Shows created data
+deactivate Controller
+deactivate User
+@enduml

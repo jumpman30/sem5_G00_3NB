@@ -1,27 +1,9 @@
-# UC 1
+# 1130155 - Ana Silva
 
-## 1. Requisitos
+## User Stories
 
-
-### Critérios de aceitação
-
-
-## 2. Análise
-
-## 2.1. Informação
-
-
-## 2.2. Análise
-
-## 3. Design
-
-# 3.1 Informação
-
-
-# 3.2 Vistas de Design
-
-# 3.3 Padrões Aplicados
-
-## Tests
-
-### Integration Testing
+|Sprint | UserStories |
+|:---|:----| A | 
+[UC180 - Listar edificios com min e max de pisos](../../UserStories/UC180_Listar_edificios_min_max_pisos/UC180_Listar_edificios_min_max_pisos.md)<br/>
+[UC210 - Listar todos os pisos de um edificio](../../UserStories/UC210_Listar_pisos_edificio/UC210_Listar_pisos_edificio.md)<br/>
+[UC230 -Carregar mapa de piso](../../UserStories/UC230_carregar_mapa_piso/UC230_carregar_mapa_piso.md)<br/>

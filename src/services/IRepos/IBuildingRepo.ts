@@ -7,6 +7,7 @@ export default interface IBuildingRepo extends Repo<Building> {
   findByCode(code: string): Promise<Building>;
   getAll(): Promise<Building[]>;
   save(building: Building): Promise<FloorId>;
+  exists(buildingId: string): Promise<boolean>;
   findByDomainId(buildingId: Building | string): Promise<Building>;
   getAllBuildings(): Promise<Building[]>;
 }

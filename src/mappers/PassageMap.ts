@@ -31,6 +31,17 @@ export class PassageMap extends Mapper<Passage> {
     return robotOrError.isSuccess ? robotOrError.getValue() : null;
   }
 
+  public static toDomainProjection(raw: any): Partial<Passage> {
+    return {
+      building1Id: raw?.building1Id,
+      building2Id: raw?.building2Id,
+      floor1Id: raw?.floor1Id,
+      floor2Id: raw?.floor2Id,
+      locationBuilding1: raw?.locationBuilding1,
+      locationBuilding2:  raw?.locationBuilding2
+    }
+  }
+
   public static toDTO( passage: Passage): IPassageDto {
     return {
       building1Id: passage.building1Id,

@@ -22,7 +22,8 @@ describe('PassageController', () => {
     mockNext = jest.fn();
     mockPassageService = {
       save: jest.fn(),
-      update: jest.fn()
+      update: jest.fn(),
+      findPassageBetweenBuildings: jest.fn()
     } as any;
     passageController = new PassageController(mockPassageService);
   });
@@ -80,6 +81,37 @@ describe('PassageController', () => {
       jest.spyOn(passageController, 'fail').mockImplementation(jest.fn() as any);
 
       const result = await passageController.updatePassageByDomainId(mockReq as Request, mockRes as Response, mockNext);
+
+      expect(passageController.fail).toHaveBeenCalledWith('test-error');
+    });
+  });
+
+  describe('findPassagesBetweenTwoBuildings', () => {
+    it('should call `passageService.findPassageBetweenBuildings`', async () => {
+     mockReq.body = {
+         searchBuildingId1: 'test',
+         searchBuildingId2: 'test'
+      }
+
+      jest.spyOn(mockPassageService, 'findPassageBetweenBuildings').mockResolvedValue(Result.ok<{ roomId: string }>({roomId: 'test-id'}) as any )
+      jest.spyOn(passageController, 'ok').mockResolvedValue(jest.fn() as any);
+
+      await passageController.findPassagesBetweenTwoBuildings(mockReq as Request, mockRes as Response, mockNext);
+
+      expect(mockPassageService.findPassageBetweenBuildings).toHaveBeenCalledTimes(1);
+      expect(mockPassageService.findPassageBetweenBuildings).toHaveBeenCalledWith('test', 'test');
+    });
+
+    it('should return an error if passage is not updated', async () => {
+      mockReq.body = {
+        searchBuildingId1: 'test',
+        searchBuildingId2: 'test'
+      }
+
+      jest.spyOn(mockPassageService, 'findPassageBetweenBuildings').mockResolvedValue(Result.fail('test-error') as any )
+      jest.spyOn(passageController, 'fail').mockImplementation(jest.fn() as any);
+
+      const result = await passageController.findPassagesBetweenTwoBuildings(mockReq as Request, mockRes as Response, mockNext);
 
       expect(passageController.fail).toHaveBeenCalledWith('test-error');
     });

@@ -51,6 +51,10 @@ export default {
       name: 'PassageController',
       path: '../controllers/passageController',
     },
+    building: {
+      name: 'BuildingController',
+      path: '../controllers/buildingController',
+    },
     floor: {
       name: 'FloorController',
       path: '../controllers/floorController',
@@ -67,9 +71,9 @@ export default {
       name: 'RobotTypeController',
       path: '../controllers/robotTypeController',
     },
-    building: {
-      name: 'BuildingController',
-      path: '../controllers/buildingController',
+    elevator: {
+      name: 'ElevatorController',
+      path: '../controllers/elevatorController',
     },
   },
   /**
@@ -108,7 +112,10 @@ export default {
       name: 'FloorRepo',
       path: '../repos/floorRepo',
     },
-
+    elevator: {
+      name: 'ElevatorRepo',
+      path: '../repos/elevatorRepo',
+    },
   },
   /**
    * Services
@@ -141,6 +148,10 @@ export default {
     floor: {
       name: 'FloorService',
       path: '../services/floorService',
+    },
+    elevator: {
+      name: 'ElevatorService',
+      path: '../services/elevatorService',
     },
   },
 };

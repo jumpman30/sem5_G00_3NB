@@ -8,7 +8,7 @@
 
 ### 2.1. Information & analysis
 
-- GET endpoint in path /api/allFloors
+- GET endpoint in path /api/buildings/getFloorsByBuildingId
 
 ## 3. Design
 

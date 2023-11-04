@@ -13,6 +13,17 @@ export default (app: Router) => {
 
   const ctrl = Container.get(config.controllers.passage.name) as IPassageController;
 
+  route.get(
+    '/buildings',
+    celebrate({
+      body: Joi.object({
+        searchBuildingId1: Joi.string().required(),
+        searchBuildingId2: Joi.string().required(),
+      }),
+    }),
+    (req, res, next) => ctrl.findPassagesBetweenTwoBuildings(req, res, next),
+  );
+
   route.post(
     '',
     celebrate({

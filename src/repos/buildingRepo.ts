@@ -43,15 +43,6 @@ export default class BuildingRepo implements IBuildingRepo {
       throw err;
     }
   }
-  public async findByDomainId(buildingId: Building | string): Promise<Building> {
-    const buildingRecord = await this.buildingSchema.findOne({domainId: buildingId});
-
-    if (buildingRecord != null) {
-      return BuildingMap.toDomain(buildingRecord);
-    } else {
-      return null;
-    }
-  }
 
   public async findByCode(code: string): Promise<Building> {
     const record = await this.buildingSchema.findOne({ code: code });
@@ -82,10 +73,6 @@ export default class BuildingRepo implements IBuildingRepo {
     }
 
     return Promise.resolve(true);
-  }
-
-  getAll(): Promise<Building[]> {
-    return this.getAllBuildings();
   }
 
 }
