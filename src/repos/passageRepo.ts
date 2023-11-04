@@ -1,5 +1,5 @@
 import { Service, Inject } from 'typedi';
-import { Document, Model } from 'mongoose';
+import { Document, FilterQuery, Model } from 'mongoose';
 import { IPassagePersistence } from '../dataschema/IPassagePersistence';
 import IPassageRepo from '../services/IRepos/IPassageRepo';
 import { Passage } from '../domain/passage';
@@ -22,6 +22,32 @@ export default class PassageRepo implements IPassageRepo {
       return new PassageId(passageDb.domainId);
     } catch (e) {
       throw e;
+    }
+  }
+
+  public async update(passage: Partial<Omit<Passage, 'id'>>, filter: FilterQuery<Passage>): Promise<number> {
+    try {
+      const result = await this.passageSchema.updateOne(filter, passage);
+      return result.modifiedCount;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+
+  public async findByBuilding(buildingId: string): Promise<Passage[]> {
+    const query = { 
+      $or: [
+        { building1Id: buildingId },
+        { building2Id: buildingId }
+     ]};
+
+    const passages = (await this.passageSchema.find( query ));
+    if(passages) {
+      return passages.map(passage => PassageMap.toDomain(passage));
+    }
+    else{
+      return null;
     }
   }
 }

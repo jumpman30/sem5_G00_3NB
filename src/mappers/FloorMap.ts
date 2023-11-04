@@ -33,4 +33,12 @@ export class FloorMap extends Mapper<Floor> {
     } as IFloorDto;
   }
 
+  public static toDto( passage: Floor): IFloorDto {
+    if(!passage) return null
+    return {
+      domainId: passage.id.toString(),
+      buildingId: passage.buildingId,
+      number: passage.number,
+    } as IFloorDto;
+  }
 }

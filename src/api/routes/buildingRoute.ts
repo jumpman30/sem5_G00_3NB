@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
-import {Container} from "typedi";
-import config from "../../../config";
-import IBuildingController from "../../controllers/IControllers/IBuildingController";
+import { Container } from 'typedi';
+import config from '../../../config';
+import IBuildingController from '../../controllers/IControllers/IBuildingController';
 
 const route = Router();
 
@@ -11,22 +11,22 @@ export default (app: Router) => {
 
   const ctrl = Container.get(config.controllers.building.name) as IBuildingController;
 
-  //building.get('', (req, res, next) => ctrl.getAll(req, res, next));
-
     route.post(
     '',
     celebrate({
       body: Joi.object({
         code: Joi.string()
-          .required()
-          .error(new Error('Invalid Building Code')),
+                .regex(/^[A-Za-z0-9 \s]*$/)
+                .max(5)
+                .required()
+                .error(new Error('Invalid Building Code')),
         name: Joi.string(),
         length: Joi.number()
-          .required()
-          .error(new Error('Invalid Length')),
+                .required()
+                .error(new Error('Invalid Length')),
         width: Joi.number()
-          .required()
-          .error(new Error('Invalid Width')),
+                .required()
+              .error(new Error('Invalid Width')),
       }),
     }),
     (req, res, next) => ctrl.createBuilding(req, res, next),
@@ -52,4 +52,12 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.getBuildingsByMinMax(req, res, next),
   );
+
+  route.get('/:id/passages',
+  celebrate({
+    params: Joi.object({
+      id: Joi.string().required(),
+    }),
+  }),
+  (req, res, next) => ctrl.getPassagesByBuildingId(req,res,next));
 };

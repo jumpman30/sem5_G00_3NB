@@ -7,4 +7,5 @@ export default interface IBuildingController {
   getAll(req: Request, res: Response, next: NextFunction);
   getFloorsByBuildingId(req: Request, res: Response, next: NextFunction);
   getBuildingsByMinMax(req: Request, res: Response, next: NextFunction);
+  getPassagesByBuildingId(req: Request, res: Response, next: NextFunction);
 }

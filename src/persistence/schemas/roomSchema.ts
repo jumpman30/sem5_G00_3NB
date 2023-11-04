@@ -32,7 +32,7 @@ const Room = new mongoose.Schema(
     location: {
       x: { type: String, required: [true, 'Please enter coordinate x'] },
       y: { type: String, required: [true, 'Please enter coordinate y'] },
-    },
+    }
   },
   { timestamps: true },
 );

@@ -3,19 +3,15 @@ import { Inject, Service } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
 import { BaseController } from '../core/infra/BaseController';
-
 import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
-
-import IBuildingController from "./IControllers/IBuildingController";
-import IBuildingService from "../services/IServices/IBuildingService";
-import {ICreateBuildingRequestDto} from "../dto/building/ICreateBuildingRequestDto";
-import IBuildingDto from "../dto/building/IBuildingDto";
+import IBuildingController from './IControllers/IBuildingController';
+import IBuildingService from '../services/IServices/IBuildingService';
+import { IBuildingDto } from '../dto/IBuildingDto';
 
 @Service()
 export default class BuildingController extends BaseController
   implements IBuildingController {
-
   constructor(
     @Inject(config.services.building.name)
     private buildingService: IBuildingService,
@@ -24,8 +20,9 @@ export default class BuildingController extends BaseController
   ) {
     super();
   }
+
   protected executeImpl(): Promise<any> {
-      throw new Error('Method not implemented.');
+    throw new Error('Method not implemented.');
   }
 
   public async createBuilding(req: Request, res: Response, next: NextFunction) {
@@ -163,4 +160,19 @@ export default class BuildingController extends BaseController
     }
   }
 
+  public async getPassagesByBuildingId(req: Request, res: Response, next: NextFunction){
+    try {
+      const PassagesOrError = await this.buildingService.getPassageFloors(req.params.id);
+
+      if (PassagesOrError.isFailure) {
+        return res.status(404).send();
+      }
+
+      const RobotDTO = PassagesOrError.getValue();
+      return res.status(201).json( RobotDTO );
+    }
+    catch (e) {
+      return next(e);
+    }
+  }
 }

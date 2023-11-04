@@ -25,6 +25,7 @@ export default class FloorRepo implements IFloorRepo {
       throw e;
     }
   }
+  
   public async findByBuildingId(buildingId: string): Promise<Floor[] | null> {
     try {
     
@@ -42,4 +43,13 @@ export default class FloorRepo implements IFloorRepo {
     }
   }
 
+
+  public async findById(id: string): Promise<Floor> {
+    const query = { domainId: id};
+
+    const document = await this.floorSchema.findOne(query);
+    if (document != null) {
+      return FloorMap.toDomain(document);
+    } else return null;
+  }
 }

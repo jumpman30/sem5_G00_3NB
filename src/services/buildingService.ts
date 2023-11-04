@@ -1,15 +1,13 @@
-import IBuildingService from "./IServices/IBuildingService";
-import {Inject, Service} from "typedi";
-import config from "../../config";
-import IBuildingRepo from "./IRepos/IBuildingRepo";
-import {ICreateBuildingRequestDto} from "../dto/building/ICreateBuildingRequestDto";
-import {Result} from "../core/logic/Result";
-import {ICreateBuildingResponseDto} from "../dto/building/ICreateBuildingResponseDto";
-import IBuildingDto from "../dto/building/IBuildingDto";
-import {Building} from "../domain/building/Building";
-import {BuildingMap} from "../mappers/BuildingMap";
-import {IFloorDto} from "../dto/IFloorDto";
-import IFloorService from "./IServices/IFloorService";
+import { Service, Inject } from 'typedi';
+import config from '../../config';
+import { Result } from '../core/logic/Result';
+import IFloorService from './IServices/IFloorService';
+import { IFloorDto } from '../dto/IFloorDto';
+import IBuildingService from './IServices/IBuildingService';
+import IBuildingRepo from './IRepos/IBuildingRepo';
+import { IBuildingDto } from '../dto/IBuildingDto';
+import { Building } from '../domain/building';
+import { BuildingMap } from '../mappers/BuidingMap';
 
 @Service()
 export default class BuildingService implements IBuildingService {
@@ -178,6 +176,33 @@ export default class BuildingService implements IBuildingService {
         const floorDTOs = floors.getValue();
         return Result.ok<IFloorDto[]>(floorDTOs);
       }
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  public async getPassageFloors(buildingId: string): Promise<Result<IPassageFloorDto[]>> {
+    try{
+      let passages = await this.passageRepo.findByBuilding(buildingId);
+
+      if (!passages) {
+        return Result.fail("Passages not found");
+      }
+
+      let floorsToSearch = passages.map((passage) => {
+        if(passage.building1Id === buildingId){
+          return passage.floor1Id
+        }
+
+        return passage.floor2Id
+      })
+
+      let floorsInfo = await Promise.all(floorsToSearch.map(async (floorId) => {
+        let floor = await this.floorRepo.findById(floorId);
+        return FloorMap.toDto(floor);
+      }));
+
+      return Result.ok<IPassageFloorDto[]>( passages.map( passage => PassageMap.toFloorPassageRequestDTO(passage, floorsInfo)) );
     } catch (e) {
       throw e;
     }

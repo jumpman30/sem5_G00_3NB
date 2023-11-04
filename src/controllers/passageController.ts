@@ -9,6 +9,8 @@ import IFloorService from '../services/IServices/IFloorService';
 import IPassageController from './IControllers/IPassageController';
 import IPassageService from '../services/IServices/IPassageService';
 import { IPassageDto } from '../dto/IPassageDto';
+import { IUpdatePassageDto } from '../dto/IUpdatePassageDto';
+import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 
 @Service()
 export default class PassageController extends BaseController
@@ -35,6 +37,25 @@ export default class PassageController extends BaseController
       }
 
       return this.ok(res, passageIdOrError.getValue());
+    } catch (e) {
+      return next(e);
+    }
+  }
+
+  public async updatePassageByDomainId(req: Request, res: Response, next: NextFunction) {
+    try {
+      const updatedOrError = (await this.passageService.update(
+        req.body as IUpdatePassageDto,
+        {
+          domainId: req.params.domainId
+        }
+      )) as Result<{ updatedCount: number }>;
+
+      if (updatedOrError.isFailure) {
+        return this.fail(updatedOrError.error.toString());
+      }
+
+      return this.ok(res, updatedOrError.getValue());
     } catch (e) {
       return next(e);
     }

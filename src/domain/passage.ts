@@ -2,7 +2,6 @@ import { AggregateRoot } from '../core/domain/AggregateRoot';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 import { Result } from '../core/logic/Result';
 import { Guard } from '../core/logic/Guard';
-import { Location } from './location';
 import { PassageId } from './passageId';
 
 interface PassageProps {
@@ -67,17 +66,11 @@ export class Passage extends AggregateRoot<PassageProps> {
     ];
 
     const guardResult = Guard.againstNullOrUndefinedBulk(guardedProps);
-
+    console.log(props)
     if (!guardResult.succeeded) {
       return Result.fail<Passage>(guardResult.message);
     } else {
-      const room = new Passage(
-        {
-          ...props,
-        },
-        id,
-      );
-
+      const room = new Passage(props, id);
       return Result.ok<Passage>(room);
     }
   }

@@ -7,6 +7,7 @@ import FloorController from '../../src/controllers/floorController';
 import IFloorService from '../../src/services/IServices/IFloorService';
 import BuildingController from '../../src/controllers/buildingController';
 import IBuildingService from '../../src/services/IServices/IBuildingService';
+import { IPassageFloorDto } from '../../src/dto/IPassageFloorDto';
 
 describe('FloorController', () => {
   let buildingController: BuildingController;
@@ -27,6 +28,7 @@ describe('FloorController', () => {
     mockNext = jest.fn();
     mockBuildingService = {
       save: jest.fn(),
+      getPassageFloors: jest.fn()
     } as any;
     mockFloorService = {
       save: jest.fn(),
@@ -60,6 +62,29 @@ describe('FloorController', () => {
       const result = await buildingController.createBuilding(mockReq as Request, mockRes as Response, mockNext);
 
       expect(buildingController.fail).toHaveBeenCalledWith('test-error');
+    });
+  });
+
+  describe('getPassagesByBuildingId', () => {
+    it('should call `buildingService.getPassageFloors`', async () => {
+      mockReq.params = {buildingId: "id"};
+
+      jest.spyOn(mockBuildingService, 'getPassageFloors')
+
+      await buildingController.getPassagesByBuildingId(mockReq as Request, mockRes as Response, mockNext);
+
+      expect(mockBuildingService.getPassageFloors).toHaveBeenCalledTimes(1);
+    });
+
+    it('should return error if buildings passages are not found', async () => {
+      mockBuildingService.getPassageFloors = jest.fn().mockImplementation((buildingId) => Promise.resolve(Result.fail<IPassageFloorDto>("Passages not found")));
+      mockReq.params = {buildingId: "id"};
+
+      jest.spyOn(mockRes, 'status')
+
+      await buildingController.getPassagesByBuildingId(mockReq as Request, mockRes as Response, mockNext);
+
+      expect(mockRes.status).toHaveBeenCalledWith(404);
     });
   });
 });
