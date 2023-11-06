@@ -33,7 +33,7 @@ jobs:
 
     #Sleep to ignore database connection error
     - name: Wait for app to start
-      run: sleep 30
+      run: sleep 120
 
       # Check health endpoint and assert response code
     - name: Check Health Endpoint
