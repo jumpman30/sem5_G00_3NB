@@ -29,3 +29,9 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm test
+    - run: NODE_ENV=test npm run start &
+
+    #Check Application Health
+    - name: Wait for app to start
+      run: sleep 30
+
