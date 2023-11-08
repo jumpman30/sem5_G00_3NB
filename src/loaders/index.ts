@@ -64,6 +64,11 @@ export default async ({ expressApp }) => {
     path: config.controllers.role.path,
   };
 
+  const healthController = {
+    name: config.controllers.health.name,
+    path: config.controllers.health.path,
+  };
+
   const floorController = {
     name: config.controllers.floor.name,
     path: config.controllers.floor.path,
@@ -179,7 +184,7 @@ export default async ({ expressApp }) => {
     path: config.services.elevator.path,
   };
 
-  
+
   const elevatorController = {
     name: config.controllers.elevator.name,
     path: config.controllers.elevator.path,
@@ -188,7 +193,7 @@ export default async ({ expressApp }) => {
   await dependencyInjectorLoader({
     mongoConnection,
     schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema, buildingSchema, passageSchema, elevatorSchema],
-    controllers: [roleController, roomController, robotController, robotTypeController, floorController, buildingController, passageController, elevatorController],
+    controllers: [roleController, roomController, robotController, robotTypeController, floorController, buildingController, passageController, elevatorController, healthController],
     repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo, buildingRepo, passageRepo, elevatorRepo],
     services: [roleService, roomService, robotService, robotTypeService, floorService, buildingService, passageService, elevatorService]
   });

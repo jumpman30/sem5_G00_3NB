@@ -182,7 +182,7 @@ export default class BuildingService implements IBuildingService {
 
       let floorsInfo = await Promise.all(floorsToSearch.map(async (floorId) => {
         let floor = await this.floorRepo.findById(floorId);
-        return FloorMap.toDto(floor);
+                return FloorMap.toDto(floor);
       }));
 
       return Result.ok<IPassageFloorDto[]>( passages.map( passage => PassageMap.toFloorPassageRequestDTO(passage, floorsInfo)) );

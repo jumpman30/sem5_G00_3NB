@@ -22,9 +22,7 @@ export default class FloorService implements IFloorService {
 
     const floorOrError = Floor.create({
       buildingId: floorDto.buildingId,
-      number: floorDto.number,
-      minimum: floorDto.minimum,
-      maximum: floorDto.maximum
+      number: floorDto.number
     });
 
     if (floorOrError.isFailure) {

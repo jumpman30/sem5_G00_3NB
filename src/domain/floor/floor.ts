@@ -8,8 +8,6 @@ import { BuildingCode } from '../building/BuildingCode';
 interface FloorProps {
   buildingId: string;
   number: string;
-  minimum: string;
-  maximum: string;
 }
 
 export class Floor extends AggregateRoot<FloorProps> {
@@ -28,22 +26,12 @@ export class Floor extends AggregateRoot<FloorProps> {
     return this.props.number;
   }
 
-  get minimum(): string {
-    return this.props.minimum;
-  }
-
-  get maximum(): string {
-    return this.props.maximum;
-  }
-
   private constructor(props: FloorProps, id?: UniqueEntityID) {
     super(props, id);
   }
 
   public static create(props: FloorProps, id?: UniqueEntityID): Result<Floor> {
     const guardedProps = [
-      { argument: props.minimum, argumentName: 'minimum' },
-      { argument: props.maximum, argumentName: 'maximum' },
       { argument: props.number, argumentName: 'number' },
       { argument: props.buildingId, argumentName: 'buildingId' },
     ];

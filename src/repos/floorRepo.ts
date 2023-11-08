@@ -32,9 +32,8 @@ export default class FloorRepo implements IFloorRepo {
       const floors = await this.floorSchema.find({ buildingId }).exec();
 
       if (floors && floors.length > 0) {
-
         const domainFloors = floors.map((floorDb) => FloorMap.toDomain(floorDb));
-        return domainFloors;
+                return domainFloors;
       } else {
         return null;
       }

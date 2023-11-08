@@ -3,6 +3,4 @@ export interface IFloorPersistence {
   domainId: string
   buildingId: string;
   number: string;
-  minimum: string;
-  maximum: string;
 }

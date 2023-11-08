@@ -8,7 +8,7 @@ import roomRoute from './routes/roomRoute';
 import floorRoute from './routes/floorRoute';
 import buildingRoute from './routes/buildingRoute';
 import passageRoute from './routes/passageRoute';
-
+import healthRoute from './routes/healthRoute';
 
 export default () => {
   const app = Router();
@@ -22,6 +22,7 @@ export default () => {
   floorRoute(app);
   buildingRoute(app);
   passageRoute(app);
-  
+  healthRoute(app);
+
   return app;
 };

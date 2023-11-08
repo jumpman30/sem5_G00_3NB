@@ -51,6 +51,10 @@ export default {
       name: 'RoleController',
       path: '../controllers/roleController',
     },
+    health: {
+      name: 'HealthController',
+      path: '../controllers/healthController',
+    },
     building: {
       name: 'BuildingController',
       path: '../controllers/buildingController',
