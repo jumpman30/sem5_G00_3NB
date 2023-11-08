@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "1978a5dc-f2d5-4476-b88b-68010ad4bc5d",
+		"name": "Campus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20624038"
+	},
+	"item": [
+		{
+			"name": "create building",
+			"request": {
+				"method": "POST",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buildingId\": \"LEI\",\n    \"designation\": \"Lorem ipsum\",\n    \"width\": \"20\",\n    \"length\": \"20\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/building",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"building"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create building 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buildingId\": \"LEI2\",\n    \"designation\": \"Lorem ipsum\",\n    \"width\": \"20\",\n    \"length\": \"20\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/building",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"building"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create floor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"var floorId = responseJson.floorId;\r",
+							"pm.globals.set(\"floorId1\", floorId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buildingId\": \"LEI\",\n    \"number\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/floor",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"floor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create floor2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"var floorId = responseJson.floorId;\r",
+							"pm.globals.set(\"floorId2\", floorId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buildingId\": \"LEI2\",\n    \"number\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/floor",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"floor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create room",
+			"request": {
+				"method": "POST",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"buildingId\": \"LEI\",\n    \"floorId\": \"{{floorId1}}\",\n    \"location\": { \"x\": \"2\", \"y\": \"3\"},\n    \"doorLocation\": { \"x\": \"2\", \"y\": \"3\"},\n    \"designation\": \"test-designation\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/room",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create elevator",
+			"request": {
+				"method": "POST",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"availableFloorNumbers\": [\"1\",\"2\",\"3\"],\n    \"serialNumber\": \"C3PO\",\n    \"description\": \"Elevator\",\n    \"model\": \"A1\",\n    \"brand\": \"ElevatorBrand\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/building/LEI/elevator",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"building",
+						"LEI",
+						"elevator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create passage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"var passageId = responseJson.passageId;\r",
+							"pm.globals.set(\"passageId1\", passageId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"building1Id\": \"LEI2\",\n   \"building2Id\": \"LEI\",\n   \"floor1Id\": \"{{floorId1}}\",\n   \"floor2Id\": \"{{floorId2}}\",\n   \"locationBuilding1\": [{ \"x\": \"5\", \"y\": \"8\" }],\n   \"locationBuilding2\": [{ \"x\": \"5\", \"y\": \"8\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/passage",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"passage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update passage",
+			"request": {
+				"method": "PUT",
+				"header": [
+					 
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"locationBuilding1\": [{ \"x\": \"6\", \"y\": \"8\" }],\n   \"locationBuilding2\": [{ \"x\": \"6\", \"y\": \"8\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/passage/{{passageId1}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"passage",
+						"{{passageId1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get floors by building id",
+			"request": {
+				"method": "GET",
+				"header": [
+					 
+				],
+				"url": {
+					"raw": "localhost:3000/api/building/getFloorsByBuildingId?buildingId=LEI",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"building",
+						"getFloorsByBuildingId"
+					],
+					"query": [
+						{
+							"key": "buildingId",
+							"value": "LEI"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get buildings by min max",
+			"request": {
+				"method": "GET",
+				"header": [
+					 
+				],
+				"url": {
+					"raw": "localhost:3000/api/building/getBuildingsByMinMax?minFloor=1&maxFloor=2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"building",
+						"getBuildingsByMinMax"
+					],
+					"query": [
+						{
+							"key": "minFloor",
+							"value": "1"
+						},
+						{
+							"key": "maxFloor",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get building passages",
+			"request": {
+				"method": "GET",
+				"header": [
+					 
+				],
+				"url": {
+					"raw": "localhost:3000/api/building/LEI/passages",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"building",
+						"LEI",
+						"passages"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "floorId1",
+			"value": "\"\"",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "floorId2",
+			"value": "\"\"",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

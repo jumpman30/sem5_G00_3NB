@@ -36,7 +36,7 @@ export default class RobotService implements IRobotService {
   public async getAll(): Promise<Result<IRobotDTO[]>> {
     try{
       let Robot = await this.RobotRepo.getAll();
-
+      
       if (Robot === null) {
         return Result.fail("Robot not found");
       }

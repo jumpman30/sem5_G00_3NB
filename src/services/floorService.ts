@@ -22,9 +22,7 @@ export default class FloorService implements IFloorService {
 
     const floorOrError = Floor.create({
       buildingId: floorDto.buildingId,
-      number: floorDto.number,
-      minimum: floorDto.minimum,
-      maximum: floorDto.maximum
+      number: floorDto.number
     });
 
     if (floorOrError.isFailure) {
@@ -41,7 +39,7 @@ export default class FloorService implements IFloorService {
 
   public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto[]>> {
     try {
-    const buildingExists = await this.buildingRepo.findByDomainId(buildingId);
+    const buildingExists = await this.buildingRepo.exists(buildingId);
 
     if (!buildingExists) {
       return Result.fail<IFloorDto[]>(`Building with ID ${buildingId} does not exist.`);

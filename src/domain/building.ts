@@ -51,9 +51,7 @@ export class Building extends AggregateRoot<BuildingProps> {
       return Result.fail<Building>(guardResult.message);
     } else {
       const building = new Building(
-        {
-          ...props,
-        },
+        props,
         id,
       );
 

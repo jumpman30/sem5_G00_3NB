@@ -74,10 +74,10 @@ public async getFloorsByBuildingId(req: Request, res: Response, next: NextFuncti
       const floors = await this.floorService.getFloorsByBuildingId(buildingId);
 
       if (floors.isFailure) {
-        return Result.fail<IFloorDto[]>(floors.errorValue());
+        return res.status(400).json(floors.errorValue().toString());
       }
       const floorDTOs = floors.getValue();
-      return Result.ok<IFloorDto[]>(floorDTOs);
+      return this.ok(res, floorDTOs);
     }
   } catch (e) {
     throw e;
@@ -108,7 +108,7 @@ public async getBuildingsByMinMax(req: Request, res: Response, next: NextFunctio
   public async getPassagesByBuildingId(req: Request, res: Response, next: NextFunction){
     try {
       const PassagesOrError = await this.buildingService.getPassageFloors(req.params.id);
-
+      
       if (PassagesOrError.isFailure) {
         return res.status(404).send();
       }

@@ -12,8 +12,6 @@ export class FloorMap extends Mapper<Floor> {
       domainId: floor.id.toString(),
       buildingId: floor.buildingId,
       number: floor.number,
-      minimum: floor.minimum,
-      maximum: floor.maximum
     };
   }
 
@@ -27,9 +25,7 @@ export class FloorMap extends Mapper<Floor> {
     return {
       domainId: floor.id.toString(),
       buildingId: floor.buildingId,
-      number: floor.number,
-      minimum: floor.minimum,
-      maximum:floor.maximum
+      number: floor.number
     } as IFloorDto;
   }
 
