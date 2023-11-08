@@ -24,7 +24,8 @@ export default {
   /**
    * Your secret sauce
    */
-  jwtSecret: process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
+  jwtSecret:
+    process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
 
   /**
    * Used by winston logger
@@ -83,7 +84,6 @@ export default {
       name: 'RobotTypeController',
       path: '../controllers/robotTypeController',
     },
-
   },
   /**
    * Repositories
@@ -98,7 +98,7 @@ export default {
       path: '../repos/roleRepo',
     },
     building: {
-      name: 'BuildingRepo',
+      name: 'buildingRepo',
       path: '../repos/buildingRepo',
     },
     floor: {
@@ -115,7 +115,7 @@ export default {
     },
     room: {
       name: 'RoomRepo',
-      path: '../repos/roomRepo'
+      path: '../repos/roomRepo',
     },
     robot: {
       name: 'RobotRepo',

@@ -6,5 +6,5 @@ export default interface IBuildingDto {
 }
 
 export type IBuildingCreateRequestDto = IBuildingDto;
-export type IBuildingUpdateRequestDto = Omit<IBuildingDto, 'code'>;
+export type IBuildingUpdateRequestDto = Partial<Omit<IBuildingDto, 'code'>>;
 export type IBuildingResponseDto = IBuildingDto;

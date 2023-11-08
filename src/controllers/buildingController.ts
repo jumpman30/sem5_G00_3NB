@@ -3,7 +3,6 @@ import { Inject, Service } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
 import { BaseController } from '../core/infra/BaseController';
-import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
 import IBuildingController from './IControllers/IBuildingController';
 import IBuildingService from '../services/IServices/IBuildingService';
@@ -53,12 +52,12 @@ export default class BuildingController extends BaseController
 
   public async updateBuilding(req: Request, res: Response, next: NextFunction) {
     try {
-      const requestDto = req.body as IBuildingUpdateRequestDto;
+      const requestDto = req.body as IBuildingDto;
       //validate DTO
       if (!requestDto)
         return res.status(422).json({message: 'Invalid building data'}); //invalid data
 
-      const buildingOrError = await this.buildingService.updateBuilding(requestDto);
+      const buildingOrError = await this.buildingService.updateBuilding(requestDto, requestDto.code);
 
       if (buildingOrError.isFailure) {
         return res.status(404).json({errors: buildingOrError.errorValue()}); // Bad Request response
