@@ -28,7 +28,7 @@ export default class PassageController extends BaseController
 
   public async createPassage(req: Request, res: Response, next: NextFunction) {
     try {
-      const passageIdOrError = (await this.passageService.save(
+            const passageIdOrError = (await this.passageService.save(
         req.body as IPassageDto,
       )) as Result<{ passageId: string }>;
 

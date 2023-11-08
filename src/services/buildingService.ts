@@ -103,7 +103,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
     for (const building of buildings) {
    
       const floors = await this.floorService.getFloorsByBuildingId(building.id.toString());
-
+      console.log(floors)
       if (!floors.isFailure) {
         const numFloors = floors.getValue().length;
 
@@ -137,7 +137,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
 
       let floorsInfo = await Promise.all(floorsToSearch.map(async (floorId) => {
         let floor = await this.floorRepo.findById(floorId);
-        return FloorMap.toDto(floor);
+                return FloorMap.toDto(floor);
       }));
 
       return Result.ok<IPassageFloorDto[]>( passages.map( passage => PassageMap.toFloorPassageRequestDTO(passage, floorsInfo)) );

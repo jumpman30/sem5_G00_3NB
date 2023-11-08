@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "27de0fb9-fd1d-4782-83e8-2b2388b1330a",
+		"name": "Robot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20624038"
+	},
+	"item": [
+		{
+			"name": "create robot type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"Robot300\",\r\n    \"brand\": \"Tesla\",\r\n    \"robotType\": \"Nice robot\",\r\n    \"taskTypes\": [\"PickupAndDelivery\", \"Surveillance\"]\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/robotType",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"robotType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create robot",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nickname\": \"Roboto007\",\r\n    \"designation\": \"Surveilance and PD robot\",\r\n    \"state\": true,\r\n    \"serialNumber\": 213213,\r\n    \"robotType\": \"Nice robot\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/robots",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"robots"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create robot2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nickname\": \"Roboto008\",\r\n    \"designation\": \"Surveilance and PD robot\",\r\n    \"state\": true,\r\n    \"serialNumber\": 213333,\r\n    \"robotType\": \"Nice robot\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/api/robots",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"robots"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InhibtRobot",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/robots/inhibt/Roboto007",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"robots",
+						"inhibt",
+						"Roboto007"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get robot",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/robots/Roboto007",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"robots",
+						"Roboto007"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all robots",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/api/robots",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"robots"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
