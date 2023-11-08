@@ -1,4 +1,4 @@
-import { Location } from '../domain/location';
+import { Location } from '../domain/room/location';
 
 export interface IPassagePersistence {
   _id: string;

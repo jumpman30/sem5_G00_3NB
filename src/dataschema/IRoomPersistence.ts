@@ -1,4 +1,4 @@
-import { Location } from '../domain/location';
+import { Location } from '../domain/room/location';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 
 export interface IRoomPersistence {

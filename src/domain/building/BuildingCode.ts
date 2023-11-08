@@ -22,8 +22,7 @@ export class BuildingCode extends UniqueEntityID {
       return Result.ok<BuildingCode>(new BuildingCode(code));
     }
   }
-
-  private static isValid(code: string): boolean {
+  public static isValid(code: string): boolean {
     if (code.length < 6 && code.length > 0) {
       let regex = /^[A-Za-z0-9 ]+$/;
       return regex.test(code)

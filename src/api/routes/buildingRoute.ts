@@ -14,7 +14,7 @@ export default (app: Router) => {
   const ctrl = Container.get(config.controllers.building.name) as IBuildingController;
 
     route.post(
-    '',
+    '/create',
     celebrate({
       body: Joi.object({
         code: Joi.string()

@@ -7,6 +7,7 @@ import {Building} from '../domain/building/Building';
 import {BuildingMap} from '../mappers/BuildingMap';
 
 import IBuildingRepo from '../services/IRepos/IBuildingRepo';
+import { after } from "lodash";
 
 @Service()
 export default class BuildingRepo implements IBuildingRepo {
@@ -26,17 +27,16 @@ export default class BuildingRepo implements IBuildingRepo {
         const rawBuilding: any = BuildingMap.toPersistence(building);
 
         const buildingCreated = await this.buildingSchema.create(rawBuilding);
-
         return BuildingMap.toDomain(buildingCreated);
+
       } else {
-        buildingDocument.code = building.code.toString();
-        buildingDocument.name = building.name;
-        buildingDocument.length = building.length;
-        buildingDocument.width = building.width;
+        buildingDocument.name = building.name ?? buildingDocument.name;
+        buildingDocument.length = building.length ?? buildingDocument.length;
+        buildingDocument.width = building.width ?? buildingDocument.width;
 
-        await buildingDocument.save();
+        const buildingUpdated = await this.buildingSchema.findOneAndUpdate(query, buildingDocument, after);
 
-        return building;
+        return BuildingMap.toDomain(buildingUpdated);
       }
     } catch (err) {
       throw err;
@@ -62,13 +62,18 @@ export default class BuildingRepo implements IBuildingRepo {
       return null;
     }
   }
-  exists(b: Building): Promise<boolean> {
-    if (b === null) throw new Error('Building is null');
-
-    if (this.findByCode(b.code.toString()) === null) {
-      return Promise.resolve(false);
+  public async exists(building: Building): Promise<boolean> {
+    if(building == null) {
+      throw new Error("Building is null");
     }
+    let code = building.code.toString();
 
-    return Promise.resolve(true);
+    const record = await this.buildingSchema.findOne({ code: code });
+
+    if (!record) {
+      return Promise.resolve(false);
+    } else {
+      return Promise.resolve(true);
+    }
   }
 }

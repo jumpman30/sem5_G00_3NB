@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { Request, Response, NextFunction } from 'express';
 import  robotTypeService  from '../../src/services/robotTypeService';
 import  RobotTypeController  from '../../src/controllers/robotTypeController';
-import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
 import IRobotTypeDto from '../../src/dto/IRobotTypeDTO';
 import AlreadyExistsException from '../../src/core/infra/AlreadyExistsException';
 import { Result } from '../../src/core/logic/Result';
@@ -30,7 +30,7 @@ describe('robotTypeController', () => {
     },
     json: (arg) =>  res
   } as  unknown as Response<any, Record<string, any>>;
-  
+
   describe('createRobotType', () => {
 
     it('should return an status 422 for robot type creation failure', async () => {
@@ -51,7 +51,7 @@ describe('robotTypeController', () => {
 
       expect(resSpy.called).to.be.true
       expect(resSpy.calledWith(422)).to.be.true
-    }); 
+    });
 
     it('should return an status 409 for already existent robotType', async () => {
       mockRobotTypeService.createRobotType.throws(new AlreadyExistsException("User already exists"))
@@ -69,8 +69,8 @@ describe('robotTypeController', () => {
       await robotTypeController.createRobotType(req, res, next);
       expect(resSpy.called).to.be.true
       expect(resSpy.calledWith(409)).to.be.true
-    }); 
-    
+    });
+
     it('should return an robot type for successful robot creation', async () => {
       const validProps: RobotTypeProps = {
         brand: 'brand',
@@ -90,9 +90,9 @@ describe('robotTypeController', () => {
       let resJsonSpy = sinon.spy(res, 'json')
 
       await robotTypeController.createRobotType(req, res, next);
-      
+
       expect(resStatusSpy.calledWith(201)).to.be.true
       expect(resJsonSpy.calledWith(robotTypeExpected)).to.be.true
-    }); 
+    });
   });
 });

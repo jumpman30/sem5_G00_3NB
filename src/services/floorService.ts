@@ -3,7 +3,7 @@ import config from '../../config';
 import { Result } from '../core/logic/Result';
 import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
-import { Floor } from '../domain/floor';
+import { Floor } from '../domain/floor/floor';
 import IFloorRepo from './IRepos/IFloorRepo';
 import IBuildingService from './IServices/IBuildingService';
 import { FloorMap } from '../mappers/FloorMap';

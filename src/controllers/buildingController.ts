@@ -7,19 +7,25 @@ import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
 import IBuildingController from './IControllers/IBuildingController';
 import IBuildingService from '../services/IServices/IBuildingService';
-import { IBuildingDto } from '../dto/IBuildingDto';
+import IBuildingDto, { IBuildingCreateRequestDto, IBuildingUpdateRequestDto } from "../dto/IBuildingDto";
+import { ParamsDictionary } from 'express-serve-static-core';
+import { ParsedQs } from 'qs';
 
 @Service()
 export default class BuildingController extends BaseController
-  implements IBuildingController {
+    implements IBuildingController {
   constructor(
-    @Inject(config.services.building.name)
-    private buildingService: IBuildingService,
-    @Inject(config.services.floor.name)
-    private floorService: IFloorService
+      @Inject(config.services.building.name)
+      private buildingService: IBuildingService,
+      @Inject(config.services.floor.name)
+      private floorService: IFloorService
   ) {
     super();
   }
+
+  getAllBuildings(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+        throw new Error('Method not implemented.');
+    }
 
   protected executeImpl(): Promise<any> {
     throw new Error('Method not implemented.');
@@ -27,7 +33,7 @@ export default class BuildingController extends BaseController
 
   public async createBuilding(req: Request, res: Response, next: NextFunction) {
     try {
-      const requestDto = req.body as ICreateBuildingRequestDto;
+      const requestDto = req.body as IBuildingCreateRequestDto;
       //validate DTO
       if (!requestDto)
         return res.status(422).json({message: 'Invalid building data'}); //invalid data
@@ -47,19 +53,19 @@ export default class BuildingController extends BaseController
 
   public async updateBuilding(req: Request, res: Response, next: NextFunction) {
     try {
-      const requestDto = req.body as ICreateBuildingRequestDto;
+      const requestDto = req.body as IBuildingUpdateRequestDto;
       //validate DTO
       if (!requestDto)
         return res.status(422).json({message: 'Invalid building data'}); //invalid data
 
-      const buildingOrError = await this.buildingService.createBuilding(requestDto);
+      const buildingOrError = await this.buildingService.updateBuilding(requestDto);
 
       if (buildingOrError.isFailure) {
         return res.status(404).json({errors: buildingOrError.errorValue()}); // Bad Request response
       }
 
       const buildingDTO = buildingOrError.getValue();
-      return res.json(buildingDTO).status(201);
+      return res.json(buildingDTO).status(200);
     } catch (e) {
       return next(e);
     }
@@ -67,54 +73,18 @@ export default class BuildingController extends BaseController
 
   public async getBuilding(req: Request, res: Response, next: NextFunction) {
     try {
-      const buildingOrError = await this.buildingService.getBuilding(req.params.code) as Result<IBuildingDto>;
+      const buildingOrError = await this.buildingService.findBuildingByCode(req.params.code) as Result<IBuildingDto>;
 
       if (buildingOrError.isFailure) {
         return res.status(404).send();
       }
 
       const buildingDto = buildingOrError.getValue();
-      return res.status(200).json(buildingDto);
+      return res.json(buildingDto).status(200);
     } catch (e) {
       return next(e);
     }
   };
-
-  public async getAll(req: Request, res: Response, next: NextFunction) {
-    try {
-      const buildingOrError = await this.buildingService.getAll();
-
-      if (buildingOrError.isFailure) {
-        return res.status(404).send();
-      }
-
-      const buildingDto = buildingOrError.getValue();
-      return res.status(201).json(buildingDto);
-    } catch (e) {
-      return next(e);
-    }
-  };
-
-  public async findBuildingByKey(req: Request, res: Response, next: NextFunction) {
-    try {
-      const buildingId = req.query.buildingId as string;
-
-      if (buildingId === undefined) {
-        return res.status(404).json("Please insert a valid building in the parameters.");
-      }
-
-      const buildingOrError = await this.buildingService.findBuildingByKey(buildingId);
-
-      if (buildingOrError.isFailure) {
-        return res.status(404).json(buildingOrError.error);
-      }
-
-      const buildingDTO = buildingOrError.getValue();
-      return res.status(200).json(buildingDTO);
-    } catch (e) {
-      return next(e);
-    }
-  }
 
   public async getFloorsByBuildingId(req: Request, res: Response, next: NextFunction) {
     try {
@@ -122,16 +92,16 @@ export default class BuildingController extends BaseController
       const buildingId = req.query.buildingId as string;
 
       if (buildingId === undefined) {
-        return res.status(404).json("Building not found");
+        return res.status(422).json({message: 'Invalid building data'}); //invalid data
       } else {
 
-        const floors = await this.floorService.getFloorsByBuildingId(buildingId);
+        const floorsOrError = await this.floorService.getFloorsByBuildingId(buildingId);
 
-        if (floors.isFailure) {
-          return Result.fail<IFloorDto[]>(floors.errorValue());
+        if (floorsOrError.isFailure) {
+          return res.status(404).json(floorsOrError.error); //Not found
         }
-        const floorDTOs = floors.getValue();
-        return Result.ok<IFloorDto[]>(floorDTOs);
+        const floorDTOs = floorsOrError.getValue();
+        return res.status(200).json(floorDTOs);
       }
     } catch (e) {
       throw e;
@@ -168,8 +138,8 @@ export default class BuildingController extends BaseController
         return res.status(404).send();
       }
 
-      const RobotDTO = PassagesOrError.getValue();
-      return res.status(201).json( RobotDTO );
+      const passageDTO = PassagesOrError.getValue();
+      return res.status(201).json( passageDTO );
     }
     catch (e) {
       return next(e);

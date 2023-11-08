@@ -1,7 +1,7 @@
 import { Repo } from '../../core/infra/Repo';
 import { Elevator } from '../../domain/elevator/elevator';
-import { Role } from '../../domain/role';
-import { RoleId } from '../../domain/roleId';
+import { Role } from '../../domain/role/role';
+import { RoleId } from '../../domain/role/roleId';
 
 export default interface IElevatorRepo extends Repo<Elevator> {
   save(elevator: Elevator): Promise<Elevator>;

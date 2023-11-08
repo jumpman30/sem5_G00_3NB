@@ -1,6 +1,6 @@
 import { Service, Inject } from 'typedi';
 
-import { Role } from '../domain/role';
+import { Role } from '../domain/role/role';
 import { RoleMap } from '../mappers/RoleMap';
 
 import { Document, Model } from 'mongoose';
@@ -57,7 +57,7 @@ export default class ElevatorRepo implements IElevatorRepo {
 
     try {
       return await this.elevatorSchema.count(query);
-    } 
+    }
     catch (err) {
       throw err;
     }

@@ -2,12 +2,13 @@ import { Service, Inject } from 'typedi';
 import { Document, FilterQuery, Model } from 'mongoose';
 import { IPassagePersistence } from '../dataschema/IPassagePersistence';
 import IPassageRepo from '../services/IRepos/IPassageRepo';
-import { Passage } from '../domain/passage';
-import { PassageId } from '../domain/passageId';
+import { Passage } from '../domain/passage/passage';
+import { PassageId } from '../domain/passage/passageId';
 import { PassageMap } from '../mappers/PassageMap';
 import { PassageDbProjection } from '../types';
 import { cleanObject } from '../utils/Object.utils';
-import { map } from 'lodash';
+import { filter, map, result } from "lodash";
+import e from "express";
 
 @Service()
 export default class PassageRepo implements IPassageRepo {
@@ -16,17 +17,6 @@ export default class PassageRepo implements IPassageRepo {
     private passageSchema: Model<IPassagePersistence & Document>,
     @Inject('logger') private logger,
   ) {}
-
-  public async save(passage: Passage): Promise<PassageId> {
-    const rawPassage: any = PassageMap.toPersistence(passage);
-
-    try {
-      const passageDb = await this.passageSchema.create(rawPassage);
-      return new PassageId(passageDb.domainId);
-    } catch (e) {
-      throw e;
-    }
-  }
 
   public async update(passage: Partial<Omit<Passage, 'id'>>, filter: FilterQuery<Passage>): Promise<number> {
     try {
@@ -63,5 +53,9 @@ export default class PassageRepo implements IPassageRepo {
     } catch (e){
       throw e;
     }
+  }
+
+  save(passage: Passage): Promise<PassageId> {
+  throw "not imolemented";
   }
 }

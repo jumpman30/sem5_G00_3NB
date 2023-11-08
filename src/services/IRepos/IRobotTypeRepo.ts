@@ -1,6 +1,6 @@
 import { Repo } from '../../core/infra/Repo';
-import { RobotType } from '../../domain/RobotType';
-import { RobotTypeId } from '../../domain/RobotTypeId';
+import { RobotType } from '../../domain/robotType/RobotType';
+import { RobotTypeId } from '../../domain/robotType/RobotTypeId';
 
 export default interface IRobtTypeRepo extends Repo<RobotType> {
   save(role: RobotType): Promise<RobotType>;

@@ -1,5 +1,5 @@
-import { Passage } from '../../domain/passage';
-import { PassageId } from '../../domain/passageId';
+import { Passage } from '../../domain/passage/passage';
+import { PassageId } from '../../domain/passage/passageId';
 import { FilterQuery } from 'mongoose';
 import { PassageDbProjection } from '../../types';
 

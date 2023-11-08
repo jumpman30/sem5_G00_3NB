@@ -1,4 +1,4 @@
-import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
 import { Robot } from '../../src/domain/robot/robot';
 import { RobotTypeMap } from '../../src/mappers/RobotTypeMap';
 

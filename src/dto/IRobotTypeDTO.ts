@@ -1,4 +1,4 @@
-import { TaskTypes } from "../domain/TaskTypes";
+import { TaskTypes } from "../domain/robotType/TaskTypes";
 
 export default interface IRobotTypeDto {
   id: string;

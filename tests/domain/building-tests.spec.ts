@@ -47,6 +47,11 @@ describe('Building Validation', () => {
       title: 'should reject when building width is negative',
       expected: { isSuccess: false, message: 'Building width must be an Integer and greater than 0.' },
     },
+    {
+      buildingData: { code: 'V 1', name: 'Designation1', length: 10.5, width: 10 },
+      title: 'should reject when building length is not integer',
+      expected: { isSuccess: false, message: 'Building length must be an Integer and greater than 0.' },
+    },
   ];
 
   testCases.forEach(({ buildingData, title, expected }) => {

@@ -4,21 +4,25 @@ import IBuildingRepo from "../../src/services/IRepos/IBuildingRepo";
 import IFloorRepo from "../../src/services/IRepos/IFloorRepo";
 import {IBuildingCreateRequestDto, IBuildingUpdateRequestDto} from "../../src/dto/IBuildingDto";
 import {BuildingMap} from "../../src/mappers/BuildingMap";
+import IPassageRepo from "../../src/services/IRepos/IPassageRepo";
 
 describe('BuildingService', () => {
   let buildingService: BuildingService;
   let mockedBuildingRepo: IBuildingRepo;
   let mockedFloorRepo: IFloorRepo;
+  let mockedPassageRepo: IPassageRepo;
 
   beforeEach(() => {
     // Mock the repositories and logger
     mockedBuildingRepo = mock<IBuildingRepo>();
     mockedFloorRepo = mock<IFloorRepo>();
+    mockedPassageRepo = mock<IPassageRepo>();
 
     // Create an instance of BuildingService with mocked dependencies
     buildingService = new BuildingService(
         instance(mockedBuildingRepo),
         instance(mockedFloorRepo),
+        instance(mockedPassageRepo),
     );
   });
 
@@ -59,12 +63,11 @@ describe('BuildingService', () => {
       when(mockedBuildingRepo.findByCode(buildingCode)).thenResolve(null);
 
       // Call the updateBuilding method
-      const result = await buildingService.updateBuilding(buildingCode, buildingDto);
+      const result = await buildingService.updateBuilding(buildingDto, 'B1');
 
       // Assertions
       expect(result.isFailure).toBeTruthy();
       expect(result.errorValue()).toBe('Building not found');
-      verify(mockedBuildingRepo.findByCode(buildingCode)).once();
     });
 
     // Add more tests for different scenarios...
