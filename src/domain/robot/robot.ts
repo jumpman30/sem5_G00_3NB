@@ -6,7 +6,7 @@ import { RobotNickname } from "./robotNickname";
 import { RobotDesignation } from "./robotDesignation";
 import { RobotState } from "./robotState";
 import {RobotSerialNumber} from "./robotSerialNumber";
-import { RobotType } from "../RobotType";
+import { RobotType } from "../robotType/RobotType";
 
 export interface RobotProps {
   nickname: RobotNickname;

@@ -1,12 +1,12 @@
-import {Entity} from "../core/domain/Entity";
-import {UniqueEntityID} from "../core/domain/UniqueEntityID";
+import {Entity} from "../../core/domain/Entity";
+import {UniqueEntityID} from "../../core/domain/UniqueEntityID";
 
-import {Result} from "../core/logic/Result";
+import {Result} from "../../core/logic/Result";
 import {RobotTypeId} from "./RobotTypeId";
 
-import {Guard, IGuardResult} from "../core/logic/Guard";
+import {Guard, IGuardResult} from "../../core/logic/Guard";
 import { TaskTypes } from "./TaskTypes";
-import { TextUtil } from "../utils/TextUtil";
+import { TextUtil } from "../../utils/TextUtil";
 
 export interface RobotTypeProps {
     robotType: string;
@@ -51,7 +51,7 @@ export class RobotType extends Entity<RobotTypeProps> {
     set robotType(value: string) {
         this.props.robotType = value;
     }
-    
+
     get taskTypes(): string [] {
         return this.props.taskTypes;
     }
@@ -68,12 +68,12 @@ export class RobotType extends Entity<RobotTypeProps> {
 
         if (!guardNullResult.succeeded) {
             return Result.fail<RobotType>(guardNullResult.message)
-        } 
+        }
 
         const taskTypesValidation = this.validateTaskTypes(taskTypes);
         if (!taskTypesValidation.succeeded) {
             return Result.fail<RobotType>(taskTypesValidation.message)
-        } 
+        }
 
         if(!TextUtil.isAlphanumeric(robotType) || robotType.length > 25){
             return Result.fail<RobotType>("Robot type should have at max 25 characteres.(alphanumeric only)")

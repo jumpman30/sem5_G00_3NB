@@ -13,14 +13,22 @@ export default (app: Router) => {
   const elevatorCtrl = Container.get(config.controllers.elevator.name) as IElevatorController;
   const ctrl = Container.get(config.controllers.building.name) as IBuildingController;
 
-  route.post(
-    '',
+    route.post(
+    '/create',
     celebrate({
       body: Joi.object({
-        buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
-        designation: Joi.string().required(),
-        width: Joi.string().required(),
-        length: Joi.string().required()
+        code: Joi.string()
+                .regex(/^[A-Za-z0-9 \s]*$/)
+                .max(5)
+                .required()
+                .error(new Error('Invalid Building Code')),
+        name: Joi.string(),
+        length: Joi.number()
+                .required()
+                .error(new Error('Invalid Length')),
+        width: Joi.number()
+                .required()
+              .error(new Error('Invalid Width')),
       }),
     }),
     (req, res, next) => ctrl.createBuilding(req, res, next),
@@ -46,6 +54,7 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.getBuildingsByMinMax(req, res, next),
   );
+
   route.get('/:id/passages',
   celebrate({
     params: Joi.object({

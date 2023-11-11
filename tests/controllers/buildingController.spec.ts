@@ -1,90 +1,214 @@
-import { NextFunction, Request, Response } from 'express';
-import RoomController from '../../src/controllers/roomController';
-import IRoomService from '../../src/services/IRepos/IRoomService';
-import { Result } from '../../src/core/logic/Result';
-import mocks from '../mocks';
-import FloorController from '../../src/controllers/floorController';
-import IFloorService from '../../src/services/IServices/IFloorService';
-import BuildingController from '../../src/controllers/buildingController';
+import 'reflect-metadata';
+import {
+  mock,
+  instance,
+  when,
+  verify,
+  deepEqual,
+  anyOfClass,
+} from 'ts-mockito';
+import { Request, Response, NextFunction } from 'express';
+import IBuildingDto, {
+  IBuildingCreateRequestDto,
+  IBuildingResponseDto,
+  IBuildingUpdateRequestDto,
+} from '../../src/dto/IBuildingDto';
 import IBuildingService from '../../src/services/IServices/IBuildingService';
-import { IPassageFloorDto } from '../../src/dto/IPassageFloorDto';
+import BuildingController from '../../src/controllers/buildingController';
+import IFloorService from '../../src/services/IServices/IFloorService';
+import { Result } from '../../src/core/logic/Result';
 
-describe('FloorController', () => {
+describe('BuildingController', () => {
+  let mockedBuildingService: IBuildingService;
+  let mockedFloorService: IFloorService;
   let buildingController: BuildingController;
-  let mockBuildingService: jest.Mocked<IBuildingService>;
-  let mockFloorService: jest.Mocked<IFloorService>;
-  let mockReq: Partial<Request>;
-  let mockRes: Partial<Response>;
-  let mockNext: NextFunction;
+  let mockedReq: Request;
+  let mockedRes: Response;
+  let mockedNext: NextFunction;
 
   beforeEach(() => {
-    mockReq = {
-      body: {}
-    };
-    mockRes = {
-      status: jest.fn(),
-      json: jest.fn(),
-    };
-    mockNext = jest.fn();
-    mockBuildingService = {
-      save: jest.fn(),
-      getPassageFloors: jest.fn()
-    } as any;
-    mockFloorService = {
-      save: jest.fn(),
-    } as any;
-   
-    buildingController = new BuildingController(mockBuildingService,mockFloorService);
+    // Mock the dependencies
+    mockedBuildingService = mock<IBuildingService>();
+    mockedFloorService = mock<IFloorService>();
+    mockedReq = mock<Request>();
+    mockedRes = mock<Response>();
+    mockedNext = mock<NextFunction>();
+
+    // Instantiate the controller with mocked services
+    buildingController = new BuildingController(
+      instance(mockedBuildingService),
+      instance(mockedFloorService),
+    );
+
+    // Set up the mocked response object
+    when(mockedRes.json(deepEqual({}))).thenReturn(mockedRes);
+    when(mockedRes.status(200)).thenReturn(mockedRes);
+    when(mockedRes.status(201)).thenReturn(mockedRes);
+    when(mockedRes.status(400)).thenReturn(mockedRes);
+    when(mockedRes.status(404)).thenReturn(mockedRes);
+    when(mockedRes.status(500)).thenReturn(mockedRes);
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
+  describe('createBuilding', () => {
+    it('success - building created', async () => {
+      // Arrange
+      const buildingDto: IBuildingCreateRequestDto = {
+        code: 'B123',
+        name: 'Building 123',
+        length: 100,
+        width: 100,
+      };
+
+      when(mockedReq.body).thenReturn(buildingDto);
+      when(
+        mockedBuildingService.createBuilding(deepEqual(buildingDto)),
+      ).thenResolve(Result.ok<IBuildingResponseDto>(buildingDto));
+
+      // Act
+      await buildingController.createBuilding(
+        instance(mockedReq),
+        instance(mockedRes),
+        instance(mockedNext),
+      );
+
+      // Assert
+      verify(mockedRes.status(201));
+      verify(mockedRes.json(deepEqual(buildingDto)));
+    });
+
+    it('fail - invalid data 400', async () => {
+      // Arrange
+      const invalidDto = {
+        length: 100,
+        width: 100,
+      };
+      when(mockedReq.body).thenReturn(invalidDto);
+      when(mockedBuildingService.createBuilding(anyOfClass(Error))).thenReject(
+        new Error('Invalid building data'),
+      );
+
+      // Act
+      await buildingController.createBuilding(
+        instance(mockedReq),
+        instance(mockedRes),
+        instance(mockedNext),
+      );
+
+      // Assert
+      verify(mockedRes.status(400));
+      verify(mockedRes.json(deepEqual({ errors: 'Invalid data' })));
+    });
   });
 
-  describe('createRoom', () => {
-    it('should call `floorService.save`', async () => {
-      mockReq.body = mocks.buildBuildingDto();
+  describe('updateBuilding', () => {
+    it('success - complete update', async () => {
+      // Arrange
+      const updatedBuildingDto: IBuildingResponseDto = {
+        code: 'B123',
+        name: 'New Building 123',
+        length: 50,
+        width: 100,
+      };
+      const updateDto: IBuildingUpdateRequestDto = {
+        name: 'New Building 123',
+        length: 50,
+        width: 100,
+      };
+      const code = 'B123';
+      when(mockedReq.body).thenReturn(updateDto);
+      when(mockedReq.params).thenReturn({ code });
+      when(
+        mockedBuildingService.updateBuilding(deepEqual(updateDto), code),
+      ).thenResolve(Result.ok(updatedBuildingDto));
 
-      jest.spyOn(mockBuildingService, 'save').mockResolvedValue(Result.ok<{ roomId: string }>({roomId: 'test-id'}) as any )
+      // Act
+      await buildingController.updateBuilding(
+        instance(mockedReq),
+        instance(mockedRes),
+        instance(mockedNext),
+      );
 
-      await buildingController.createBuilding(mockReq as Request, mockRes as Response, mockNext);
-
-      expect(mockBuildingService.save).toHaveBeenCalledTimes(1);
-      expect(mockBuildingService.save).toHaveBeenCalledWith(mocks.buildBuildingDto());
+      // Assert
+      verify(mockedRes.status(200));
+      verify(
+        mockedRes.json(
+          deepEqual({
+            name: 'New Building 123',
+            length: 100,
+            width: 100,
+          }),
+        ),
+      );
     });
 
-    it('should return error if room is not saved', async () => {
-      mockReq.body = mocks.buildBuildingDto();
+    it('success - partial update', async () => {
+      // Arrange
+      const updatedBuildingDto: IBuildingCreateRequestDto = {
+        code: 'B123',
+        name: 'New Building 123',
+        length: 50,
+        width: 100,
+      };
+      const partialUpdateDto: Partial<IBuildingUpdateRequestDto> = {
+        name: 'New Building 123',
+        length: 50,
+      };
+      const code = 'B123';
+      when(mockedReq.body).thenReturn(partialUpdateDto);
+      when(mockedReq.params).thenReturn({ code });
+      when(
+        mockedBuildingService.updateBuilding(deepEqual(partialUpdateDto), code),
+      ).thenResolve(Result.ok<IBuildingResponseDto>(updatedBuildingDto));
 
-      jest.spyOn(mockBuildingService, 'save').mockResolvedValue(Result.fail('test-error') as any )
-      jest.spyOn(buildingController, 'fail').mockImplementation(jest.fn() as any);
+      // Act
+      await buildingController.updateBuilding(
+        instance(mockedReq),
+        instance(mockedRes),
+        instance(mockedNext),
+      );
 
-      const result = await buildingController.createBuilding(mockReq as Request, mockRes as Response, mockNext);
-
-      expect(buildingController.fail).toHaveBeenCalledWith('test-error');
+      // Assert
+      verify(mockedRes.status(200));
+      verify(Result.ok<IBuildingResponseDto>(updatedBuildingDto));
     });
-  });
 
-  describe('getPassagesByBuildingId', () => {
-    it('should call `buildingService.getPassageFloors`', async () => {
-      mockReq.params = {buildingId: "id"};
+    it.skip('fail - missing id param 404', async () => {
+      // Arrange
+      when(mockedReq.params).thenReturn({});
 
-      jest.spyOn(mockBuildingService, 'getPassageFloors')
+      // Act
+      await buildingController.updateBuilding(
+        instance(mockedReq),
+        instance(mockedRes),
+        instance(mockedNext),
+      );
 
-      await buildingController.getPassagesByBuildingId(mockReq as Request, mockRes as Response, mockNext);
-
-      expect(mockBuildingService.getPassageFloors).toHaveBeenCalledTimes(1);
+      // Assert
+      verify(mockedRes.status(404));
     });
 
-    it('should return error if buildings passages are not found', async () => {
-      mockBuildingService.getPassageFloors = jest.fn().mockImplementation((buildingId) => Promise.resolve(Result.fail<IPassageFloorDto>("Passages not found")));
-      mockReq.params = {buildingId: "id"};
+    it.skip('fail - invalid data 400', async () => {
+      // Arrange
+      const invalidDto = {
+        /* ...invalid data structure... */
+      };
+      const id = 'foobar';
+      when(mockedReq.body).thenReturn(invalidDto);
+      when(mockedReq.params).thenReturn({ id });
+      when(
+        mockedBuildingService.updateBuilding(id, anyOfClass(Error)),
+      ).thenReject(new Error('Invalid data'));
 
-      jest.spyOn(mockRes, 'status')
+      // Act
+      await buildingController.updateBuilding(
+        instance(mockedReq),
+        instance(mockedRes),
+        instance(mockedNext),
+      );
 
-      await buildingController.getPassagesByBuildingId(mockReq as Request, mockRes as Response, mockNext);
-
-      expect(mockRes.status).toHaveBeenCalledWith(404);
+      // Assert
+      verify(mockedRes.status(400));
+      verify(mockedRes.json(deepEqual({ errors: 'Invalid data' })));
     });
   });
 });

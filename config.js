@@ -24,7 +24,8 @@ export default {
   /**
    * Your secret sauce
    */
-  jwtSecret: process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
+  jwtSecret:
+    process.env.JWT_SECRET || 'my sakdfho2390asjod$%jl)!sdjas0i secret',
 
   /**
    * Used by winston logger
@@ -39,8 +40,14 @@ export default {
   api: {
     prefix: '/api',
   },
-
+  /**
+   * Controllers
+   */
   controllers: {
+    user: {
+      name: 'UserController',
+      path: '../controllers/userController',
+    },
     role: {
       name: 'RoleController',
       path: '../controllers/roleController',
@@ -48,10 +55,6 @@ export default {
     health: {
       name: 'HealthController',
       path: '../controllers/healthController',
-    },
-    passage: {
-      name: 'PassageController',
-      path: '../controllers/passageController',
     },
     building: {
       name: 'BuildingController',
@@ -61,52 +64,42 @@ export default {
       name: 'FloorController',
       path: '../controllers/floorController',
     },
+    elevator: {
+      name: 'ElevatorController',
+      path: '../controllers/elevatorController',
+    },
+    passage: {
+      name: 'PassageController',
+      path: '../controllers/passageController',
+    },
     room: {
       name: 'RoomController',
       path: '../controllers/roomController',
     },
     robot: {
-      name: "RobotController",
-      path: "../controllers/robotController"
+      name: 'RobotController',
+      path: '../controllers/robotController',
     },
     robotType: {
       name: 'RobotTypeController',
       path: '../controllers/robotTypeController',
     },
-    elevator: {
-      name: 'ElevatorController',
-      path: '../controllers/elevatorController',
-    },
   },
-
+  /**
+   * Repositories
+   */
   repos: {
-    role: {
-      name: 'RoleRepo',
-      path: '../repos/roleRepo',
-    },
-    passage: {
-      name: 'PassageRepo',
-      path: '../repos/PassageRepo',
-    },
-    building: {
-      name: 'BuildingRepo',
-      path: '../repos/buildingRepo',
-    },
     user: {
       name: 'UserRepo',
       path: '../repos/userRepo',
     },
-    robot: {
-      name: "RobotRepo",
-      path: "../repos/robotRepo"
+    role: {
+      name: 'RoleRepo',
+      path: '../repos/roleRepo',
     },
-    robotType: {
-      name: 'RobotTypeRepo',
-      path: '../repos/robotTypeRepo',
-    },
-    room: {
-      name: 'RoomRepo',
-      path: '../repos/roomRepo'
+    building: {
+      name: 'buildingRepo',
+      path: '../repos/buildingRepo',
     },
     floor: {
       name: 'FloorRepo',
@@ -116,32 +109,38 @@ export default {
       name: 'ElevatorRepo',
       path: '../repos/elevatorRepo',
     },
+    passage: {
+      name: 'PassageRepo',
+      path: '../repos/passageRepo',
+    },
+    room: {
+      name: 'RoomRepo',
+      path: '../repos/roomRepo',
+    },
+    robot: {
+      name: 'RobotRepo',
+      path: '../repos/robotRepo',
+    },
+    robotType: {
+      name: 'RobotTypeRepo',
+      path: '../repos/robotTypeRepo',
+    },
   },
-
+  /**
+   * Services
+   */
   services: {
+    user: {
+      name: 'UserService',
+      path: '../services/userService',
+    },
     role: {
       name: 'RoleService',
       path: '../services/roleService',
     },
-    passage: {
-      name: 'PassageService',
-      path: '../services/passageService',
-    },
     building: {
       name: 'BuildingService',
       path: '../services/buildingService',
-    },
-    room: {
-      name: 'RoomService',
-      path: '../services/roomService',
-    },
-    robot: {
-      name: "RobotService",
-      path: "../services/robotService"
-    },
-    robotType: {
-      name: 'RobotTypeService',
-      path: '../services/robotTypeService',
     },
     floor: {
       name: 'FloorService',
@@ -150,6 +149,22 @@ export default {
     elevator: {
       name: 'ElevatorService',
       path: '../services/elevatorService',
+    },
+    passage: {
+      name: 'PassageService',
+      path: '../services/passageService',
+    },
+    room: {
+      name: 'RoomService',
+      path: '../services/roomService',
+    },
+    robot: {
+      name: 'RobotService',
+      path: '../services/robotService',
+    },
+    robotType: {
+      name: 'RobotTypeService',
+      path: '../services/robotTypeService',
     },
   },
 };

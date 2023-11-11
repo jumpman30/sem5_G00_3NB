@@ -4,11 +4,10 @@
 
 
 #### Preconditions
-* Campus Manager is authenticated.
-* The building must exist in the system.
+
 
 #### Postconditions
-* The information about the building is stored in the system.
+
 
 ## 2. Analysis
 

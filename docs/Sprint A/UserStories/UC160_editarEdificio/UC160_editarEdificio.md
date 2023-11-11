@@ -1,4 +1,4 @@
-# UC 170 - Listar Edificios
+# UC 160 - Editar Edificio
 
 ## 1. Requirements
 
@@ -8,7 +8,7 @@
 * The building must exist in the system.
 
 #### Postconditions
-* The information about the buildings is returned to the user
+* The information about the building is stored in the system.
 
 ## 2. Analysis
 
@@ -21,7 +21,7 @@
 ### 3.1 Information
 
 ### 3.2 Views
-![VP-US170](../ProcessViews/VP-US170-ListAllBuildings.svg)
+![VP-US160](./VP-US160-EditBuilding.svg)
 ### 3.3 Patterns/Libs
 
 ## Tests

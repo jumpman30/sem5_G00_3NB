@@ -1,33 +1,27 @@
-import mongoose from 'mongoose';
 import { IBuildingPersistence } from '../../dataschema/IBuildingPersistence';
+import mongoose from 'mongoose';
 
-const Building = new mongoose.Schema(
-  {
-    domainId: {
-      type: String,
-      unique: true,
-    },
-
-    designation: {
-      type: String,
-      required: [true, 'Please enter designation'],
-      index: true,
-    },
-
-    length: {
-      type: String,
-      required: [true, 'Please enter length'],
-    },
-
-    width: {
-      type: String,
-      required: [true, 'Please enter width'],
-    },
+const BuildingSchema = new mongoose.Schema({
+  code: {
+    type: String,
+    required: [true, 'Insert building code'],
+    unique: true,
   },
-  { timestamps: true },
-);
+  name: {
+    type: String,
+    required: [false],
+  },
+  length: {
+    type: String,
+    required: [true, 'Please enter length'],
+  },
+  width: {
+    type: String,
+    required: [true, 'Please enter width'],
+  },
+});
 
 export default mongoose.model<IBuildingPersistence & mongoose.Document>(
   'Building',
-  Building,
+  BuildingSchema,
 );

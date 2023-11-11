@@ -1,55 +1,79 @@
-import { Service, Inject } from 'typedi';
-import { Document, Model,FilterQuery } from 'mongoose';
+import {Inject, Service} from 'typedi';
+import {Document, Model} from 'mongoose';
+
+import {IBuildingPersistence} from '../dataschema/IBuildingPersistence';
+
+import {Building} from '../domain/building/Building';
+import {BuildingMap} from '../mappers/BuildingMap';
+
 import IBuildingRepo from '../services/IRepos/IBuildingRepo';
-import { Building } from '../domain/building';
-import { BuildingId } from '../domain/buildingId';
-import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';
-import { BuildingMap } from '../mappers/BuidingMap';
+import { after } from "lodash";
 
 @Service()
 export default class BuildingRepo implements IBuildingRepo {
+
   constructor(
     @Inject('buildingSchema')
     private buildingSchema: Model<IBuildingPersistence & Document>,
-    @Inject('logger') private logger,
   ) {}
 
-  public async save(building: Building): Promise<BuildingId> {
-    const rawRoom: any = BuildingMap.toPersistence(building);
+  public async save(building: Building): Promise<Building> {
+    const query = { code: building.code };
+
+    const buildingDocument = await this.buildingSchema.findOne(query);
 
     try {
-      const buildingDb = await this.buildingSchema.create(rawRoom);
-      return new BuildingId(buildingDb.domainId);
-    } catch (e) {
-      throw e;
+      if (buildingDocument === null) {
+        const rawBuilding: any = BuildingMap.toPersistence(building);
+
+        const buildingCreated = await this.buildingSchema.create(rawBuilding);
+        return BuildingMap.toDomain(buildingCreated);
+
+      } else {
+        buildingDocument.name = building.name ?? buildingDocument.name;
+        buildingDocument.length = building.length ?? buildingDocument.length;
+        buildingDocument.width = building.width ?? buildingDocument.width;
+
+        const buildingUpdated = await this.buildingSchema.findOneAndUpdate(query, buildingDocument, after);
+
+        return BuildingMap.toDomain(buildingUpdated);
+      }
+    } catch (err) {
+      throw err;
     }
   }
 
-  public async findByDomainId(buildingId: Building | string): Promise<Building> {
-    const query = { domainId: buildingId };
-        const buildingRecord = await this.buildingSchema.findOne(
-      query as FilterQuery<IBuildingPersistence & Document>,
-    );
-    if (buildingRecord != null) {
-      return BuildingMap.toDomain(buildingId);
-    } else return null;
+  public async findByCode(code: string): Promise<Building> {
+    const record = await this.buildingSchema.findOne({ code: code });
+
+    if (record != null) {
+      return BuildingMap.toDomain(record);
+    } else {
+      return null;
+    }
   }
 
   public async getAllBuildings(): Promise<Building[]> {
-    try {
-      const buildingRecords = await this.buildingSchema.find({});
-      return buildingRecords.map((record) => BuildingMap.toDomain(record));
-    } catch (e) {
-      throw e;
+    const record = await this.buildingSchema.find();
+
+    if (record != null) {
+      return record.map(item => BuildingMap.toDomain(item));
+    } else {
+      return null;
     }
   }
+  public async exists(building: Building): Promise<boolean> {
+    if(building == null) {
+      throw new Error("Building is null");
+    }
+    let code = building.code.toString();
 
-  public async exists(buildingId: string): Promise<boolean> {
-    const query = { domainId: buildingId };
-    const buildingDocument = await this.buildingSchema.findOne(
-      query as FilterQuery<IBuildingPersistence & Document>,
-    );
-    
-    return !!buildingDocument === true;
+    const record = await this.buildingSchema.findOne({ code: code });
+
+    if (!record) {
+      return Promise.resolve(false);
+    } else {
+      return Promise.resolve(true);
+    }
   }
 }

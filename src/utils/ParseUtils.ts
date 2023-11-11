@@ -4,7 +4,7 @@ import { Result } from '../core/logic/Result';
 type ParseDataType = 'number' | 'string' | 'object';
 
 class ParseArrayConfig {
-  private raw: any;
+  private readonly raw: any;
 
   constructor(raw: any) {
     this.raw = raw;

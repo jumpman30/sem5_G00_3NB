@@ -2,11 +2,10 @@
 
 ## 1. Requirements
 
-
 #### Preconditions
 * Campus Manager is authenticated.
-* The buildings must exist in the system.
-* The floors must existe in the system.
+* The floors must exist in the system.
+
 
 #### Postconditions
 * The information about the passage is stored in the system.
