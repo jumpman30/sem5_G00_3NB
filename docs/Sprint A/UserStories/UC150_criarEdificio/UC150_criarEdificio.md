@@ -49,5 +49,20 @@ The **Campus Manager** starts the process of creating a new building by providin
 - DTO pattern.
 
 ## Tests
+### Unit
+
+#### Domain
+- validate business rules attributes building.
+
+#### Repository
+- validate isolated behaviour of repository functions with mocked schema in case of success
+
+#### Service
+- validate isolated behaviour of service functions with mocked repository in case of success
+- validate isolated behaviour of service functions with mocked repository with bad arguments, check failure errors
+
+#### Controller
+- validate isolated behaviour of controller functions with mocked service in case of success and status code
+- validate isolated behaviour of controller functions with mocked service with bad arguments, check failure errors and status code
 
 ### Integration Testing

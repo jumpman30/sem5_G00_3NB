@@ -59,7 +59,7 @@ describe('PassageController', () => {
   describe('updatePassageByDomainId', () => {
     it.skip('should call `passageService.update`', async () => {
       mockReq.params = {
-        code: 'test-id'
+        code: 't-id'
       };
       mockReq.body = mocks.buildPassageDto();
 
@@ -68,7 +68,7 @@ describe('PassageController', () => {
       await passageController.updatePassageByDomainId(mockReq as Request, mockRes as Response, mockNext);
 
       expect(mockPassageService.update).toHaveBeenCalledTimes(1);
-      expect(mockPassageService.update).toHaveBeenCalledWith(mocks.buildPassageDto(), {code: 'test-id'});
+      expect(mockPassageService.update).toHaveBeenCalledWith(mocks.buildPassageDto(), {code: 't-id'});
     });
 
     it('should return an error if passage is not updated', async () => {
