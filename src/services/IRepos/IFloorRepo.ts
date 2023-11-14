@@ -1,5 +1,5 @@
-import { Floor } from '../../domain/floor/floor';
-import { FloorId } from '../../domain/floor/floorId';
+import { Floor } from '../../domain/floor';
+import { FloorId } from '../../domain/floorId';
 
 export default interface IFloorRepo {
   save(floor: Floor): Promise<FloorId>;

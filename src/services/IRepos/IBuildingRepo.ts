@@ -1,9 +1,9 @@
-import { Repo } from '../../core/infra/Repo';
-import { Building } from '../../domain/building/Building';
+import { FloorId } from '../../domain/floorId';
+import { Building } from '../../domain/building';
 
-export default interface IBuildingRepo extends Repo<Building> {
-  save(building: Building): Promise<Building>;
-  findByCode(code: string): Promise<Building>;
-  exists(building: Building): Promise<boolean>;
+export default interface IBuildingRepo {
+  save(building: Building): Promise<FloorId>;
+  exists(buildingId: string): Promise<boolean>;
+  findByDomainId(buildingId: Building | string): Promise<Building>;
   getAllBuildings(): Promise<Building[]>;
 }

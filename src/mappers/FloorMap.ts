@@ -1,6 +1,6 @@
 import { Mapper } from '../core/infra/Mapper';
-import { Room } from '../domain/room/room';
-import { Floor } from '../domain/floor/floor';
+import { Room } from '../domain/room';
+import { Floor } from '../domain/floor';
 import { Document, Model } from "mongoose";
 import { IFloorPersistence } from '../dataschema/IFloorPersistence';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';

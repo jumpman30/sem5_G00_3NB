@@ -1,8 +1,8 @@
-import "reflect-metadata";
+import "reflect-metadata"; 
 import ElevatorRepo from "../../src/repos/elevatorRepo";
 import { Model, Document } from "mongoose";
 import { IRobotTypePersistence } from "../../src/dataschema/IRobotTypePersistence";
-import { RobotType, RobotTypeProps } from "../../src/domain/robotType/RobotType";
+import { RobotType, RobotTypeProps } from "../../src/domain/RobotType";
 import { ElevatorMap } from "../../src/mappers/ElevatorMap";
 import { IElevatorPersistence } from "../../src/dataschema/IElevatorPersistence";
 import { Elevator } from "../../src/domain/elevator/elevator";
@@ -41,8 +41,8 @@ describe("ElevatorRepo tests", () => {
     mockElevatorDocument.save = jest.fn().mockResolvedValue(mockElevatorDocument);
 
     const savedRobotType = await elevatorRepo.save(validElevator);
-
+    
     expect(savedRobotType).toEqual(mockElevatorDocument);
   });
-
+ 
 });

@@ -1,8 +1,8 @@
-import 'reflect-metadata';
+import 'reflect-metadata'; 
 import RobotTypeRepo from '../../src/repos/robotRepo';
 import { Model, Document } from 'mongoose';
 import { IRobotPersistence } from '../../src/dataschema/IRobotPersistence';
-import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
 import { RobotMap } from '../../src/mappers/RobotMap';
 import RobotRepo from '../../src/repos/robotRepo';
 import { RobotTypeMap } from '../../src/mappers/RobotTypeMap';
@@ -15,7 +15,7 @@ jest.mock('../../src/mappers/RobotMap.ts')
 
 describe('RobotRepo tests ', () => {
   let robotRepo: RobotRepo;
-  let mockRobotSchema: Model<IRobotPersistence & Document<any, any, any>>;
+  let mockRobotSchema: Model<IRobotPersistence & Document<any, any, any>>; 
 
   const validProps: RobotTypeProps = {
     brand: 'brand',
@@ -32,7 +32,7 @@ describe('RobotRepo tests ', () => {
     serialNumber: "serialnumber3",
     robotType: robotType,
   } as IRobotDTO;
-
+  
 
   beforeAll(() => {
     mockRobotSchema = {} as Model<IRobotPersistence & Document<any, any, any>>;
@@ -47,7 +47,7 @@ describe('RobotRepo tests ', () => {
     mockRobotDocument.save = jest.fn().mockResolvedValue(mockRobotDocument);
 
     const savedRobot = await robotRepo.save(Robot.create(robotData).getValue());
-
+    
     expect(savedRobot).toEqual(mockRobotDocument);
   });
 
@@ -57,8 +57,8 @@ describe('RobotRepo tests ', () => {
     mockRobotSchema.populate = jest.fn().mockImplementation(() => null);
 
     const robot = await robotRepo.findByNickname("robert");
-
+    
     expect(robot).toBeNull();
   });
-
+ 
 });

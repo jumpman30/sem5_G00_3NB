@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { IPassagePersistence } from '../../dataschema/IPassagePersistence';
 import { IElevatorPersistence } from '../../dataschema/IElevatorPersistence';
 
 const Elevator = new mongoose.Schema(

@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
 import  robotTypeService  from '../../src/services/robotTypeService';
-import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
 import RobotTypeRepo from '../../src/repos/robotTypeRepo';
 import IRobotTypeDto from '../../src/dto/IRobotTypeDTO';
 import AlreadyExistsException from '../../src/core/infra/AlreadyExistsException';
@@ -62,7 +62,7 @@ describe('robotTypeService', () => {
       let robotType = invalidProps as IRobotTypeDto;
 
       try{
-        await service.createRobotType(robotType);
+        await service.createRobotType(robotType); 
       }
       catch(e){
         expect(e instanceof AlreadyExistsException).to.be.true;
@@ -83,7 +83,7 @@ describe('robotTypeService', () => {
 
       let robotType = validProps as IRobotTypeDto;
 
-      let result = await service.createRobotType(robotType);
+      let result = await service.createRobotType(robotType); 
 
       expect(result.getValue().robotType).to.equal(robotType.robotType);
     });

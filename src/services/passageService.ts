@@ -4,7 +4,7 @@ import { Result } from '../core/logic/Result';
 import IPassageService from './IServices/IPassageService';
 import IPassageRepo from './IRepos/IPassageRepo';
 import { IPassageDto } from '../dto/IPassageDto';
-import { Passage } from '../domain/passage/passage';
+import { Passage } from '../domain/passage';
 import { IUpdatePassageDto } from '../dto/IUpdatePassageDto';
 import { PassageDbProjection, UpdateBuildingFilter } from '../types';
 import IFloorRepo from './IRepos/IFloorRepo';

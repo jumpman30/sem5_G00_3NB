@@ -3,7 +3,7 @@ import { Mapper } from '../core/infra/Mapper';
 import { Document, Model } from 'mongoose';
 
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';
-import { RobotType } from '../domain/robotType/RobotType';
+import { RobotType } from '../domain/RobotType';
 
 import IRobotTypeDto from '../dto/IRobotTypeDTO';
 

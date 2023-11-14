@@ -57,9 +57,9 @@ describe('PassageController', () => {
   });
 
   describe('updatePassageByDomainId', () => {
-    it.skip('should call `passageService.update`', async () => {
+    it('should call `passageService.update`', async () => {
       mockReq.params = {
-        code: 't-id'
+        domainId: 'test-id'
       };
       mockReq.body = mocks.buildPassageDto();
 
@@ -68,13 +68,13 @@ describe('PassageController', () => {
       await passageController.updatePassageByDomainId(mockReq as Request, mockRes as Response, mockNext);
 
       expect(mockPassageService.update).toHaveBeenCalledTimes(1);
-      expect(mockPassageService.update).toHaveBeenCalledWith(mocks.buildPassageDto(), {code: 't-id'});
+      expect(mockPassageService.update).toHaveBeenCalledWith(mocks.buildPassageDto(), {domainId: 'test-id'});
     });
 
     it('should return an error if passage is not updated', async () => {
       mockReq.body = mocks.buildPassageDto();
       mockReq.params = {
-        code: 'test-id'
+        domainId: 'test-id'
       };
 
       jest.spyOn(mockPassageService, 'update').mockResolvedValue(Result.fail('test-error') as any )

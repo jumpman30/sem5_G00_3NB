@@ -11,11 +11,11 @@
 			"request": {
 				"method": "POST",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"code\": \"LEI\",\n    \"name\": \"Lorem ipsum\",\n    \"width\": \"20\",\n    \"length\": \"20\"\n}",
+					"raw": "{\n    \"buildingId\": \"LEI\",\n    \"designation\": \"Lorem ipsum\",\n    \"width\": \"20\",\n    \"length\": \"20\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,11 +41,11 @@
 			"request": {
 				"method": "POST",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"code\": \"LEI2\",\n    \"name\": \"Lorem ipsum\",\n    \"width\": \"20\",\n    \"length\": \"20\"\n}",
+					"raw": "{\n    \"buildingId\": \"LEI2\",\n    \"designation\": \"Lorem ipsum\",\n    \"width\": \"20\",\n    \"length\": \"20\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,11 +84,11 @@
 			"request": {
 				"method": "POST",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"code\": \"LEI\",\n    \"number\": \"1\"\n}",
+					"raw": "{\n    \"buildingId\": \"LEI\",\n    \"number\": \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -127,11 +127,11 @@
 			"request": {
 				"method": "POST",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"code\": \"LEI2\",\n    \"number\": \"1\"\n}",
+					"raw": "{\n    \"buildingId\": \"LEI2\",\n    \"number\": \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -157,11 +157,11 @@
 			"request": {
 				"method": "POST",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"code\": \"LEI\",\n    \"floorId\": \"{{floorId1}}\",\n    \"location\": { \"x\": \"2\", \"y\": \"3\"},\n    \"doorLocation\": { \"x\": \"2\", \"y\": \"3\"},\n    \"name\": \"test-designation\"\n}",
+					"raw": "{\n    \"buildingId\": \"LEI\",\n    \"floorId\": \"{{floorId1}}\",\n    \"location\": { \"x\": \"2\", \"y\": \"3\"},\n    \"doorLocation\": { \"x\": \"2\", \"y\": \"3\"},\n    \"designation\": \"test-designation\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -187,7 +187,7 @@
 			"request": {
 				"method": "POST",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
@@ -232,7 +232,7 @@
 			"request": {
 				"method": "POST",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
@@ -262,7 +262,7 @@
 			"request": {
 				"method": "PUT",
 				"header": [
-
+					 
 				],
 				"body": {
 					"mode": "raw",
@@ -293,10 +293,10 @@
 			"request": {
 				"method": "GET",
 				"header": [
-
+					 
 				],
 				"url": {
-					"raw": "localhost:3000/api/building/getFloorsByBuildingId?code=LEI",
+					"raw": "localhost:3000/api/building/getFloorsByBuildingId?buildingId=LEI",
 					"host": [
 						"localhost"
 					],
@@ -308,7 +308,7 @@
 					],
 					"query": [
 						{
-							"key": "code",
+							"key": "buildingId",
 							"value": "LEI"
 						}
 					]
@@ -321,7 +321,7 @@
 			"request": {
 				"method": "GET",
 				"header": [
-
+					 
 				],
 				"url": {
 					"raw": "localhost:3000/api/building/getBuildingsByMinMax?minFloor=1&maxFloor=2",
@@ -353,7 +353,7 @@
 			"request": {
 				"method": "GET",
 				"header": [
-
+					 
 				],
 				"url": {
 					"raw": "localhost:3000/api/building/LEI/passages",

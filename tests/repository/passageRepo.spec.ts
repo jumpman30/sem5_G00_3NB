@@ -32,7 +32,7 @@ describe('FloorRepo', () => {
   });
 
   describe('save', () => {
-    it.skip('should call `passageSchema.create`', async () => {
+    it('should call `passageSchema.create`', async () => {
       const passage = mocks.buildPassage();
 
       jest.spyOn(mockPassageSchema, 'create').mockResolvedValue({ domainId: 'test-id' } as any);
@@ -42,7 +42,7 @@ describe('FloorRepo', () => {
       expect(mockPassageSchema.create).toHaveBeenCalledTimes(1);
       expect(mockPassageSchema.create).toHaveBeenCalledWith(PassageMap.toPersistence(passage));
     });
-    it.skip('should throw an error if operation fails', async () => {
+    it('should throw an error if operation fails', async () => {
       const passage = mocks.buildPassage();
 
       jest.spyOn(mockPassageSchema, 'create').mockImplementation(() => {

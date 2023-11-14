@@ -47,7 +47,7 @@ export default class PassageController extends BaseController
       const updatedOrError = (await this.passageService.update(
         req.body as IUpdatePassageDto,
         {
-          code: req.params.domainId
+          domainId: req.params.domainId
         }
       )) as Result<{ updatedCount: number }>;
 

@@ -1,17 +1,11 @@
 import { Result } from '../../core/logic/Result';
-import IBuildingDto, {
-  IBuildingCreateRequestDto,
-  IBuildingResponseDto,
-  IBuildingUpdateRequestDto
-} from "../../dto/IBuildingDto";
+import { IBuildingDto } from '../../dto/IBuildingDto';
+import { IPassageDto } from '../../dto/IPassageDto';
 import { IPassageFloorDto } from '../../dto/IPassageFloorDto';
 
 export default interface IBuildingService {
-  createBuilding(buildingDTO: IBuildingCreateRequestDto): Promise<Result<IBuildingResponseDto>>;
-  updateBuilding(buildingDTO: IBuildingUpdateRequestDto, buildingCode: string): Promise<Result<IBuildingResponseDto>>;
-  save(buildingDto: IBuildingDto): Promise<Result<{ buildingCode: string }>>;
-  findBuildingByCode(buildingCode: string): Promise<Result<IBuildingDto>>;
+  save(buildingDto: IBuildingDto): Promise<Result<{ buildingId: string }>>;
+  findBuildingByKey(buildingId: string): Promise<Result<IBuildingDto>>;
   getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<Result<IBuildingDto[]>>;
-  getPassageFloors(buildingCode: string): Promise<Result<IPassageFloorDto[]>>;
-  getAllBuildings(): Promise<Result<IBuildingDto[]>>;
+  getPassageFloors(buildingId: string): Promise<Result<IPassageFloorDto[]>>
 }

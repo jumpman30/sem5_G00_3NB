@@ -5,8 +5,8 @@ import { Result } from '../core/logic/Result';
 import IRoomService from './IRepos/IRoomService';
 import IRoomRepo from './IRepos/IRoomRepo';
 import { IRoomDto } from '../dto/IRoomDto';
-import { Room } from '../domain/room/room';
-import { Location } from '../domain/room/location';
+import { Room } from '../domain/room';
+import { Location } from '../domain/location';
 
 @Service()
 export default class RoomService implements IRoomService {

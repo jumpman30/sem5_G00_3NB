@@ -1,4 +1,4 @@
-import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
 
 describe('RobotType', () => {
   it('should create a valid RobotType', () => {
