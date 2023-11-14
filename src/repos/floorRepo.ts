@@ -3,8 +3,8 @@ import mongoose, { Document, Model } from 'mongoose';
 
 import IFloorRepo from '../services/IRepos/IFloorRepo';
 import { IFloorPersistence } from '../dataschema/IFloorPersistence';
-import { Floor } from '../domain/floor/floor';
-import { FloorId } from '../domain/floor/floorId';
+import { Floor } from '../domain/floor';
+import { FloorId } from '../domain/floorId';
 import { FloorMap } from '../mappers/FloorMap';
 
 @Service()

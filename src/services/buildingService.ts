@@ -1,222 +1,148 @@
 import { Service, Inject } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
+import IFloorService from './IServices/IFloorService';
+import { IFloorDto } from '../dto/IFloorDto';
 import IBuildingService from './IServices/IBuildingService';
 import IBuildingRepo from './IRepos/IBuildingRepo';
-import IBuildingDto, {
-  IBuildingCreateRequestDto,
-  IBuildingResponseDto,
-  IBuildingUpdateRequestDto,
-} from '../dto/IBuildingDto';
-import { Building } from '../domain/building/Building';
-import { BuildingMap } from '../mappers/BuildingMap';
+import { IBuildingDto } from '../dto/IBuildingDto';
+import { Building } from '../domain/building';
+import { BuildingMap } from '../mappers/BuidingMap';
+import { IPassageDto } from '../dto/IPassageDto';
+import IPassageRepo from './IRepos/IPassageRepo';
+import { PassageMap } from '../mappers/PassageMap';
+import IFloorRepo from './IRepos/IFloorRepo';
 import { FloorMap } from '../mappers/FloorMap';
 import { IPassageFloorDto } from '../dto/IPassageFloorDto';
-import IFloorRepo from './IRepos/IFloorRepo';
-import { PassageMap } from '../mappers/PassageMap';
-import IPassageRepo from './IRepos/IPassageRepo';
 
 @Service()
 export default class BuildingService implements IBuildingService {
   constructor(
     @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
-    @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
+    @Inject(config.services.floor.name) private floorService: IFloorService,
     @Inject(config.repos.passage.name) private passageRepo: IPassageRepo,
+    @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
+    @Inject('logger') private logger,
   ) {}
 
-  public async createBuilding(
-    createBuildingDto: IBuildingCreateRequestDto,
-  ): Promise<Result<IBuildingResponseDto>> {
-    try {
-      if (
-        (await this.buildingRepo.findByCode(createBuildingDto.code)) !== null
-      ) {
-        return Result.fail<IBuildingResponseDto>('Building already exists');
-      }
+  public async save(buildingDto: IBuildingDto): Promise<Result<{ buildingId: string }>> {
 
-      const buildingDto = { ...createBuildingDto } as IBuildingDto;
-      const buildingOrError = Building.create(buildingDto);
-
-      if (buildingOrError.isFailure) {
-        return Result.fail<IBuildingResponseDto>(buildingOrError.errorValue());
-      }
-
-      const buildingResult = buildingOrError.getValue();
-
-      await this.buildingRepo.save(buildingResult);
-
-      const buildingDTOResult = BuildingMap.toResponseDTO(
-        buildingResult,
-      ) as IBuildingResponseDto;
-      return Result.ok<IBuildingResponseDto>(buildingDTOResult);
-    } catch (e) {
-      return Result.fail<IBuildingResponseDto>(e);
-    }
-  }
-
-  public async updateBuilding(
-    buildingDto: IBuildingUpdateRequestDto,
-    code: string,
-  ): Promise<Result<IBuildingResponseDto>> {
-    try {
-      const building = await this.buildingRepo.findByCode(code);
-
-      if (building === null) {
-        return Result.fail<IBuildingResponseDto>('Building not found');
-      } else {
-        const buildingOrError = Building.update(
-          {
-            name: buildingDto.name ?? building.name,
-            length: buildingDto.length ?? building.length,
-            width: buildingDto.width ?? building.width,
-          },
-          building.code,
-        );
-
-        if (buildingOrError.isFailure) {
-          return Result.fail<IBuildingResponseDto>(
-            buildingOrError.errorValue(),
-          );
-        }
-
-        const updatedBuilding = await this.buildingRepo.save(building);
-
-        const buildingDtoResult = BuildingMap.toDTO(
-          updatedBuilding,
-        ) as IBuildingDto;
-        return Result.ok<IBuildingResponseDto>(buildingDtoResult);
-      }
-    } catch (e) {
-      return Result.fail<IBuildingResponseDto>(e);
-    }
-  }
-
-  public async save(
-    buildingDto: IBuildingDto,
-  ): Promise<Result<{ buildingCode: string }>> {
-    const buildingOrError = Building.create(buildingDto);
+    const buildingOrError = Building.create({
+      domainId: buildingDto.buildingId,
+      designation: buildingDto.designation,
+      width: buildingDto.width,
+      length: buildingDto.length
+    });
 
     if (buildingOrError.isFailure) {
       throw Result.fail<IBuildingDto>(buildingOrError.errorValue());
     }
 
     try {
-      const buildingId = await this.buildingRepo.save(
-        buildingOrError.getValue(),
-      );
-      return Result.ok<{ buildingCode: string }>({
-        buildingCode: buildingId.toString(),
-      });
+      const buildingId = await this.buildingRepo.save(buildingOrError.getValue());
+      return Result.ok<{ buildingId: string }>({ buildingId: buildingId.toString() });
     } catch (e) {
       throw e;
     }
   }
 
-  public async findBuildingByCode(
-    buildingCode: string,
-  ): Promise<Result<IBuildingDto>> {
+  public async findBuildingByKey(buildingId: string): Promise<Result<IBuildingDto>> {
     try {
-      const building = (await this.buildingRepo.findByCode(
-        buildingCode,
-      )) as Building;
+        const building = await this.buildingRepo.findByDomainId(buildingId);
 
-      if (building === null) {
-        return Result.fail<IBuildingResponseDto>('Building not found.');
-      } else {
-        const buildingDTOResult = BuildingMap.toDTO(building) as IBuildingDto;
-        return Result.ok<IBuildingResponseDto>(buildingDTOResult);
-      }
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  public async getBuildingsByMinMax(
-    minFloor: string,
-    maxFloor: string,
-  ): Promise<Result<IBuildingResponseDto[]>> {
-    try {
-      const minFloorNumber = parseInt(minFloor, 10);
-      const maxFloorNumber = parseInt(maxFloor, 10);
-
-      if (isNaN(minFloorNumber) || isNaN(maxFloorNumber)) {
-        return Result.fail<IBuildingDto[]>(
-          'Invalid minimum or maximum floor values.',
-        );
-      }
-
-      const buildings = await this.buildingRepo.getAllBuildings();
-
-      if (buildings.length === 0) {
-        return Result.fail<IBuildingDto[]>('No buildings found.');
-      }
-
-      const filteredBuildings = [];
-
-      for (const building of buildings) {
-        const floors = await this.floorRepo.findByBuildingId(
-          building.id.toString(),
-        );
-
-        if (!floors) {
-          const numFloors = floors.length;
-
-          if (numFloors >= minFloorNumber && numFloors <= maxFloorNumber) {
-            filteredBuildings.push(building);
-          }
+        if (building === null) {
+            return Result.fail<IBuildingDto>("Building not found.");
+        } else {
+            const buildingDTOResult = BuildingMap.toDTO(building) as IBuildingDto;
+            return Result.ok<IBuildingDto>(buildingDTOResult)
         }
-      }
-
-      return Result.ok<IBuildingResponseDto[]>(filteredBuildings);
     } catch (e) {
-      throw e;
+        throw e;
     }
-  }
+}
 
-  public async getPassageFloors(
-    buildingId: string,
-  ): Promise<Result<IPassageFloorDto[]>> {
-    try {
-      let passages = await this.passageRepo.findByBuilding(buildingId);
+public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto[]>> {
+  try {
 
-      if (!passages) {
-        return Result.fail('Passages not found');
-      }
+    const building = await this.buildingRepo.findByDomainId(buildingId);
 
-      let floorsToSearch = passages.map(passage => {
-        if (passage.building1Id === buildingId) {
-          return passage.floor1Id;
-        }
-
-        return passage.floor2Id;
-      });
-
-      let floorsInfo = await Promise.all(
-        floorsToSearch.map(async floorId => {
-          let floor = await this.floorRepo.findById(floorId);
-          return FloorMap.toDto(floor);
-        }),
-      );
-
-      return Result.ok<IPassageFloorDto[]>(
-        passages.map(passage =>
-          PassageMap.toFloorPassageRequestDTO(passage, floorsInfo),
-        ),
-      );
-    } catch (e) {
-      throw e;
-    }
-  }
-  public async getAllBuildings(): Promise<Result<IBuildingDto[]>> {
-    const buildings = await this.buildingRepo.getAllBuildings();
-
-    if (buildings === null) {
-      return Result.fail<IBuildingResponseDto[]>('No building found');
+    if (building === null) {
+      return Result.fail<IFloorDto[]>("Building not found.");
     } else {
-      const buildingDtoResult = buildings.map(building =>
-        BuildingMap.toDTO(building),
-      );
-      return Result.ok<IBuildingResponseDto[]>(buildingDtoResult);
+      
+      const floors = await this.floorService.getFloorsByBuildingId(buildingId);
+
+      if (floors.isFailure) {
+        return Result.fail<IFloorDto[]>(floors.errorValue());
+      }
+      const floorDTOs = floors.getValue();
+      return Result.ok<IFloorDto[]>(floorDTOs);
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<Result<IBuildingDto[]>> {
+  try {
+    const minFloorNumber = parseInt(minFloor, 10); 
+    const maxFloorNumber = parseInt(maxFloor, 10);
+
+    if (isNaN(minFloorNumber) || isNaN(maxFloorNumber)) {
+      return Result.fail<IBuildingDto[]>("Invalid minimum or maximum floor values.");
+    }
+
+    const buildings = await this.buildingRepo.getAllBuildings();
+   
+    if (buildings.length === 0) {
+      return Result.fail<IBuildingDto[]>("No buildings found.");
+    }
+
+    const filteredBuildings = [];
+
+    for (const building of buildings) {
+   
+      const floors = await this.floorService.getFloorsByBuildingId(building.id.toString());
+      console.log(floors)
+      if (!floors.isFailure) {
+        const numFloors = floors.getValue().length;
+
+        if (numFloors >= minFloorNumber && numFloors <= maxFloorNumber) {
+          filteredBuildings.push(building);
+        }
+      }
+    }
+
+    return Result.ok<IBuildingDto[]>(filteredBuildings);
+  } catch (e) {
+    throw e;
+  }
+
+}
+  public async getPassageFloors(buildingId: string): Promise<Result<IPassageFloorDto[]>> {
+    try{
+      let passages = await this.passageRepo.findByBuilding(buildingId);
+      
+      if (!passages) {
+        return Result.fail("Passages not found");
+      }
+
+      let floorsToSearch = passages.map((passage) => {
+        if(passage.building1Id === buildingId){
+          return passage.floor1Id
+        }
+
+        return passage.floor2Id
+      })
+
+      let floorsInfo = await Promise.all(floorsToSearch.map(async (floorId) => {
+        let floor = await this.floorRepo.findById(floorId);
+                return FloorMap.toDto(floor);
+      }));
+
+      return Result.ok<IPassageFloorDto[]>( passages.map( passage => PassageMap.toFloorPassageRequestDTO(passage, floorsInfo)) );
+    } catch (e) {
+      throw e;
     }
   }
 }

@@ -3,18 +3,18 @@ import config from '../../config';
 import { Result } from '../core/logic/Result';
 import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
-import { Floor } from '../domain/floor/floor';
+import { Floor } from '../domain/floor';
 import IFloorRepo from './IRepos/IFloorRepo';
 import IBuildingService from './IServices/IBuildingService';
 import { FloorMap } from '../mappers/FloorMap';
 import { floor } from 'lodash';
-import IBuildingRepo from "./IRepos/IBuildingRepo";
+import IBuildingRepo from './IRepos/IBuildingRepo';
 
 @Service()
 export default class FloorService implements IFloorService {
   constructor(
     @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
-    @Inject('buildingRepo') private buildingRepo: IBuildingRepo,
+    @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
     @Inject('logger') private logger,
   ) {}
 
@@ -39,7 +39,7 @@ export default class FloorService implements IFloorService {
 
   public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto[]>> {
     try {
-    const buildingExists = await this.buildingRepo.findByCode(buildingId);
+    const buildingExists = await this.buildingRepo.exists(buildingId);
 
     if (!buildingExists) {
       return Result.fail<IFloorDto[]>(`Building with ID ${buildingId} does not exist.`);

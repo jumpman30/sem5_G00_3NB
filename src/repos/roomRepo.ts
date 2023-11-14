@@ -2,8 +2,8 @@ import { Service, Inject } from 'typedi';
 import { Document, Model } from 'mongoose';
 import IRoomRepo from '../services/IRepos/IRoomRepo';
 import { IRoomPersistence } from '../dataschema/IRoomPersistence';
-import { Room } from '../domain/room/room';
-import { RoomId } from '../domain/room/roomId';
+import { Room } from '../domain/room';
+import { RoomId } from '../domain/roomId';
 import { RoomMap } from '../mappers/RoomMap';
 import roomSchema from '../persistence/schemas/roomSchema';
 

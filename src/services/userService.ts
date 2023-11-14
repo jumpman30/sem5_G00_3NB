@@ -8,10 +8,10 @@ import { UserMap } from '../mappers/UserMap';
 import { IUserDTO } from '../dto/IUserDTO';
 import IUserRepo from './IRepos/IUserRepo';
 import IRoleRepo from './IRepos/IRoleRepo';
-import { User } from '../domain/user/user';
-import { UserPassword } from '../domain/user/userPassword';
-import { UserEmail } from '../domain/user/userEmail';
-import { Role } from '../domain/role/role';
+import { User } from '../domain/user';
+import { UserPassword } from '../domain/userPassword';
+import { UserEmail } from '../domain/userEmail';
+import { Role } from '../domain/role';
 import { Result } from '../core/logic/Result';
 
 @Service()

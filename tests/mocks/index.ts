@@ -1,10 +1,9 @@
-import { RoomId } from '../../src/domain/room/roomId';
-import { Location } from '../../src/domain/room/location';
-import { Room } from '../../src/domain/room/room';
-import { FloorId } from '../../src/domain/floor/floorId';
-import { PassageId } from '../../src/domain/passage/passageId';
-import {BuildingCode} from "../../src/domain/building/BuildingCode";
-import { Building } from "../../src/domain/building/Building";
+import { RoomId } from '../../src/domain/roomId';
+import { Location } from '../../src/domain/location';
+import { Room } from '../../src/domain/room';
+import { FloorId } from '../../src/domain/floorId';
+import { BuildingId } from '../../src/domain/buildingId';
+import { PassageId } from '../../src/domain/passageId';
 
 const buildRoom = (data?: Partial<Room>) => {
   return  {
@@ -41,8 +40,8 @@ const buildFloor = (data?) => {
 const buildPassage = (data?) => {
   return {
     id: new PassageId('test'),
-    building1Id: 't1',
-    building2Id: 't2',
+    building1Id: 'test-building1',
+    building2Id: 'test-building2',
     floor1Id: 'test-floor1Id',
     floor2Id: 'test-floor2Id',
     locationBuilding1: [
@@ -63,8 +62,8 @@ const buildPassage = (data?) => {
 
 const buildPassageDto = (data?) => {
   return {
-    building1Id: 't1',
-    building2Id: 't2',
+    building1Id: 'test-building1',
+    building2Id: 'test-building2',
     floor1Id: 'test-floor1Id',
     floor2Id: 'test-floor2Id',
     locationBuilding1:  [
@@ -84,18 +83,19 @@ const buildPassageDto = (data?) => {
 };
 
 const buildBuilding = (data?) => {
-  return Building.create({
-    id: 'test',
-    name: 'test',
+  return {
+    id: new BuildingId('test'),
+    designation: 'test',
     length: 'test',
     width: 'test',
     ...data
-  })
+  }
 };
 
 const buildBuildingDto = (data?) => {
   return {
-    name: 'test',
+    domainId: "id",
+    designation: 'test',
     length: 'test',
     width: 'test',
     ...data

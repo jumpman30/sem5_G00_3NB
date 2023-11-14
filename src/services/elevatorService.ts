@@ -17,12 +17,11 @@ export default class ElevatorService implements IElevatorService {
   ) {}
 
   public async createElevator(elevatorDto: IElevatorDto): Promise<Result<IElevatorDto>> {
-
-    if(!await this.buildingRepo.exists(await this.buildingRepo.findByCode(elevatorDto.buildingId))){
+    if(!await this.buildingRepo.exists(elevatorDto.buildingId)){
       return Result.fail<IElevatorDto>("Building does not exist.")
     }
     let elevatorSequencialId = await this.elevatorRepo.countByBuilding(elevatorDto.buildingId);
-
+    
     const elevatorOrError = Elevator.create({...elevatorDto, elevatorId: `${elevatorSequencialId++}`});
 
     if (elevatorOrError.isFailure) {
