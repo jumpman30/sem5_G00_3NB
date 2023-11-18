@@ -1,5 +1,5 @@
 export interface IFloorDto {
-  domainId: string,
+  domainId: string;
   buildingId: string;
   number: string;
 }
