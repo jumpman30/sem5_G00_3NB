@@ -1,13 +1,14 @@
-import { Request, Response, NextFunction } from 'express';
+import e, { Request, Response, NextFunction } from 'express';
 import { Inject, Service } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
 import { BaseController } from '../core/infra/BaseController';
-import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
 import IBuildingController from './IControllers/IBuildingController';
 import IBuildingService from '../services/IServices/IBuildingService';
-import { IBuildingDto } from '../dto/IBuildingDto';
+import { IBuildingUpdateDto } from "../dto/IBuidlingUpdateDto";
+import { IBuildingDto } from "../dto/IBuildingDto";
+import { result } from "lodash";
 
 @Service()
 export default class BuildingController extends BaseController
@@ -32,13 +33,28 @@ export default class BuildingController extends BaseController
       )) as Result<{ buildingId: string }>;
 
       if (buildingIdOrError.isFailure) {
-        return this.fail(buildingIdOrError.error.toString());
+        return res.status(400).json(buildingIdOrError.error.toString());
       }
 
-      return this.ok(res, buildingIdOrError.getValue());
+      return res.status(201).json(buildingIdOrError.getValue());
     } catch (e) {
-      return next(e);
+      return res.status(500).json(e);
     }
+  }
+
+  public async updateBuilding(req: Request, res: Response, next: NextFunction) {
+    try {
+      let buildingUpdateOrError = await this.buildingService.update(req.body as IBuildingUpdateDto) as Result<{buildingId: string}>
+
+      if (buildingUpdateOrError.isFailure) {
+        return res.status(400).json(buildingUpdateOrError.error.toString())
+      }
+
+      res.status(202).json(buildingUpdateOrError.getValue());
+    } catch (e) {
+        return res.status(500).json(e);
+    }
+
   }
 
   public async findBuildingByKey(req: Request, res: Response, next: NextFunction) {
@@ -58,7 +74,7 @@ export default class BuildingController extends BaseController
         const buildingDTO = buildingOrError.getValue();
         return res.status(200).json(buildingDTO);
     } catch (e) {
-        return next(e);
+      return res.status(500).json(e);
     }
 }
 
@@ -80,7 +96,7 @@ public async getFloorsByBuildingId(req: Request, res: Response, next: NextFuncti
       return this.ok(res, floorDTOs);
     }
   } catch (e) {
-    throw e;
+    return res.status(500).json(e);
   }
 }
 
@@ -102,13 +118,13 @@ public async getBuildingsByMinMax(req: Request, res: Response, next: NextFunctio
       return this.fail(result.error.toString());
     }
   } catch (e) {
-    return next(e);
+    return res.status(500).json(e);
   }
 }
   public async getPassagesByBuildingId(req: Request, res: Response, next: NextFunction){
     try {
       const PassagesOrError = await this.buildingService.getPassageFloors(req.params.id);
-      
+
       if (PassagesOrError.isFailure) {
         return res.status(404).send();
       }
@@ -117,7 +133,22 @@ public async getBuildingsByMinMax(req: Request, res: Response, next: NextFunctio
       return res.status(201).json( RobotDTO );
     }
     catch (e) {
-      return next(e);
+      return res.status(500).json(e);
+    }
+  }
+
+  public async getAllBuildings(req: Request, res: Response, next: NextFunction) {
+    try {
+      const buildingsOrError = await this.buildingService.getAllBuildings();
+
+      if (buildingsOrError.isFailure) {
+        return res.status(404).send();
+      }
+      const BuildingDto = buildingsOrError.getValue();
+      return res.status(200).json(BuildingDto);
+
+    } catch (e) {
+      return res.status(500).json(e);
     }
   }
 }
