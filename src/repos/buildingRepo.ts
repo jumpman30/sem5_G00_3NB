@@ -1,5 +1,5 @@
-import { Service, Inject } from 'typedi';
-import { Document, Model,FilterQuery } from 'mongoose';
+import { Inject, Service } from 'typedi';
+import { Document, FilterQuery, Model } from 'mongoose';
 import IBuildingRepo from '../services/IRepos/IBuildingRepo';
 import { Building } from '../domain/building';
 import { BuildingId } from '../domain/buildingId';
@@ -25,23 +25,19 @@ export default class BuildingRepo implements IBuildingRepo {
     }
   }
 
-  public async findByDomainId(buildingId: Building | string): Promise<Building> {
+  public async findByDomainId(buildingId: string): Promise<Building> {
     const query = { domainId: buildingId };
-        const buildingRecord = await this.buildingSchema.findOne(
+    const buildingRecord = await this.buildingSchema.findOne(
       query as FilterQuery<IBuildingPersistence & Document>,
     );
     if (buildingRecord != null) {
-      return BuildingMap.toDomain(buildingId);
+      return BuildingMap.toDomain(buildingRecord);
     } else return null;
   }
 
   public async getAllBuildings(): Promise<Building[]> {
-    try {
-      const buildingRecords = await this.buildingSchema.find({});
-      return buildingRecords.map((record) => BuildingMap.toDomain(record));
-    } catch (e) {
-      throw e;
-    }
+    const buildingRecords = await this.buildingSchema.find();
+    return buildingRecords.map(record => BuildingMap.toDomain(record));
   }
 
   public async exists(buildingId: string): Promise<boolean> {
@@ -49,7 +45,28 @@ export default class BuildingRepo implements IBuildingRepo {
     const buildingDocument = await this.buildingSchema.findOne(
       query as FilterQuery<IBuildingPersistence & Document>,
     );
-    
+
     return !!buildingDocument === true;
+  }
+  public async update(building: Building): Promise<Building> {
+    try {
+      const buildingId = building.domainId;
+
+      const buildingDb = await this.buildingSchema.findByIdAndUpdate(
+        { buildingId }, // Filter by buildingId
+        BuildingMap.toPersistence(building), // Update with the new data
+        { new: true }, // Return the updated document
+      );
+
+      if (!buildingDb) {
+        // Handle the case where the document with the specified buildingId was not found
+        throw new Error(`Building with ID ${building.domainId} not found`);
+      }
+
+      // Convert the updated document back to your domain object
+      return BuildingMap.toDomain(buildingDb);
+    } catch (e) {
+      throw e;
+    }
   }
 }
