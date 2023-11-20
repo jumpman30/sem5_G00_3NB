@@ -11,19 +11,37 @@ export default (app: Router) => {
   app.use('/building', route);
 
   const elevatorCtrl = Container.get(config.controllers.elevator.name) as IElevatorController;
-  const ctrl = Container.get(config.controllers.building.name) as IBuildingController;
+  const buildingCtrl = Container.get(config.controllers.building.name) as IBuildingController;
 
   route.post(
     '',
     celebrate({
       body: Joi.object({
         buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
-        designation: Joi.string().required(),
+        designation: Joi.string().optional(),
         width: Joi.string().required(),
         length: Joi.string().required()
       }),
     }),
-    (req, res, next) => ctrl.createBuilding(req, res, next),
+    (req, res, next) => buildingCtrl.createBuilding(req, res, next),
+  );
+
+  route.post(
+    '/update',
+    celebrate({
+      body: Joi.object({
+        buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
+        designation: Joi.string().optional(),
+        width: Joi.string().optional(),
+        length: Joi.string().optional()
+      }),
+    }),
+    (req, res, next) => buildingCtrl.updateBuilding(req, res, next),
+  );
+
+  route.get(
+    '/getAllBuildings',
+    (req, res, next) => buildingCtrl.getAllBuildings(req, res, next),
   );
 
   route.get(
@@ -33,7 +51,7 @@ export default (app: Router) => {
         buildingId: Joi.string().required(),
       }),
     }),
-    (req, res, next) => ctrl.getFloorsByBuildingId(req, res, next),
+    (req, res, next) => buildingCtrl.getFloorsByBuildingId(req, res, next),
   );
 
   route.get(
@@ -44,15 +62,16 @@ export default (app: Router) => {
         maxFloor: Joi.string().required(),
       }),
     }),
-    (req, res, next) => ctrl.getBuildingsByMinMax(req, res, next),
+    (req, res, next) => buildingCtrl.getBuildingsByMinMax(req, res, next),
   );
+
   route.get('/:id/passages',
   celebrate({
     params: Joi.object({
       id: Joi.string().required(),
     }),
   }),
-  (req, res, next) => ctrl.getPassagesByBuildingId(req,res,next));
+  (req, res, next) => buildingCtrl.getPassagesByBuildingId(req,res,next));
 
 
   route.post(
