@@ -50,22 +50,23 @@ export default class BuildingRepo implements IBuildingRepo {
   }
   public async update(building: Building): Promise<Building> {
     try {
-      const buildingId = building.domainId;
+          const buildingId = building.domainId;
 
-      const buildingDb = await this.buildingSchema.findByIdAndUpdate(
-        { buildingId }, // Filter by buildingId
-        BuildingMap.toPersistence(building), // Update with the new data
-        { new: true }, // Return the updated document
-      );
+          const buildingDb = await this.buildingSchema.findByIdAndUpdate(
+            { buildingId }, // Filter by buildingId
+            BuildingMap.toPersistence(building), // Update with the new data
+            { new: true }, // Return the updated document
+          );
 
-      if (!buildingDb) {
-        // Handle the case where the document with the specified buildingId was not found
-        throw new Error(`Building with ID ${building.domainId} not found`);
-      }
+          if (buildingDb) {
+            return BuildingMap.toDomain(buildingDb);
+          } else {
+            // Handle the case where the document with the specified buildingId was not found
+            throw new Error(`Building with ID ${building.domainId} not found`);
+          }
 
-      // Convert the updated document back to your domain object
-      return BuildingMap.toDomain(buildingDb);
-    } catch (e) {
+          // Convert the updated document back to your domain object
+        } catch (e) {
       throw e;
     }
   }
