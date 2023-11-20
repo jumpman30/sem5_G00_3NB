@@ -5,15 +5,16 @@ import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
 import IBuildingService from './IServices/IBuildingService';
 import IBuildingRepo from './IRepos/IBuildingRepo';
-import { IBuildingDto } from '../dto/IBuildingDto';
+import { IBuildingDto, } from "../dto/IBuildingDto";
 import { Building } from '../domain/building';
 import { BuildingMap } from '../mappers/BuidingMap';
-import { IPassageDto } from '../dto/IPassageDto';
 import IPassageRepo from './IRepos/IPassageRepo';
 import { PassageMap } from '../mappers/PassageMap';
 import IFloorRepo from './IRepos/IFloorRepo';
 import { FloorMap } from '../mappers/FloorMap';
 import { IPassageFloorDto } from '../dto/IPassageFloorDto';
+import { IBuildingUpdateDto } from "../dto/IBuidlingUpdateDto";
+
 
 @Service()
 export default class BuildingService implements IBuildingService {
@@ -23,7 +24,7 @@ export default class BuildingService implements IBuildingService {
     @Inject(config.repos.passage.name) private passageRepo: IPassageRepo,
     @Inject(config.repos.floor.name) private floorRepo: IFloorRepo,
     @Inject('logger') private logger,
-  ) {}
+  ) {  }
 
   public async save(buildingDto: IBuildingDto): Promise<Result<{ buildingId: string }>> {
 
@@ -43,6 +44,47 @@ export default class BuildingService implements IBuildingService {
       return Result.ok<{ buildingId: string }>({ buildingId: buildingId.toString() });
     } catch (e) {
       throw e;
+    }
+  }
+
+  public async update(buildingDto: IBuildingUpdateDto): Promise<Result<IBuildingDto>> {
+
+    try {
+      if (!(await this.buildingRepo.exists(buildingDto.buildingId)) ) {
+        return Result.fail('Building not found');
+      }
+      let building = await this.buildingRepo.findByDomainId(buildingDto.buildingId);
+
+      const buildingOrError = Building.create({
+        domainId: buildingDto.buildingId,
+        designation: buildingDto.designation ?? building.designation,
+        width: buildingDto.width ?? building.width,
+        length: buildingDto.length ?? building.length
+      });
+
+      if (buildingOrError.isFailure) {
+        return Result.fail(buildingOrError.errorValue());
+      }
+      let updatedBuilding = (await this.buildingRepo.update(buildingOrError.getValue()));
+      return Result.ok( BuildingMap.toDTO(updatedBuilding));
+
+    } catch (e) {
+      throw Result.fail(e);
+    }
+  }
+
+  public async getAllBuildings(): Promise<Result<IBuildingDto[]>> {
+    try {
+      let buildings = await this.buildingRepo.getAllBuildings();
+
+      if (buildings == null) {
+        return Result.fail("No buildings found.");
+      }
+      const buildingsDtoResult = buildings.map(building => BuildingMap.toDTO(building));
+      return Result.ok<IBuildingDto[]>(buildingsDtoResult);
+
+    } catch (e) {
+      return Result.fail<IBuildingDto[]>(e);
     }
   }
 
@@ -69,7 +111,7 @@ public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto
     if (building === null) {
       return Result.fail<IFloorDto[]>("Building not found.");
     } else {
-      
+
       const floors = await this.floorService.getFloorsByBuildingId(buildingId);
 
       if (floors.isFailure) {
@@ -85,7 +127,7 @@ public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto
 
 public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<Result<IBuildingDto[]>> {
   try {
-    const minFloorNumber = parseInt(minFloor, 10); 
+    const minFloorNumber = parseInt(minFloor, 10);
     const maxFloorNumber = parseInt(maxFloor, 10);
 
     if (isNaN(minFloorNumber) || isNaN(maxFloorNumber)) {
@@ -93,7 +135,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
     }
 
     const buildings = await this.buildingRepo.getAllBuildings();
-   
+
     if (buildings.length === 0) {
       return Result.fail<IBuildingDto[]>("No buildings found.");
     }
@@ -101,7 +143,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
     const filteredBuildings = [];
 
     for (const building of buildings) {
-   
+
       const floors = await this.floorService.getFloorsByBuildingId(building.id.toString());
       console.log(floors)
       if (!floors.isFailure) {
@@ -122,7 +164,7 @@ public async getBuildingsByMinMax(minFloor: string, maxFloor: string): Promise<R
   public async getPassageFloors(buildingId: string): Promise<Result<IPassageFloorDto[]>> {
     try{
       let passages = await this.passageRepo.findByBuilding(buildingId);
-      
+
       if (!passages) {
         return Result.fail("Passages not found");
       }
