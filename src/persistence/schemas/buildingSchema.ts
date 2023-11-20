@@ -6,22 +6,24 @@ const Building = new mongoose.Schema(
     domainId: {
       type: String,
       unique: true,
+      index: true,
     },
 
     designation: {
       type: String,
-      required: [true, 'Please enter designation'],
       index: true,
     },
 
     length: {
       type: String,
       required: [true, 'Please enter length'],
+      index: true,
     },
 
     width: {
       type: String,
       required: [true, 'Please enter width'],
+      index: true,
     },
   },
   { timestamps: true },
