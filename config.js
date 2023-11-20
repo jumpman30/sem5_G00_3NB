@@ -86,7 +86,7 @@ export default {
     },
     passage: {
       name: 'PassageRepo',
-      path: '../repos/PassageRepo',
+      path: '../repos/passageRepo',
     },
     building: {
       name: 'BuildingRepo',
