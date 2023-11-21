@@ -9,6 +9,7 @@ import floorRoute from './routes/floorRoute';
 import buildingRoute from './routes/buildingRoute';
 import passageRoute from './routes/passageRoute';
 import healthRoute from './routes/healthRoute';
+import floorMapRoute from './routes/floorMapRoute';
 
 export default () => {
   const app = Router();
@@ -23,6 +24,7 @@ export default () => {
   buildingRoute(app);
   passageRoute(app);
   healthRoute(app);
+  floorMapRoute(app);
 
   return app;
 };

@@ -21,6 +21,12 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/floorSchema',
   };
 
+  const floorMapSchema = {
+    // compare with the approach followed in repos and services
+    name: 'floorMapSchema',
+    schema: '../persistence/schemas/floorMapSchema',
+  };
+
   const passageSchema = {
     // compare with the approach followed in repos and services
     name: 'passageSchema',
@@ -74,6 +80,12 @@ export default async ({ expressApp }) => {
     path: config.controllers.floor.path,
   };
 
+  const floorMapController = {
+    name: config.controllers.floorMap.name,
+    path: config.controllers.floorMap.path,
+  };
+
+
   const roomController = {
     name: config.controllers.room.name,
     path: config.controllers.room.path,
@@ -112,6 +124,11 @@ export default async ({ expressApp }) => {
   const floorRepo = {
     name: config.repos.floor.name,
     path: config.repos.floor.path,
+  };
+
+  const floorMapRepo = {
+    name: config.repos.floorMap.name,
+    path: config.repos.floorMap.path,
   };
 
   const elevatorRepo = {
@@ -154,6 +171,11 @@ export default async ({ expressApp }) => {
     path: config.services.floor.path,
   }
 
+  const floorMapService = {
+    name: config.services.floorMap.name,
+    path: config.services.floorMap.path,
+  }
+
   const robotTypeController = {
     name: config.controllers.robotType.name,
     path: config.controllers.robotType.path,
@@ -192,10 +214,10 @@ export default async ({ expressApp }) => {
 
   await dependencyInjectorLoader({
     mongoConnection,
-    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema, buildingSchema, passageSchema, elevatorSchema],
-    controllers: [roleController, roomController, robotController, robotTypeController, floorController, buildingController, passageController, elevatorController, healthController],
-    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo, buildingRepo, passageRepo, elevatorRepo],
-    services: [roleService, roomService, robotService, robotTypeService, floorService, buildingService, passageService, elevatorService]
+    schemas: [userSchema, roleSchema, roomSchema, robotSchema, robotTypeSchema, floorSchema, buildingSchema, passageSchema, elevatorSchema, floorMapSchema],
+    controllers: [roleController, roomController, robotController, robotTypeController, floorController, buildingController, passageController, elevatorController, healthController, floorMapController],
+    repos: [roleRepo, userRepo, roomRepo, robotRepo, robotTypeRepo, floorRepo, buildingRepo, passageRepo, elevatorRepo, floorMapRepo],
+    services: [roleService, roomService, robotService, robotTypeService, floorService, buildingService, passageService, elevatorService, floorMapService]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
 

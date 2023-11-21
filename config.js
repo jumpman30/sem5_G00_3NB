@@ -14,7 +14,7 @@ export default {
   /**
    * Your favorite port
    */
-  port: parseInt(process.env.PORT, 10) || 3000,
+  port: parseInt(process.env.PORT, 10) || 3030,
 
   /**
    * That long string from mlab
@@ -60,6 +60,10 @@ export default {
     floor: {
       name: 'FloorController',
       path: '../controllers/floorController',
+    },
+    floorMap: {
+      name: 'FloorMapController',
+      path: '../controllers/floorMapController',
     },
     room: {
       name: 'RoomController',
@@ -112,6 +116,10 @@ export default {
       name: 'FloorRepo',
       path: '../repos/floorRepo',
     },
+    floorMap: {
+      name: 'FloorMapRepo',
+      path: '../repos/floorMapRepo',
+    },
     elevator: {
       name: 'ElevatorRepo',
       path: '../repos/elevatorRepo',
@@ -146,6 +154,10 @@ export default {
     floor: {
       name: 'FloorService',
       path: '../services/floorService',
+    },
+    floorMap: {
+      name: 'FloorMapService',
+      path: '../services/floorMapService',
     },
     elevator: {
       name: 'ElevatorService',
