@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { IFloorPersistence } from '../../dataschema/IFloorPersistence';
+import { FloorMap } from '../../domain/floorMap';
 
 const Floor = new mongoose.Schema(
   {
@@ -11,6 +12,12 @@ const Floor = new mongoose.Schema(
     buildingId: {
       type: String,
       required: [true, 'Please enter buildingId'],
+      index: true,
+    },
+
+    floorMap: {
+      type: Object,
+      required: false,
       index: true,
     },
 

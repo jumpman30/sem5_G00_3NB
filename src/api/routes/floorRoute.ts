@@ -22,4 +22,19 @@ export default (app: Router) => {
     }),
     (req, res, next) => ctrl.createFloor(req, res, next),
   );
+
+  route.patch(
+    '',
+    celebrate({
+      body: Joi.object({
+        floorId: Joi.string().required(),
+        buildingId: Joi.string().required(),
+        size: Joi.any().required(),
+        rooms: Joi.any().required(),
+        passages: Joi.any().required(),
+        elevators: Joi.any().required()
+      }),
+    }),
+    (req, res, next) => ctrl.patchFloorMap(req, res, next),
+  );
 };

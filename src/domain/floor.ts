@@ -3,10 +3,12 @@ import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 import { Result } from '../core/logic/Result';
 import { Guard } from '../core/logic/Guard';
 import { FloorId } from './floorId';
+import { FloorMap } from './floorMap';
 
 interface FloorProps {
   buildingId: string;
   number: string;
+  floorMap?: FloorMap;
 }
 
 export class Floor extends AggregateRoot<FloorProps> {
@@ -23,6 +25,14 @@ export class Floor extends AggregateRoot<FloorProps> {
 
   get number(): string {
     return this.props.number;
+  }
+
+  get floorMap(): FloorMap {
+    return this.props.floorMap;
+  }
+
+  set floorMap(floorMap: FloorMap) {
+    this.props.floorMap = floorMap;
   }
 
   private constructor(props: FloorProps, id?: UniqueEntityID) {

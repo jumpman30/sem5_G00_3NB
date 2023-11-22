@@ -6,9 +6,10 @@ import { IFloorDto } from '../dto/IFloorDto';
 import { Floor } from '../domain/floor';
 import IFloorRepo from './IRepos/IFloorRepo';
 import IBuildingService from './IServices/IBuildingService';
-import { FloorMap } from '../mappers/FloorMap';
+import { FloorMap as FloorMapper } from '../mappers/FloorMap';
 import { floor } from 'lodash';
 import IBuildingRepo from './IRepos/IBuildingRepo';
+import { FloorMap } from '../domain/floorMap';
 
 @Service()
 export default class FloorService implements IFloorService {
@@ -17,6 +18,25 @@ export default class FloorService implements IFloorService {
     @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
     @Inject('logger') private logger,
   ) {}
+  public async patchFloorMap(floorMap: FloorMap): Promise<Result<IFloorDto>> {
+    try {
+      const floor = await this.floorRepo.findById(floorMap.floorId);
+      console.log(floor)
+      if (!floor) {
+        return Result.fail<IFloorDto>(`Floor with ID ${floorMap.floorId} does not exist.`);
+      }
+
+      floor.floorMap = floorMap;
+
+      console.log(floor)
+      let floorEdited = await this.floorRepo.editSave(floor);
+  
+      return Result.ok<IFloorDto>(FloorMapper.toDTO(floorEdited));
+
+      } catch (e) {
+        throw e;
+      }
+  }
 
   public async save(floorDto: IFloorDto): Promise<Result<{ floorId: string }>> {
 
@@ -49,7 +69,7 @@ export default class FloorService implements IFloorService {
     if (!floors) {
       return Result.fail<IFloorDto[]>(`No floors found for building with ID ${buildingId}.`);
     }
-    const floorDTOs = floors.map((floor) => FloorMap.toDTO(floor));
+    const floorDTOs = floors.map((floor) => FloorMapper.toDTO(floor));
 
       return Result.ok<IFloorDto[]>(floorDTOs);
     } catch (e) {
