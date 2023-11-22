@@ -26,6 +26,32 @@ export default class FloorRepo implements IFloorRepo {
     }
   }
 
+  public async editSave (floor: Floor): Promise<Floor> {
+    const query = { domainId: floor.id };
+
+    const floorDocument = await this.floorSchema.findOne( query );
+
+    try {
+      if (floorDocument === null ) {
+        const rawFloor: any = FloorMap.toPersistence(floor);
+
+        const floorCreated = await this.floorSchema.create(rawFloor);
+
+        return FloorMap.toDomain(floorCreated);
+      } else {
+        
+        floorDocument.number = floor.number;
+        floorDocument.buildingId = floor.buildingId;
+        floorDocument.floorMap = floor.floorMap;
+
+        console.log(await floorDocument.save());
+
+        return floor;
+      }
+    } catch (err) {
+      throw err;
+    }
+  }
   public async findByBuildingId(buildingId: string): Promise<Floor[] | null> {
     try {
 
