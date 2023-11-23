@@ -26,8 +26,6 @@ export default (app: Router) => {
               'building needs to have an id with max 5 alphanumeric chars',
             ),
           ),
-        designation: Joi.string().required(),
-        buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
         designation: Joi.string().optional(),
         width: Joi.string().required(),
         length: Joi.string().required(),
@@ -51,7 +49,7 @@ export default (app: Router) => {
   route.get(
     '/getAllBuildings',
     (req, res, next) => buildingCtrl.getAllBuildings(req, res, next),
-
+  );
 
   route.get(
     '/:buildingId/getFloorsByBuildingId',
@@ -73,6 +71,7 @@ export default (app: Router) => {
     }),
     (req, res, next) => buildingCtrl.getBuildingsByMinMax(req, res, next),
   );
+
   route.get(
     '/:id/passages',
     celebrate({
@@ -89,8 +88,8 @@ export default (app: Router) => {
       id: Joi.string().required(),
     }),
   }),
-  (req, res, next) => buildingCtrl.getPassagesByBuildingId(req,res,next));
-
+  (req, res, next) => buildingCtrl.getPassagesByBuildingId(req,res,next),
+  );
 
   route.post(
     '/:buildingId/elevator',

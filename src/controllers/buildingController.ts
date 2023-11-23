@@ -36,21 +36,20 @@ export default class BuildingController extends BaseController
       }
       return this.ok(res, buildingIdOrError.getValue());
     } catch (e) {
-      return next(e);
+      return this.fail(e);
     }
   }
 
   public async updateBuilding(req: Request, res: Response, next: NextFunction) {
     try {
-      let buildingUpdateOrError = await this.buildingService.update(req.body as IBuildingUpdateDto) as Result<{buildingId: string}>
+      const buildingUpdateOrError = await this.buildingService.update(req.body as IBuildingUpdateDto) as Result<IBuildingDto>
 
       if (buildingUpdateOrError.isFailure) {
         return res.status(400).json(buildingUpdateOrError.error.toString())
       }
-
-      res.status(202).json(buildingUpdateOrError.getValue());
+      return this.ok(res, buildingUpdateOrError.getValue());
     } catch (e) {
-        return res.status(500).json(e);
+        return this.fail(e);
     }
   }
 
@@ -150,5 +149,9 @@ export default class BuildingController extends BaseController
     } catch (e) {
       return next(e);
     }
+  }
+
+  public async getAllBuildings(req: Request, res: Response, next: NextFunction) {
+    return await this.buildingService.getAllBuildings();
   }
 }
