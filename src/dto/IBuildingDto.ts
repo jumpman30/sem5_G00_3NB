@@ -1,5 +1,5 @@
 export interface IBuildingDto {
-  buildingId: string,
+  buildingId: string;
   designation: string;
   width: string;
   length: string;
