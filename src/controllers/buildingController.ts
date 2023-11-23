@@ -3,11 +3,11 @@ import { Inject, Service } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
 import { BaseController } from '../core/infra/BaseController';
-import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
 import IBuildingController from './IControllers/IBuildingController';
 import IBuildingService from '../services/IServices/IBuildingService';
-import { IBuildingDto } from '../dto/IBuildingDto';
+import { IBuildingUpdateDto } from "../dto/IBuidlingUpdateDto";
+import { IBuildingDto } from "../dto/IBuildingDto";
 
 @Service()
 export default class BuildingController extends BaseController
@@ -34,10 +34,22 @@ export default class BuildingController extends BaseController
       if (buildingIdOrError.isFailure) {
         return this.fail(buildingIdOrError.error.toString());
       }
-
       return this.ok(res, buildingIdOrError.getValue());
     } catch (e) {
-      return next(e);
+      return this.fail(e);
+    }
+  }
+
+  public async updateBuilding(req: Request, res: Response, next: NextFunction) {
+    try {
+      const buildingUpdateOrError = await this.buildingService.update(req.body as IBuildingUpdateDto) as Result<IBuildingDto>
+
+      if (buildingUpdateOrError.isFailure) {
+        return res.status(400).json(buildingUpdateOrError.error.toString())
+      }
+      return this.ok(res, buildingUpdateOrError.getValue());
+    } catch (e) {
+        return this.fail(e);
     }
   }
 
@@ -66,9 +78,9 @@ export default class BuildingController extends BaseController
       const buildingDTO = buildingOrError.getValue();
       return res.status(200).json(buildingDTO);
     } catch (e) {
-      return next(e);
+      return res.status(500).json(e);
     }
-  }
+}
 
   public async getFloorsByBuildingId(
     req: Request,
@@ -137,5 +149,9 @@ export default class BuildingController extends BaseController
     } catch (e) {
       return next(e);
     }
+  }
+
+  public async getAllBuildings(req: Request, res: Response, next: NextFunction) {
+    return await this.buildingService.getAllBuildings();
   }
 }

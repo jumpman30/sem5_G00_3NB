@@ -5,15 +5,16 @@ import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
 import IBuildingService from './IServices/IBuildingService';
 import IBuildingRepo from './IRepos/IBuildingRepo';
-import { IBuildingDto } from '../dto/IBuildingDto';
+import { IBuildingDto, } from "../dto/IBuildingDto";
 import { Building } from '../domain/building';
 import { BuildingMap } from '../mappers/BuidingMap';
-import { IPassageDto } from '../dto/IPassageDto';
 import IPassageRepo from './IRepos/IPassageRepo';
 import { PassageMap } from '../mappers/PassageMap';
 import IFloorRepo from './IRepos/IFloorRepo';
 import { FloorMap } from '../mappers/FloorMap';
 import { IPassageFloorDto } from '../dto/IPassageFloorDto';
+import { IBuildingUpdateDto } from "../dto/IBuidlingUpdateDto";
+
 
 @Service()
 export default class BuildingService implements IBuildingService {
@@ -51,9 +52,48 @@ export default class BuildingService implements IBuildingService {
     }
   }
 
-  public async findBuildingByKey(
-    buildingId: string,
-  ): Promise<Result<IBuildingDto>> {
+  public async update(buildingDto: IBuildingUpdateDto): Promise<Result<IBuildingDto>> {
+
+    try {
+      if (!(await this.buildingRepo.exists(buildingDto.buildingId)) ) {
+        return Result.fail('Building not found');
+      }
+      let building = await this.buildingRepo.findByDomainId(buildingDto.buildingId);
+
+      const buildingOrError = Building.create({
+        domainId: buildingDto.buildingId,
+        designation: buildingDto.designation ?? building.designation,
+        width: buildingDto.width ?? building.width,
+        length: buildingDto.length ?? building.length
+      });
+
+      if (buildingOrError.isFailure) {
+        return Result.fail(buildingOrError.errorValue());
+      }
+      let updatedBuilding = (await this.buildingRepo.update(buildingOrError.getValue()));
+      return Result.ok( BuildingMap.toDTO(updatedBuilding));
+
+    } catch (e) {
+      throw Result.fail(e);
+    }
+  }
+
+  public async getAllBuildings(): Promise<Result<IBuildingDto[]>> {
+    try {
+      let buildings = await this.buildingRepo.getAllBuildings();
+
+      if (buildings == null) {
+        return Result.fail("No buildings found.");
+      }
+      const buildingsDtoResult = buildings.map(building => BuildingMap.toDTO(building));
+      return Result.ok<IBuildingDto[]>(buildingsDtoResult);
+
+    } catch (e) {
+      return Result.fail<IBuildingDto[]>(e);
+    }
+  }
+
+  public async findBuildingByKey(buildingId: string): Promise<Result<IBuildingDto>> {
     try {
       const building = await this.buildingRepo.findByDomainId(buildingId);
 
@@ -106,11 +146,11 @@ export default class BuildingService implements IBuildingService {
         );
       }
 
-      const buildings = await this.buildingRepo.getAllBuildings();
+    const buildings = await this.buildingRepo.getAllBuildings();
 
-      if (buildings.length === 0) {
-        return Result.fail<IBuildingDto[]>('No buildings found.');
-      }
+    if (buildings.length === 0) {
+      return Result.fail<IBuildingDto[]>("No buildings found.");
+    }
 
       const filteredBuildings = [];
 
