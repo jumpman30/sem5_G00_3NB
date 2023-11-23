@@ -3,7 +3,7 @@ import { Room } from '../domain/room';
 import { Floor } from '../domain/floor';
 import { Building } from '../domain/building';
 import { IBuildingDto } from '../dto/IBuildingDto';
-import { Document, Model } from "mongoose";
+import { Document, Model } from 'mongoose';
 import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';
 import { BuildingId } from '../domain/buildingId';
@@ -18,19 +18,24 @@ export class BuildingMap extends Mapper<Building> {
     };
   }
 
-  public static toDTO( building: Building): IBuildingDto {
+  public static toDTO(building: Building): IBuildingDto {
+    // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
     return {
       buildingId: building.domainId,
       designation: building.designation,
       length: building.length,
-      width: building.width
+      width: building.width,
     } as IBuildingDto;
   }
 
-  public static toDomain (raw: any | Model<IBuildingPersistence & Document>): Building {
-    const buildingOrError = Building.create(raw, new UniqueEntityID(raw.domainId));
+  public static toDomain(
+    raw: any | Model<IBuildingPersistence & Document>,
+  ): Building {
+    const buildingOrError = Building.create(
+      raw,
+      new UniqueEntityID(raw.domainId),
+    );
     buildingOrError.isFailure ? console.log(buildingOrError.error) : '';
     return buildingOrError.isSuccess ? buildingOrError.getValue() : null;
   }
-
 }

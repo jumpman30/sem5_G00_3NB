@@ -6,9 +6,10 @@ import { BaseController } from '../core/infra/BaseController';
 import IFloorController from './IControllers/IFloorController';
 import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
+import { FloorMap } from '../domain/floorMap';
 
 @Service()
-export default class FloorController extends BaseController
+export default class extends BaseController
   implements IFloorController {
   constructor(
     @Inject(config.services.floor.name)
@@ -26,6 +27,22 @@ export default class FloorController extends BaseController
       const floorIdOrError = (await this.floorService.save(
         req.body as IFloorDto,
       )) as Result<{ floorId: string }>;
+
+      if (floorIdOrError.isFailure) {
+        return this.fail(floorIdOrError.error.toString());
+      }
+
+      return this.ok(res, floorIdOrError.getValue());
+    } catch (e) {
+      return next(e);
+    }
+  }
+
+  public async patchFloorMap(req: Request, res: Response, next: NextFunction) {
+    try {
+      const floorIdOrError = (await this.floorService.patchFloorMap(
+        req.body as FloorMap,
+      )) as Result<IFloorDto>;
 
       if (floorIdOrError.isFailure) {
         return this.fail(floorIdOrError.error.toString());

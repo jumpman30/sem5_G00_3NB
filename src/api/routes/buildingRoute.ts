@@ -17,16 +17,25 @@ export default (app: Router) => {
     '',
     celebrate({
       body: Joi.object({
+        buildingId: Joi.string()
+          .regex(/^[A-Za-z0-9\s]*$/)
+          .max(5)
+          .required()
+          .error(
+            new Error(
+              'building needs to have an id with max 5 alphanumeric chars',
+            ),
+          ),
+        designation: Joi.string().required(),
         buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
         designation: Joi.string().optional(),
         width: Joi.string().required(),
-        length: Joi.string().required()
+        length: Joi.string().required(),
       }),
     }),
-    (req, res, next) => buildingCtrl.createBuilding(req, res, next),
   );
 
-  route.post(
+  route.put(
     '/update',
     celebrate({
       body: Joi.object({
@@ -42,12 +51,12 @@ export default (app: Router) => {
   route.get(
     '/getAllBuildings',
     (req, res, next) => buildingCtrl.getAllBuildings(req, res, next),
-  );
+
 
   route.get(
-    '/getFloorsByBuildingId',
+    '/:buildingId/getFloorsByBuildingId',
     celebrate({
-      query: Joi.object({
+      params: Joi.object({
         buildingId: Joi.string().required(),
       }),
     }),
@@ -55,14 +64,23 @@ export default (app: Router) => {
   );
 
   route.get(
-    '/getBuildingsByMinMax',
+    '/:minFloor/:maxFloor/getBuildingsByMinMax',
     celebrate({
-      query: Joi.object({
+      params: Joi.object({
         minFloor: Joi.string().required(),
         maxFloor: Joi.string().required(),
       }),
     }),
     (req, res, next) => buildingCtrl.getBuildingsByMinMax(req, res, next),
+  );
+  route.get(
+    '/:id/passages',
+    celebrate({
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+    }),
+    (req, res, next) => buildingCtrl.getPassagesByBuildingId(req, res, next),
   );
 
   route.get('/:id/passages',
@@ -82,12 +100,30 @@ export default (app: Router) => {
       }),
       body: Joi.object({
         availableFloorNumbers: Joi.array().items(Joi.string().required()),
-        serialNumber: Joi.string().optional().default(""),
-        description: Joi.string().optional().default(""),
-        model: Joi.string().optional().default(""),
-        brand: Joi.string().optional().default(""),
+        serialNumber: Joi.string()
+          .optional()
+          .default(''),
+        description: Joi.string()
+          .optional()
+          .default(''),
+        model: Joi.string()
+          .optional()
+          .default(''),
+        brand: Joi.string()
+          .optional()
+          .default(''),
       }),
     }),
     (req, res, next) => elevatorCtrl.createElevator(req, res, next),
+  );
+
+  route.get(
+    '/:buildingId/elevators',
+    celebrate({
+      params: Joi.object({
+        buildingId: Joi.string().required(),
+      }),
+    }),
+    (req, res, next) => elevatorCtrl.getElevatorsByBuildingId(req, res, next),
   );
 };

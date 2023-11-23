@@ -16,13 +16,20 @@ export default class ElevatorService implements IElevatorService {
     @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
   ) {}
 
-  public async createElevator(elevatorDto: IElevatorDto): Promise<Result<IElevatorDto>> {
-    if(!await this.buildingRepo.exists(elevatorDto.buildingId)){
-      return Result.fail<IElevatorDto>("Building does not exist.")
+  public async createElevator(
+    elevatorDto: IElevatorDto,
+  ): Promise<Result<IElevatorDto>> {
+    if (!(await this.buildingRepo.exists(elevatorDto.buildingId))) {
+      return Result.fail<IElevatorDto>('Building does not exist.');
     }
-    let elevatorSequencialId = await this.elevatorRepo.countByBuilding(elevatorDto.buildingId);
-    
-    const elevatorOrError = Elevator.create({...elevatorDto, elevatorId: `${elevatorSequencialId++}`});
+    let elevatorSequencialId = await this.elevatorRepo.countByBuilding(
+      elevatorDto.buildingId,
+    );
+
+    const elevatorOrError = Elevator.create({
+      ...elevatorDto,
+      elevatorId: `${elevatorSequencialId++}`,
+    });
 
     if (elevatorOrError.isFailure) {
       return Result.fail<IElevatorDto>(elevatorOrError.errorValue());
@@ -37,4 +44,31 @@ export default class ElevatorService implements IElevatorService {
     }
   }
 
+  public async getElevatorsByBuildingId(
+    buildingId: string,
+  ): Promise<Result<IElevatorDto[]>> {
+    try {
+      const buildingExists = await this.buildingRepo.exists(buildingId);
+
+      if (!buildingExists) {
+        return Result.fail<IElevatorDto[]>(
+          `Building with ID ${buildingId} does not exist.`,
+        );
+      }
+
+      const elevators = await this.elevatorRepo.findByBuilding(buildingId);
+      if (!elevators) {
+        return Result.fail<IElevatorDto[]>(
+          `No elevators found for building with ID ${buildingId}.`,
+        );
+      }
+      const elevatorDTOs = elevators.map(elevator =>
+        ElevatorMap.toDTO(elevator),
+      );
+
+      return Result.ok<IElevatorDto[]>(elevatorDTOs);
+    } catch (e) {
+      throw e;
+    }
+  }
 }

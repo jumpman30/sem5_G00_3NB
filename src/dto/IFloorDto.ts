@@ -1,5 +1,8 @@
+import { FloorMap } from "../domain/floorMap";
+
 export interface IFloorDto {
-  domainId: string,
+  domainId: string;
   buildingId: string;
+  floorMap: FloorMap,
   number: string;
 }

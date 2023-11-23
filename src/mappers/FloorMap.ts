@@ -11,6 +11,7 @@ export class FloorMap extends Mapper<Floor> {
     return {
       domainId: floor.id.toString(),
       buildingId: floor.buildingId,
+      floorMap: floor.floorMap,
       number: floor.number,
     };
   }
@@ -25,6 +26,7 @@ export class FloorMap extends Mapper<Floor> {
     return {
       domainId: floor.id.toString(),
       buildingId: floor.buildingId,
+      floorMap: floor.floorMap,
       number: floor.number
     } as IFloorDto;
   }
@@ -34,6 +36,7 @@ export class FloorMap extends Mapper<Floor> {
     return {
       domainId: passage.id.toString(),
       buildingId: passage.buildingId,
+      floorMap: passage.floorMap,
       number: passage.number,
     } as IFloorDto;
   }

@@ -53,14 +53,25 @@ export default class ElevatorRepo implements IElevatorRepo {
   }
 
   public async countByBuilding(buildingId: string): Promise<number> {
-    const query = { buildingId }
+    const query = { buildingId };
 
     try {
       return await this.elevatorSchema.count(query);
-    } 
-    catch (err) {
+    } catch (err) {
       throw err;
     }
   }
 
+  public async findByBuilding(buildingId: string): Promise<Elevator[]> {
+    const query = {
+      $or: [{ building1Id: buildingId }, { building2Id: buildingId }],
+    };
+
+    const elevators = await this.elevatorSchema.find(query);
+    if (elevators) {
+      return elevators.map(elevator => ElevatorMap.toDomain(elevator));
+    } else {
+      return null;
+    }
+  }
 }

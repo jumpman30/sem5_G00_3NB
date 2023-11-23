@@ -16,7 +16,7 @@ export default class BuildingController extends BaseController
     @Inject(config.services.building.name)
     private buildingService: IBuildingService,
     @Inject(config.services.floor.name)
-    private floorService: IFloorService
+    private floorService: IFloorService,
   ) {
     super();
   }
@@ -32,12 +32,11 @@ export default class BuildingController extends BaseController
       )) as Result<{ buildingId: string }>;
 
       if (buildingIdOrError.isFailure) {
-        return res.status(400).json(buildingIdOrError.error.toString());
+        return this.fail(buildingIdOrError.error.toString());
       }
-
-      return res.status(201).json(buildingIdOrError.getValue());
+      return this.ok(res, buildingIdOrError.getValue());
     } catch (e) {
-      return res.status(500).json(e);
+      return next(e);
     }
   }
 
@@ -53,101 +52,103 @@ export default class BuildingController extends BaseController
     } catch (e) {
         return res.status(500).json(e);
     }
-
   }
 
-  public async findBuildingByKey(req: Request, res: Response, next: NextFunction) {
+  public async findBuildingByKey(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
-        const buildingId= req.query.buildingId as string;
+      const buildingId = req.query.buildingId as string;
 
-        if (buildingId === undefined) {
-            return res.status(404).json("Please insert a valid building in the parameters.");
-        }
+      if (buildingId === undefined) {
+        return res
+          .status(404)
+          .json('Please insert a valid building in the parameters.');
+      }
 
-        const buildingOrError = await this.buildingService.findBuildingByKey(buildingId);
+      const buildingOrError = await this.buildingService.findBuildingByKey(
+        buildingId,
+      );
 
-        if (buildingOrError.isFailure) {
-            return res.status(404).json(buildingOrError.error);
-        }
+      if (buildingOrError.isFailure) {
+        return res.status(404).json(buildingOrError.error);
+      }
 
-        const buildingDTO = buildingOrError.getValue();
-        return res.status(200).json(buildingDTO);
+      const buildingDTO = buildingOrError.getValue();
+      return res.status(200).json(buildingDTO);
     } catch (e) {
       return res.status(500).json(e);
     }
 }
 
-public async getFloorsByBuildingId(req: Request, res: Response, next: NextFunction) {
-  try {
-
-    const buildingId = req.query.buildingId as string;
-
-    if (buildingId === undefined) {
-      return res.status(404).json("Building not found");
-    } else {
-
-      const floors = await this.floorService.getFloorsByBuildingId(buildingId);
-
+  public async getFloorsByBuildingId(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const floors = await this.floorService.getFloorsByBuildingId(
+        req.params.buildingId,
+      );
+      console.log(floors);
       if (floors.isFailure) {
         return res.status(400).json(floors.errorValue().toString());
       }
       const floorDTOs = floors.getValue();
-      return this.ok(res, floorDTOs);
+      return res.status(201).json(floorDTOs);
+    } catch (e) {
+      return next(e);
     }
-  } catch (e) {
-    return res.status(500).json(e);
   }
-}
 
-public async getBuildingsByMinMax(req: Request, res: Response, next: NextFunction) {
-  try {
-    const minFloor = req.query.minFloor as string;
-    const maxFloor = req.query.maxFloor as string;
-
-    if (minFloor === undefined || maxFloor === undefined) {
-      return res.status(400).json("Minimum and maximum floors are required.");
-    }
-
-    const result = await this.buildingService.getBuildingsByMinMax(minFloor, maxFloor);
-
-    if (result.isSuccess) {
-      const buildingDTOs = result.getValue();
-      return this.ok(res, buildingDTOs);
-    } else {
-      return this.fail(result.error.toString());
-    }
-  } catch (e) {
-    return res.status(500).json(e);
-  }
-}
-  public async getPassagesByBuildingId(req: Request, res: Response, next: NextFunction){
+  public async getBuildingsByMinMax(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
-      const PassagesOrError = await this.buildingService.getPassageFloors(req.params.id);
+      const minFloor = req.params.minFloor as string;
+      const maxFloor = req.params.maxFloor as string;
+
+      if (minFloor === undefined || maxFloor === undefined) {
+        return res.status(400).json('Minimum and maximum floors are required.');
+      }
+
+      const result = await this.buildingService.getBuildingsByMinMax(
+        minFloor,
+        maxFloor,
+      );
+
+      if (result.isSuccess) {
+        const buildingDTOs = result.getValue();
+        return this.ok(res, buildingDTOs);
+      } else {
+        return this.fail(result.error.toString());
+      }
+    } catch (e) {
+      return next(e);
+    }
+  }
+  public async getPassagesByBuildingId(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const PassagesOrError = await this.buildingService.getPassageFloors(
+        req.params.id,
+      );
 
       if (PassagesOrError.isFailure) {
         return res.status(404).send();
       }
 
       const RobotDTO = PassagesOrError.getValue();
-      return res.status(201).json( RobotDTO );
-    }
-    catch (e) {
-      return res.status(500).json(e);
-    }
-  }
-
-  public async getAllBuildings(req: Request, res: Response, next: NextFunction) {
-    try {
-      const buildingsOrError = await this.buildingService.getAllBuildings();
-
-      if (buildingsOrError.isFailure) {
-        return res.status(404).send();
-      }
-      const BuildingDto = buildingsOrError.getValue();
-      return res.status(200).json(BuildingDto);
-
+      return res.status(201).json(RobotDTO);
     } catch (e) {
-      return res.status(500).json(e);
+      return next(e);
     }
   }
 }
