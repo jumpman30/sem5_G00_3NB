@@ -152,6 +152,16 @@ export default class BuildingController extends BaseController
   }
 
   public async getAllBuildings(req: Request, res: Response, next: NextFunction) {
-    return await this.buildingService.getAllBuildings();
+    try {
+      const buildings = await this.buildingService.getAllBuildings();
+
+      if (buildings.isFailure) {
+        return res.status(400).send();
+      }
+      return res.status(200).json(buildings.getValue());
+    } catch (e) {
+      return next(e);
+    }
+    return 
   }
 }

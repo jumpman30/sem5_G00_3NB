@@ -28,7 +28,7 @@ export default class RobotTypeController
       )) as Result<IRobotTypeDto>;
 
       if (robotTypeOrError.isFailure) {
-        return res.status(422).send();
+        return res.status(422).send(robotTypeOrError.errorValue());
       }
 
       const robotTypeDto = robotTypeOrError.getValue();

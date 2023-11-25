@@ -19,7 +19,6 @@ export class BuildingMap extends Mapper<Building> {
   }
 
   public static toDTO(building: Building): IBuildingDto {
-    // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
     return {
       buildingId: building.domainId,
       designation: building.designation,

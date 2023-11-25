@@ -31,6 +31,7 @@ export default (app: Router) => {
         length: Joi.string().required(),
       }),
     }),
+    (req, res, next) => buildingCtrl.createBuilding(req, res, next),
   );
 
   route.put(

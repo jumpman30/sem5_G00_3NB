@@ -85,6 +85,7 @@ export default class BuildingService implements IBuildingService {
       if (buildings == null) {
         return Result.fail("No buildings found.");
       }
+      console.log(buildings)
       const buildingsDtoResult = buildings.map(building => BuildingMap.toDTO(building));
       return Result.ok<IBuildingDto[]>(buildingsDtoResult);
 
