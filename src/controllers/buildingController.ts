@@ -53,7 +53,7 @@ export default class BuildingController extends BaseController
     }
   }
 
-  public async findBuildingByKey(
+  public async getBuildingByBuildingId(
     req: Request,
     res: Response,
     next: NextFunction,
@@ -162,6 +162,6 @@ export default class BuildingController extends BaseController
     } catch (e) {
       return next(e);
     }
-    return 
+    return
   }
 }
