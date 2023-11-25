@@ -48,6 +48,16 @@ export default (app: Router) => {
   );
 
   route.get(
+    '/:buildingId/getBuildingById',
+    celebrate({
+      params: Joi.object({
+        buildingId: Joi.string().required(),
+      }),
+    }),
+    (req, res, next) => buildingCtrl.getBuildingByBuildingId(req, res, next),
+  );
+
+  route.get(
     '/getAllBuildings',
     (req, res, next) => buildingCtrl.getAllBuildings(req, res, next),
   );
