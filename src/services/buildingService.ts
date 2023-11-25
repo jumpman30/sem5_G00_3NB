@@ -5,7 +5,7 @@ import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
 import IBuildingService from './IServices/IBuildingService';
 import IBuildingRepo from './IRepos/IBuildingRepo';
-import { IBuildingDto, } from "../dto/IBuildingDto";
+import { IBuildingDto } from '../dto/IBuildingDto';
 import { Building } from '../domain/building';
 import { BuildingMap } from '../mappers/BuidingMap';
 import IPassageRepo from './IRepos/IPassageRepo';
@@ -13,8 +13,7 @@ import { PassageMap } from '../mappers/PassageMap';
 import IFloorRepo from './IRepos/IFloorRepo';
 import { FloorMap } from '../mappers/FloorMap';
 import { IPassageFloorDto } from '../dto/IPassageFloorDto';
-import { IBuildingUpdateDto } from "../dto/IBuidlingUpdateDto";
-
+import { IBuildingUpdateDto } from '../dto/IBuidlingUpdateDto';
 
 @Service()
 export default class BuildingService implements IBuildingService {
@@ -52,27 +51,31 @@ export default class BuildingService implements IBuildingService {
     }
   }
 
-  public async update(buildingDto: IBuildingUpdateDto): Promise<Result<IBuildingDto>> {
-
+  public async update(
+    buildingDto: IBuildingUpdateDto,
+  ): Promise<Result<IBuildingDto>> {
     try {
-      if (!(await this.buildingRepo.exists(buildingDto.buildingId)) ) {
+      if (!(await this.buildingRepo.exists(buildingDto.buildingId))) {
         return Result.fail('Building not found');
       }
-      let building = await this.buildingRepo.findByDomainId(buildingDto.buildingId);
+      let building = await this.buildingRepo.findByDomainId(
+        buildingDto.buildingId,
+      );
 
       const buildingOrError = Building.create({
         domainId: buildingDto.buildingId,
         designation: buildingDto.designation ?? building.designation,
         width: buildingDto.width ?? building.width,
-        length: buildingDto.length ?? building.length
+        length: buildingDto.length ?? building.length,
       });
 
       if (buildingOrError.isFailure) {
         return Result.fail(buildingOrError.errorValue());
       }
-      let updatedBuilding = (await this.buildingRepo.update(buildingOrError.getValue()));
-      return Result.ok( BuildingMap.toDTO(updatedBuilding));
-
+      let updatedBuilding = await this.buildingRepo.update(
+        buildingOrError.getValue(),
+      );
+      return Result.ok(BuildingMap.toDTO(updatedBuilding));
     } catch (e) {
       throw Result.fail(e);
     }
@@ -83,17 +86,20 @@ export default class BuildingService implements IBuildingService {
       let buildings = await this.buildingRepo.getAllBuildings();
 
       if (buildings == null) {
-        return Result.fail("No buildings found.");
+        return Result.fail('No buildings found.');
       }
-      const buildingsDtoResult = buildings.map(building => BuildingMap.toDTO(building));
+      const buildingsDtoResult = buildings.map(building =>
+        BuildingMap.toDTO(building),
+      );
       return Result.ok<IBuildingDto[]>(buildingsDtoResult);
-
     } catch (e) {
       return Result.fail<IBuildingDto[]>(e);
     }
   }
 
-  public async findBuildingByKey(buildingId: string): Promise<Result<IBuildingDto>> {
+  public async findBuildingByKey(
+    buildingId: string,
+  ): Promise<Result<IBuildingDto>> {
     try {
       const building = await this.buildingRepo.findByDomainId(buildingId);
 
@@ -146,28 +152,43 @@ export default class BuildingService implements IBuildingService {
         );
       }
 
-    const buildings = await this.buildingRepo.getAllBuildings();
+      const buildings = await this.buildingRepo.getAllBuildings();
 
-    if (buildings.length === 0) {
-      return Result.fail<IBuildingDto[]>("No buildings found.");
-    }
-
-      const filteredBuildings = [];
-
-      for (const building of buildings) {
-        const floors = await this.floorService.getFloorsByBuildingId(
-          building.id.toString(),
-        );
-        if (!floors.isFailure) {
-          const numFloors = floors.getValue().length;
-
-          if (numFloors >= minFloorNumber && numFloors <= maxFloorNumber) {
-            filteredBuildings.push(building);
-          }
-        }
+      if (buildings.length === 0) {
+        return Result.fail<IBuildingDto[]>('No buildings found.');
       }
 
-      return Result.ok<IBuildingDto[]>(filteredBuildings);
+      const filteredBuildings = await Promise.all(
+        buildings.map(async building => {
+          const floorsResult = await this.floorService.getFloorsByBuildingId(
+            building.id.toString(),
+          );
+
+          if (floorsResult.isFailure) {
+            console.error(`Error fetching floors for building ${building.id}`);
+            return null;
+          }
+
+          const numFloors = floorsResult.getValue().length;
+
+          if (numFloors >= minFloorNumber && numFloors <= maxFloorNumber) {
+            return {
+              buildingId: building.props.domainId,
+              designation: building.props.designation,
+              width: building.props.width,
+              length: building.props.length,
+            };
+          }
+
+          return null;
+        }),
+      );
+
+      const validBuildings = filteredBuildings.filter(
+        building => building !== null,
+      ) as IBuildingDto[];
+
+      return Result.ok<IBuildingDto[]>(validBuildings);
     } catch (e) {
       throw e;
     }
