@@ -18,6 +18,13 @@ export default class RobotTypeRepo implements IRobotTypeRepo {
   ) {}
 
 
+  public async getAll(): Promise<RobotType[]> {
+
+    const robotRecord = await this.RobotTypeSchema.find().populate("robotType");
+    return robotRecord.map(item => RobotTypeMap.toDomain(item));
+  }
+
+
   private createBaseQuery(): any {
     return {
       where: {},

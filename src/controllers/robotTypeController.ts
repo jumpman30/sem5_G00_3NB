@@ -20,6 +20,22 @@ export default class RobotTypeController
     private robotTypeServiceInstance: IRobotTypeService,
   ) {}
 
+  async getAll(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
+    try {
+      const RobotOrError = await this.robotTypeServiceInstance.getAll();
+
+      if (RobotOrError.isFailure) {
+        return res.status(404).send();
+      }
+
+      const RobotDTO = RobotOrError.getValue();
+      return res.status(201).json( RobotDTO );
+    }
+    catch (e) {
+      return next(e);
+    }
+  }
+
 
   public async createRobotType(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>, next: NextFunction) {
     try {

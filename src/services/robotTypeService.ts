@@ -15,6 +15,20 @@ export default class robotTypeService implements IRobotTypeService {
     private robotTypeRepo: IRobtTypeRepo)
      {}
 
+    public async getAll(): Promise<Result<IRobotTypeDto[]>> {
+    try{
+      let Robot = await this.robotTypeRepo.getAll();
+      
+      if (Robot === null) {
+        return Result.fail("Robot not found");
+      }
+      const RobotDTOResult = Robot.map(item => RobotTypeMap.toDTO( item ));
+
+      return Result.ok<IRobotTypeDto[]>( RobotDTOResult );
+    } catch (e) {
+      throw e;
+    }
+  }
   public async createRobotType(robotTypeDTO: IRobotTypeDto): Promise<Result<IRobotTypeDto>> {
     try {
       const robotTypeOrError = RobotType.create(robotTypeDTO);

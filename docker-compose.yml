@@ -1,6 +1,17 @@
 version: '3'
 
 services:
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node_app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+  
   mongodb:
     image: mongo:latest
     container_name: lapr5_db
