@@ -153,6 +153,41 @@
 			"response": []
 		},
 		{
+			"request": {
+			"method": "PATCH",
+			"header": [
+			
+			],
+			"body": {
+				"mode": "raw",
+				"raw": "{\n        \"floorId\": \"a03b742c-6f33-4030-89fa-c090a77361c1\",\n        \"buildingId\": \"A\",\n        \"size\": {\n            \"width\": 8,\n            \"depth\": 7\n        },\n        \"rooms\": [\n            {\n                \"id\": 1,\n                \"roomSouthestWestestPoint\": [\n                    2,\n                    0\n                ],\n                \"roomDimensions\": {\n                    \"width\": 6,\n                    \"depth\": 3\n                },\n                \"exitPoints\": [\n                    {\n                        \"y\": 2,\n                        \"x\": 4,\n                        \"facing\": \"south\"\n                    }\n                ]\n            },\n            {\n                \"id\": 2,\n                \"roomSouthestWestestPoint\": [\n                    2,\n                    5\n                ],\n                \"roomDimensions\": {\n                    \"width\": 4,\n                    \"depth\": 3\n                },\n                \"exitPoints\": [\n                    {\n                        \"y\": 2,\n                        \"x\": 6,\n                        \"facing\": \"south\"\n                    }\n                ]\n            },\n            {\n                \"id\": 3,\n                \"roomSouthestWestestPoint\": [\n                    7,\n                    0\n                ],\n                \"roomDimensions\": {\n                    \"width\": 7,\n                    \"depth\": 4\n                },\n                \"exitPoints\": [\n                    {\n                        \"y\": 4,\n                        \"x\": 6,\n                        \"facing\": \"east\"\n                    }\n                ]\n            }\n        ],\n        \"passages\": [\n            {\n                \"y\": 3,\n                \"x\": 8,\n                \"width\": 1,\n                \"depth\": 2,\n                \"goingToBuildingFloor\": \"B2\"\n            },\n            {\n                \"y\": 6,\n                \"x\": 8,\n                \"width\": 1,\n                \"depth\": 2,\n                \"goingToBuildingFloor\": \"C2\"\n            }\n        ],\n        \"elevators\": [\n            {\n                \"y\": 6,\n                \"x\": 7,\n                \"facing\": \"north\",\n                \"serveFloors\": [\n                    1,\n                    3\n                ]\n            }\n        ]\n    }\n",
+				"options": {
+					"raw": {
+						"language": "json"
+					}
+				}
+			},
+			"url": {
+				"raw": "localhost:3030/api/floor?buildingId=LEI2",
+				"host": [
+					"localhost"
+				],
+				"port": "3030",
+				"path": [
+					"api",
+					"floor"
+				],
+				"query": [
+					{
+						"key": "buildingId",
+						"value": "LEI2"
+					}
+				]
+			}
+		},
+		"response": []
+		},
+		{
 			"name": "create room",
 			"request": {
 				"method": "POST",

@@ -18,6 +18,7 @@ export default class FloorService implements IFloorService {
     @Inject(config.repos.building.name) private buildingRepo: IBuildingRepo,
     @Inject('logger') private logger,
   ) {}
+
   public async patchFloorMap(floorMap: FloorMap): Promise<Result<IFloorDto>> {
     try {
       const floor = await this.floorRepo.findById(floorMap.floorId);
@@ -59,6 +60,7 @@ export default class FloorService implements IFloorService {
 
   public async getFloorsByBuildingId(buildingId: string): Promise<Result<IFloorDto[]>> {
     try {
+      console.log("ehere")
     const buildingExists = await this.buildingRepo.exists(buildingId);
 
     if (!buildingExists) {
@@ -69,6 +71,7 @@ export default class FloorService implements IFloorService {
     if (!floors) {
       return Result.fail<IFloorDto[]>(`No floors found for building with ID ${buildingId}.`);
     }
+    console.log(floors)
     const floorDTOs = floors.map((floor) => FloorMapper.toDTO(floor));
 
       return Result.ok<IFloorDto[]>(floorDTOs);

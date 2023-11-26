@@ -14,12 +14,12 @@ export default {
   /**
    * Your favorite port
    */
-  port: parseInt(process.env.PORT, 10) || 3000,
+  port: parseInt(process.env.PORT, 10) || 3030,
 
   /**
    * That long string from mlab
    */
-  databaseURL: process.env.MONGODB_URI || 'mongodb://localhost:27017/lapr5_db',
+  databaseURL: process.env.MONGODB_URI || 'mongodb://mongoadmin:ff3fbc9043e61f288b28abbd@vsgate-s1.dei.isep.ipp.pt:10717/admin',
 
   /**
    * Your secret sauce

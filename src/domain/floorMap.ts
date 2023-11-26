@@ -12,6 +12,7 @@ interface FloorMapProps {
   rooms: [object]
   passages: [object]
   elevators: [object]
+  mapMatrix: [string]
 }
 
 export class FloorMap extends Entity<FloorMapProps> {
@@ -44,6 +45,10 @@ export class FloorMap extends Entity<FloorMapProps> {
 
   get elevators(): [object] {
     return this.props.elevators;
+  }
+
+  get mapMatrix(): [string] {
+    return this.props.mapMatrix;
   }
 
   public static create(props: FloorMapProps, id?: UniqueEntityID): Result<FloorMap> {

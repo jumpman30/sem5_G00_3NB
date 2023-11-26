@@ -6,4 +6,5 @@ export default interface IFloorService {
   save(floorDto: IFloorDto): Promise<Result<{ floorId: string }>>;
   getFloorsByBuildingId(buildingId:string): Promise<Result<IFloorDto[]>>;
   patchFloorMap(floorMap: FloorMap): Promise<Result<IFloorDto>>
+  getFloorsByBuildingId(buildingId:string): Promise<Result<IFloorDto[]>>;
 }
