@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc",
     "heroku-postbuild": "npm run build",
-    "start": "nodemon",
-    "start:prod": "node ./build/src/app.js",
+    "start:test": "nodemon",
+    "start": "node ./build/src/app.js",
     "inspect": "nodemon --inspect src/app.ts",
     "test": "jest",
     "lint": "npm run lint:js ",
