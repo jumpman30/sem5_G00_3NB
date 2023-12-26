@@ -1,0 +1,75 @@
+@startuml "RobDroneGo - Container Diagram"
+
+!include ./../../C4-PlantUML/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/react.puml
+!include DEVICONS/nodejs.puml
+!include DEVICONS/mongodb.puml
+!include DEVICONS/mysql.puml
+
+title Container Diagram - RobDroneGo
+
+LAYOUT_TOP_DOWN()
+LAYOUT_WITH_LEGEND()
+
+System_Boundary(c1, "RobDroneGo"){
+
+    Container(web_app_spa, "RobDroneGo SPA", "React", "Allows users to use the platform( request tasks, view tasks, register in the system, etc)",  $sprite="react")
+
+    Container(web_app_campus, "RobDroneGo - Campus Management", "NodeJS", "Manages the buildings, floor plans, elevators and passages between buildings.", $sprite="nodejs")
+
+    Container(web_app_fleet, "RobDroneGo - Fleet Management", "NodeJS", "Manages the drones.", $sprite="nodejs")
+
+    Container(web_app_task, "RobDroneGo - Task Management", "NodeJS", "Manages the tasks.", $sprite="nodejs")
+
+    Container(web_app_user, "RobDroneGo - User Management", "NodeJS", "Manages the users (register, update, auth, etc.).", $sprite="nodejs")
+
+    Container(web_app_planner, "RobDroneGo - Planner", "NodeJS", "Planes the routes of the drones.", $sprite="nodejs")
+
+    Container(web_app_request, "RobDroneGo - Task Request Management", "NodeJS", "Manages the tasks requests.", $sprite="nodejs")
+
+    ContainerDb(nosql, "NoSQL Data Store", "MongoDB", "Stores buildings, floor plans, drones, tasks, etc.", $sprite="mongodb")
+
+    ContainerDb(rel_db, "Relational Database", "MySQL 5.5.x", "Stores people, tasks, etc.", $sprite="mysql")
+
+}
+
+Person_Ext(anonymous_user, "Anonymous User")
+
+Rel(anonymous_user, web_app_spa, "Uses", "HTTPS")
+
+Person(taskManager_user, "Task Manager")
+Person(fleetManager_user, "Fleet Manager")
+Person(campusManager_user, "Campus Manager")
+
+Rel_D(taskManager_user, web_app_spa, "Uses", "HTTPS")
+Rel_D(fleetManager_user, web_app_spa, "Uses", "HTTPS")
+Rel_D(campusManager_user, web_app_spa, "Uses", "HTTPS")
+
+Rel(web_app_spa, web_app_campus, "Reads from and writes to", "Task Management API")
+Rel_R(web_app_spa, web_app_fleet, "Reads from and writes to", "Fleet Management API")
+Rel_D(web_app_spa, web_app_task, "Reads from and writes to", "Campus Management API")
+
+Rel_U(web_app_planner, web_app_campus,  "Reads from", "Planning API")
+Rel_L(web_app_planner,web_app_fleet, "Reads from", "Planning API")
+Rel_D(web_app_planner,web_app_task, "Reads from", "Planning API")
+
+Rel(web_app_campus, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+Rel(web_app_fleet, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+Rel(web_app_task, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+Person(administration_user, "Administration User")
+Person(registered_user, "Registered User")
+
+Rel(administration_user, web_app_spa, "Uses", "HTTPS")
+Rel(registered_user, web_app_spa, "Uses", "HTTPS")
+
+Rel_R(web_app_spa, web_app_user, "Reads from and writes to", "User Management API")
+Rel_R(web_app_spa, web_app_request, "Reads from and writes to", "Task Request API")
+
+Rel(web_app_user, rel_db, "Reads from and writes to", "SQL/JDBC, port 3306")
+Rel(web_app_request, rel_db, "Reads from and writes to", "SQL/JDBC, port 3306")
+
+@enduml
