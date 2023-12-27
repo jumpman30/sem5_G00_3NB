@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
 import { Mapper } from '../core/infra/Mapper';
 
 import { Document, Model } from 'mongoose';
@@ -10,7 +11,6 @@ import { IElevatorPersistence } from '../dataschema/IElevatorPersistence';
 import { IElevatorDto } from '../dto/IElevatorDto';
 
 export class ElevatorMap extends Mapper<Elevator> {
-
   public static toDTO(elevator: Elevator): IElevatorDto {
     return {
       buildingId: elevator.buildingId,
@@ -18,13 +18,18 @@ export class ElevatorMap extends Mapper<Elevator> {
       availableFloorNumbers: elevator.availableFloorNumbers,
       serialNumber: elevator.serialNumber,
       description: elevator.description,
-      model: elevator.model.brand,
-      brand: elevator.model.model
+      model: elevator.model.model,
+      brand: elevator.model.brand,
     } as IElevatorDto;
   }
 
-  public static toDomain(elevator: any | Model<IElevatorPersistence & Document>): Elevator {
-    const elevatorOrError = Elevator.create(elevator, new UniqueEntityID(elevator.elevatorId));
+  public static toDomain(
+    elevator: any | Model<IElevatorPersistence & Document>,
+  ): Elevator {
+    const elevatorOrError = Elevator.create(
+      elevator,
+      new UniqueEntityID(elevator.elevatorId),
+    );
 
     elevatorOrError.isFailure ? console.log(elevatorOrError.error) : '';
 
@@ -38,8 +43,8 @@ export class ElevatorMap extends Mapper<Elevator> {
       availableFloorNumbers: elevator.availableFloorNumbers,
       serialNumber: elevator.serialNumber,
       description: elevator.description,
-      model: elevator.model.brand,
-      brand: elevator.model.model
+      model: elevator.model.model,
+      brand: elevator.model.brand,
     };
   }
 }
