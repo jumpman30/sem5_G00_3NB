@@ -49,10 +49,8 @@ The system saves the requirement.
 ![SD-US460](./SD_US460_RequireTask_SPA.svg)
 
 ### 3.3 Patterns/Libs
-Backend
- - Aggregate root
 
- - Value object
+- DDD : Domain Driver
 
  - High cohesion and low coupling
    - By applying a layered architecture it was intended to organize the sections of the code with the best separation of responsibilities and with the lowest dependency between layers.
@@ -61,6 +59,11 @@ Backend
   - The designed solution aims to assign the correct responsibility given the information the classes hold.
 
 - DTO pattern.
+
+Frontend
+
+- MVVM: Model, View, ViewModel
+
 ## Tests
 
 ### Integration Testing

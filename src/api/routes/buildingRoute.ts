@@ -1,17 +1,21 @@
-import { Router } from 'express';
-import { celebrate, Joi } from 'celebrate';
-import { Container } from 'typedi';
-import config from '../../../config';
-import IBuildingController from '../../controllers/IControllers/IBuildingController';
-import IElevatorController from '../../controllers/IControllers/IElevatorController';
+import { Router } from "express";
+import { celebrate, Joi } from "celebrate";
+import { Container } from "typedi";
+import config from "../../../config";
+import IBuildingController from "../../controllers/IControllers/IBuildingController";
+import IElevatorController from "../../controllers/IControllers/IElevatorController";
 
 const route = Router();
 
 export default (app: Router) => {
   app.use('/building', route);
 
-  const elevatorCtrl = Container.get(config.controllers.elevator.name) as IElevatorController;
-  const buildingCtrl = Container.get(config.controllers.building.name) as IBuildingController;
+  const elevatorCtrl = Container.get(
+    config.controllers.elevator.name
+  ) as IElevatorController;
+  const buildingCtrl = Container.get(
+    config.controllers.building.name
+  ) as IBuildingController;
 
   route.post(
     '',
@@ -38,7 +42,15 @@ export default (app: Router) => {
     '/update',
     celebrate({
       body: Joi.object({
-        buildingId: Joi.string().regex(/^[A-Za-z0-9\s]*$/).max(5).required().error(new Error("building needs to have an id with max 5 alphanumeric chars")),
+        buildingId: Joi.string()
+          .regex(/^[A-Za-z0-9\s]*$/)
+          .max(5)
+          .required()
+          .error(
+            new Error(
+              "building needs to have an id with max 5 alphanumeric chars"
+            )
+          ),
         designation: Joi.string().optional(),
         width: Joi.string().optional(),
         length: Joi.string().optional()
@@ -57,9 +69,8 @@ export default (app: Router) => {
     (req, res, next) => buildingCtrl.getBuildingByBuildingId(req, res, next),
   );
 
-  route.get(
-    '/getAllBuildings',
-    (req, res, next) => buildingCtrl.getAllBuildings(req, res, next),
+  route.get("/getAllBuildings", (req, res, next) =>
+    buildingCtrl.getAllBuildings(req, res, next)
   );
 
   route.get(
@@ -93,13 +104,14 @@ export default (app: Router) => {
     (req, res, next) => buildingCtrl.getPassagesByBuildingId(req, res, next),
   );
 
-  route.get('/:id/passages',
-  celebrate({
-    params: Joi.object({
-      id: Joi.string().required(),
+  route.get(
+    "/:id/passages",
+    celebrate({
+      params: Joi.object({
+        id: Joi.string().required()
+      })
     }),
-  }),
-  (req, res, next) => buildingCtrl.getPassagesByBuildingId(req,res,next),
+    (req, res, next) => buildingCtrl.getPassagesByBuildingId(req, res, next)
   );
 
   route.post(
