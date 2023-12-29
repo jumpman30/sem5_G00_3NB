@@ -21,10 +21,10 @@
   * Components represent logical units of functionality or modules within a container, such as classes, services, or libraries.
 
 ### Campus Management
-![Campus Managment Component Diagram](./Level%203/Logic%20View/RobDroneGo%20-%20CM%20Component%20Diagram.svg)
+![Campus Management Component Diagram](./Level%203/Logic%20View/RobDroneGo%20-%20CM%20Component%20Diagram.svg)
 
 ### Fleet Management
-![Fleet Managment Component Diagram](./Level%203/Logic%20View/RobDroneGo%20-%20FM%20Component%20Diagram.svg)
+![Fleet Management Component Diagram](./Level%203/Logic%20View/RobDroneGo%20-%20FM%20Component%20Diagram.svg)
 
 ### SPA
 
