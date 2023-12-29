@@ -1,5 +1,5 @@
 import { Result } from '../../core/logic/Result';
-import { FloorMap } from '../../domain/floorMap';
+import { FloorMap } from '../../domain/floor/floorMap';
 import { IFloorDto } from '../../dto/IFloorDto';
 
 export default interface IFloorService {

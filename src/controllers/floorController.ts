@@ -6,7 +6,7 @@ import { BaseController } from '../core/infra/BaseController';
 import IFloorController from './IControllers/IFloorController';
 import { IFloorDto } from '../dto/IFloorDto';
 import IFloorService from '../services/IServices/IFloorService';
-import { FloorMap } from '../domain/floorMap';
+import { FloorMap } from '../domain/floor/floorMap';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { ParsedQs } from 'qs';
 

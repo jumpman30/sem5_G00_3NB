@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
 import  RobotService  from '../../src/services/robotService';
-import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
 import AlreadyExistsException from '../../src/core/infra/AlreadyExistsException';
 import { IRobotDTO } from '../../src/dto/IRobotDTO';
 import RobotRepo from '../../src/repos/robotRepo';
@@ -29,8 +29,8 @@ describe('robotTypeService', () => {
     serialNumber: "serialnumber3",
     robotType: robotType,
   } as IRobotDTO;
-  
-  
+
+
   beforeEach(() => {
     mockRobotRepo = sinon.createStubInstance<RobotRepo>(RobotRepo);
     mockRobotTypeRepo = sinon.createStubInstance<RobotTypeRepo>(RobotTypeRepo);
@@ -47,7 +47,7 @@ describe('robotTypeService', () => {
 
       let createRequestDto = {...robotData, robotType: robotData.robotType.id.toValue()} as ICreateRobotRequestDto
 
-      let result = await service.createRobot(createRequestDto); 
+      let result = await service.createRobot(createRequestDto);
 
       expect(result.isFailure).to.be.true
       expect(result.errorValue()).to.be.equal("Robot type not found.")
@@ -58,7 +58,7 @@ describe('robotTypeService', () => {
     it('should return an error for non existent robot', async () => {
       mockRobotRepo.findByNickname.resolves(undefined);
 
-      let result = await service.inhibtRobot('robotA'); 
+      let result = await service.inhibtRobot('robotA');
 
       expect(result.isFailure).to.be.true
       expect(result.errorValue()).to.be.equal("Robot not found.")
@@ -68,7 +68,7 @@ describe('robotTypeService', () => {
   describe('inhibtRobot', () => {
     it('should return an error for non existent robot', async () => {
       mockRobotRepo.findByNickname.resolves(Robot.create(robotData).getValue());
-      let result = await service.inhibtRobot('robotA'); 
+      let result = await service.inhibtRobot('robotA');
 
       expect(result.isSuccess).to.be.true
     });

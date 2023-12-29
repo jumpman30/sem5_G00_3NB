@@ -1,4 +1,4 @@
-import { Passage } from '../domain/passage';
+import { Passage } from '../domain/passage/passage';
 
 //We can add more keys to this type in case we desire to implement a deeper filter
 export type UpdateBuildingFilter = {

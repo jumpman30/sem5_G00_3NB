@@ -1,12 +1,12 @@
 import { Mapper } from '../core/infra/Mapper';
-import { Room } from '../domain/room';
-import { Floor } from '../domain/floor';
-import { Building } from '../domain/building';
+import { Room } from '../domain/room/room';
+import { Floor } from '../domain/floor/floor';
+import { Building } from '../domain/building/building';
 import { IBuildingDto } from '../dto/IBuildingDto';
 import { Document, Model } from 'mongoose';
 import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';
-import { BuildingId } from '../domain/buildingId';
+import { BuildingId } from '../domain/building/buildingId';
 
 export class BuildingMap extends Mapper<Building> {
   public static toPersistence(building: Building): any {

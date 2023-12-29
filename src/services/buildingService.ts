@@ -6,7 +6,7 @@ import { IFloorDto } from '../dto/IFloorDto';
 import IBuildingService from './IServices/IBuildingService';
 import IBuildingRepo from './IRepos/IBuildingRepo';
 import { IBuildingDto, } from "../dto/IBuildingDto";
-import { Building } from '../domain/building';
+import { Building } from '../domain/building/building';
 import { BuildingMap } from '../mappers/BuidingMap';
 import IPassageRepo from './IRepos/IPassageRepo';
 import { PassageMap } from '../mappers/PassageMap';

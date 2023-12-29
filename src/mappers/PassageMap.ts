@@ -1,7 +1,7 @@
 import { Mapper } from '../core/infra/Mapper';
-import { Room } from '../domain/room';
-import { Floor } from '../domain/floor';
-import { Passage } from '../domain/passage';
+import { Room } from '../domain/room/room';
+import { Floor } from '../domain/floor/floor';
+import { Passage } from '../domain/passage/passage';
 import { IPassagePersistence } from '../dataschema/IPassagePersistence';
 import { Document, Model } from 'mongoose';
 import { UniqueEntityID } from '../core/domain/UniqueEntityID';

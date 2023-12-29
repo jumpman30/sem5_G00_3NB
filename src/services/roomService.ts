@@ -5,7 +5,7 @@ import { Result } from '../core/logic/Result';
 import IRoomService from './IRepos/IRoomService';
 import IRoomRepo from './IRepos/IRoomRepo';
 import { IRoomDto } from '../dto/IRoomDto';
-import { Room } from '../domain/room';
+import { Room } from '../domain/room/room';
 import { Location } from '../domain/location';
 
 @Service()

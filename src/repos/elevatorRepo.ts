@@ -1,6 +1,6 @@
 import { Service, Inject } from 'typedi';
 
-import { Role } from '../domain/role';
+import { Role } from '../domain/role/role';
 import { RoleMap } from '../mappers/RoleMap';
 
 import { Document, Model } from 'mongoose';

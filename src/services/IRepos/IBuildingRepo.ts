@@ -1,5 +1,5 @@
-import { Building } from '../../domain/building';
-import { BuildingId } from "../../domain/buildingId";
+import { Building } from '../../domain/building/building';
+import { BuildingId } from "../../domain/building/buildingId";
 
 export default interface IBuildingRepo {
   save(building: Building): Promise<BuildingId>;

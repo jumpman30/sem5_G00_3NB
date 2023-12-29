@@ -1,8 +1,8 @@
-import 'reflect-metadata'; 
+import 'reflect-metadata';
 import RobotTypeRepo from '../../src/repos/robotTypeRepo';
 import { Model, Document } from 'mongoose';
 import { IRobotTypePersistence } from '../../src/dataschema/IRobotTypePersistence';
-import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
 import { RobotTypeMap } from '../../src/mappers/RobotTypeMap';
 
 // Mock the dependencies
@@ -45,8 +45,8 @@ describe('RobotTypeRepo tests', () => {
     mockRobotTypeDocument.save = jest.fn().mockResolvedValue(mockRobotTypeDocument);
 
     const savedRobotType = await robotTypeRepo.save(robotType);
-    
+
     expect(savedRobotType).toEqual(mockRobotTypeDocument);
   });
- 
+
 });

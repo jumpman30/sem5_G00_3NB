@@ -4,21 +4,21 @@ import { Result } from '../core/logic/Result';
 import IRobotTypeService from './IServices/IRobotTypeService';
 import IRobotTypeDto from '../dto/IRobotTypeDTO';
 import IRobtTypeRepo from './IRepos/IRobotTypeRepo';
-import { RobotType } from '../domain/RobotType';
+import { RobotType } from '../domain/robotType/RobotType';
 import { RobotTypeMap } from '../mappers/RobotTypeMap';
 import AlreadyExistsException from '../core/infra/AlreadyExistsException'
 
 @Service()
 export default class robotTypeService implements IRobotTypeService {
   constructor(
-    @Inject(config.repos.robotType.name) 
+    @Inject(config.repos.robotType.name)
     private robotTypeRepo: IRobtTypeRepo)
      {}
 
     public async getAll(): Promise<Result<IRobotTypeDto[]>> {
     try{
       let Robot = await this.robotTypeRepo.getAll();
-      
+
       if (Robot === null) {
         return Result.fail("Robot not found");
       }
