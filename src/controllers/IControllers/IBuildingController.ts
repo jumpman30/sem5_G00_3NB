@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { ParamsDictionary } from "express-serve-static-core";
-import * as QueryString from "querystring";
+
 export default interface IBuildingController {
   createBuilding(req: Request, res: Response, next: NextFunction);
   getFloorsByBuildingId(req: Request, res: Response, next: NextFunction);
