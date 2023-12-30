@@ -19,7 +19,7 @@ export default class BuildingRepo implements IBuildingRepo {
 
     try {
       const buildingDb = await this.buildingSchema.create(rawRoom);
-      return new BuildingId(buildingDb.domainId);
+      return BuildingId.create(buildingDb.domainId);
     } catch (e) {
       throw e;
     }
@@ -48,6 +48,7 @@ export default class BuildingRepo implements IBuildingRepo {
 
     return !!buildingDocument === true;
   }
+
   public async update(building: Building): Promise<Building> {
     try {
           const buildingId = building.domainId;
