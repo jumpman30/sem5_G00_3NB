@@ -1,6 +1,6 @@
-import RoomService from '../../src/services/roomService';
-import IRoomRepo from '../../src/services/IRepos/IRoomRepo';
-import mocks from '../mocks';
+import RoomService from "../../src/services/roomService";
+import IRoomRepo from "../../src/repos/IRepos/IRoomRepo";
+import mocks from "../mocks";
 
 describe('RoomService', () => {
   let roomService: RoomService;

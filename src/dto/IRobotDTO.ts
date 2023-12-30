@@ -7,4 +7,3 @@ export interface IRobotDTO {
   serialNumber: string;
   robotType: RobotType;
 }
-

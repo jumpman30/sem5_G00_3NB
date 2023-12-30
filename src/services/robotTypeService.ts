@@ -1,12 +1,12 @@
-import { Service, Inject } from 'typedi';
-import config from '../../config';
-import { Result } from '../core/logic/Result';
-import IRobotTypeService from './IServices/IRobotTypeService';
-import IRobotTypeDto from '../dto/IRobotTypeDTO';
-import IRobtTypeRepo from './IRepos/IRobotTypeRepo';
-import { RobotType } from '../domain/robotType/RobotType';
-import { RobotTypeMap } from '../mappers/RobotTypeMap';
-import AlreadyExistsException from '../core/infra/AlreadyExistsException'
+import { Inject, Service } from "typedi";
+import config from "../../config";
+import { Result } from "../core/logic/Result";
+import IRobotTypeService from "./IServices/IRobotTypeService";
+import IRobotTypeDto from "../dto/IRobotTypeDTO";
+import IRobtTypeRepo from "../repos/IRepos/IRobotTypeRepo";
+import { RobotType } from "../domain/robotType/RobotType";
+import { RobotTypeMap } from "../mappers/RobotTypeMap";
+import AlreadyExistsException from "../core/infra/AlreadyExistsException";
 
 @Service()
 export default class robotTypeService implements IRobotTypeService {

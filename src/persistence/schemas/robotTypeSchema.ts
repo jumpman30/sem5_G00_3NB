@@ -1,6 +1,6 @@
-import { IRobotTypePersistence } from '../../dataschema/IRobotTypePersistence';
-import mongoose from 'mongoose';
-import { TaskTypes } from '../../domain/taskType/TaskTypes';
+import { IRobotTypePersistence } from "../../dataschema/IRobotTypePersistence";
+import mongoose from "mongoose";
+import { TaskTypes } from "../../domain/task/TaskType";
 
 const RobotTypeSchema = new mongoose.Schema(
   {

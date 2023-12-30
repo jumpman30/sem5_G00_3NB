@@ -1,11 +1,11 @@
-import {Entity} from "../../core/domain/Entity";
-import {UniqueEntityID} from "../../core/domain/UniqueEntityID";
+import { Entity } from "../../core/domain/Entity";
+import { UniqueEntityID } from "../../core/domain/UniqueEntityID";
 
-import {Result} from "../../core/logic/Result";
-import {RobotTypeId} from "./RobotTypeId";
+import { Result } from "../../core/logic/Result";
+import { RobotTypeId } from "./RobotTypeId";
 
-import {Guard, IGuardResult} from "../../core/logic/Guard";
-import { TaskTypes } from "../taskType/TaskTypes";
+import { Guard, IGuardResult } from "../../core/logic/Guard";
+import { TaskTypes } from "../task/TaskType";
 import { TextUtil } from "../../utils/TextUtil";
 
 export interface RobotTypeProps {

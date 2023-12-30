@@ -1,12 +1,12 @@
-import { Service, Inject } from 'typedi';
-import config from '../../config';
-import { IUserDTO } from '../dto/IUserDTO';
-import { Result } from '../core/logic/Result';
-import IRoomService from './IRepos/IRoomService';
-import IRoomRepo from './IRepos/IRoomRepo';
-import { IRoomDto } from '../dto/IRoomDto';
-import { Room } from '../domain/room/room';
-import { Location } from '../domain/location';
+import { Inject, Service } from "typedi";
+import config from "../../config";
+import { IUserDTO } from "../dto/IUserDTO";
+import { Result } from "../core/logic/Result";
+import IRoomService from "../repos/IRepos/IRoomService";
+import IRoomRepo from "../repos/IRepos/IRoomRepo";
+import { IRoomDto } from "../dto/IRoomDto";
+import { Room } from "../domain/room/room";
+import { Location } from "../domain/location";
 
 @Service()
 export default class RoomService implements IRoomService {

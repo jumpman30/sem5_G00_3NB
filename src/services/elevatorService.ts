@@ -2,11 +2,11 @@ import { Service, Inject } from 'typedi';
 import config from '../../config';
 import { Result } from '../core/logic/Result';
 import { IFloorDto } from '../dto/IFloorDto';
-import IBuildingRepo from './IRepos/IBuildingRepo';
+import IBuildingRepo from "../repos/IRepos/IBuildingRepo";
 import IElevatorService from './IServices/IElevatorService';
 import { IElevatorDto } from '../dto/IElevatorDto';
 import { Elevator } from '../domain/elevator/elevator';
-import IElevatorRepo from './IRepos/IElevatorRepo';
+import IElevatorRepo from "../repos/IRepos/IElevatorRepo";
 import { ElevatorMap } from '../mappers/ElevatorMap';
 
 @Service()

@@ -7,4 +7,3 @@ export interface ICreateRobotResponseDto {
   serialNumber: string;
   robotType: IRobotTypeDTO;
 }
-

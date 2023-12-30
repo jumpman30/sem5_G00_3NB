@@ -1,10 +1,10 @@
-import { Service, Inject } from 'typedi';
-import IRobotRepo from "../services/IRepos/IRobotRepo";
+import { Inject, Service } from "typedi";
+import IRobotRepo from "./IRepos/IRobotRepo";
 import { Robot } from "../domain/robot/robot";
 import { RobotNickname } from "../domain/robot/robotNickname";
 import { RobotMap } from "../mappers/RobotMap";
-import { Document, FilterQuery, Model } from 'mongoose';
-import { IRobotPersistence } from '../dataschema/IRobotPersistence';
+import { Document, Model } from "mongoose";
+import { IRobotPersistence } from "../dataschema/IRobotPersistence";
 
 @Service()
 export default class RobotRepo implements IRobotRepo {

@@ -4,11 +4,11 @@ import { Result } from '../core/logic/Result';
 import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
 import { Floor } from '../domain/floor/floor';
-import IFloorRepo from './IRepos/IFloorRepo';
+import IFloorRepo from "../repos/IRepos/IFloorRepo";
 import IBuildingService from './IServices/IBuildingService';
 import { FloorMap as FloorMapper } from '../mappers/FloorMap';
 import { floor } from 'lodash';
-import IBuildingRepo from './IRepos/IBuildingRepo';
+import IBuildingRepo from "../repos/IRepos/IBuildingRepo";
 import { FloorMap } from '../domain/floor/floorMap';
 
 @Service()

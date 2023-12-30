@@ -31,7 +31,7 @@ The system saves the requirement.
   * Description of the delivery (limit to 1000 alfanumeric characters)
 
 * **Initial Task Status**: PENDING
-* **Task Status**: PENDING/APROVED/REJECTED
+* **Task Status**: Pending, Approved, Rejected, InProgress, Completed, Cancelled
 
 ### 2.2. Analysis
 

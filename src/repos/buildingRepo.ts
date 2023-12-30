@@ -1,6 +1,6 @@
 import { Inject, Service } from 'typedi';
 import { Document, FilterQuery, Model } from 'mongoose';
-import IBuildingRepo from '../services/IRepos/IBuildingRepo';
+import IBuildingRepo from "./IRepos/IBuildingRepo";
 import { Building } from '../domain/building/building';
 import { BuildingId } from '../domain/building/buildingId';
 import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';

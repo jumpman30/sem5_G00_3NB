@@ -4,7 +4,7 @@ import { Role } from '../domain/role/role';
 import { RoleMap } from '../mappers/RoleMap';
 
 import { Document, Model } from 'mongoose';
-import IElevatorRepo from '../services/IRepos/IElevatorRepo';
+import IElevatorRepo from "./IRepos/IElevatorRepo";
 import { IElevatorPersistence } from '../dataschema/IElevatorPersistence';
 import { Elevator } from '../domain/elevator/elevator';
 import { ElevatorMap } from '../mappers/ElevatorMap';
