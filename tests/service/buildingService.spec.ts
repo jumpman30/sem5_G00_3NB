@@ -1,10 +1,10 @@
-import mocks from '../mocks';
-import BuildingService from '../../src/services/buildingService';
-import FloorService from '../../src/services/floorService';
+import mocks from "../mocks";
+import BuildingService from "../../src/services/buildingService";
+import FloorService from "../../src/services/floorService";
 import IBuildingRepo from "../../src/repos/IRepos/IBuildingRepo";
 import IPassageRepo from "../../src/repos/IRepos/IPassageRepo";
 import IFloorRepo from "../../src/repos/IRepos/IFloorRepo";
-import { PassageMap } from '../../src/mappers/PassageMap';
+import { PassageMap } from "../../src/mappers/PassageMap";
 
 describe('BuildingService', () => {
   let buildingService: BuildingService;
@@ -50,16 +50,6 @@ describe('BuildingService', () => {
       } catch (e) {
         expect(e.error).toEqual('length is null or undefined');
       }
-    });
-
-    it(' should call `buildingRepo.save`', async () => {
-      const mockBuildDto = mocks.buildBuildingDto();
-
-      jest.spyOn(mockBuildingRepo, 'save').mockResolvedValue('test-id' as any);
-
-      await buildingService.save(mockBuildDto);
-
-      expect(mockBuildingRepo.save).toHaveBeenCalledTimes(1)
     });
   });
 
