@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1589px" preserveAspectRatio="none" style="width:1399px;height:1589px;background:#FFFFFF;" version="1.1" viewBox="0 0 1399 1589" width="1399px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="29.0679" id="_title" style="stroke:none;stroke-width:1.0;" width="242" x="571.75" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="232" x="576.75" y="24.9659">Container Diagram - RobDroneGo</text><!--MD5=[84dda40acb3410cad7262261daba2aaf]
+cluster c1--><g id="cluster_c1"><rect fill="none" height="1194.14" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="901" x="492.5" y="216.8679"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="102" x="892" y="235.972">RobDroneGo</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="52" x="917" y="253.4881">[System]</text></g><!--MD5=[1be67bd2414d412104d60b1edb25f323]
+entity web_app_spa--><g id="elem_web_app_spa"><rect fill="#438DD5" height="153.4757" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="218" x="508.5" y="314.8679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="136" x="549.5" y="341.972">RobDroneGo SPA</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="600" y="359.4881">[React]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="615.5" y="377.97"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155" x="538" y="397.0379">Allows users to use the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="518.5" y="416.1058">platform( request tasks, view</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="193" x="519" y="435.1738">tasks, register in the system,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="24" x="605.5" y="454.2417">etc)</text></g><!--MD5=[2aa401d789f891d6bb562828e56f5699]
+entity web_app_campus--><g id="elem_web_app_campus"><rect fill="#438DD5" height="156.1999" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="219" x="745" y="562.3379"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="180" x="762.5" y="589.442">RobDroneGo - Campus</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="108" x="800.5" y="611.234">Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="43" x="833" y="628.7501">[NodeJS]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="852.5" y="647.2321"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="195" x="755" y="666.3">Manages the buildings, floor</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136" x="784.5" y="685.3679">plans, elevators and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="197" x="756" y="704.4358">passages between buildings.</text></g><!--MD5=[05b17deeaedc191165fa7dbfbb003075]
+entity web_app_fleet--><g id="elem_web_app_fleet"><rect fill="#438DD5" height="118.064" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="178" x="508.5" y="812.5379"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="154" x="518.5" y="839.642">RobDroneGo - Fleet</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="108" x="543.5" y="861.434">Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="43" x="576" y="878.9501">[NodeJS]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="595.5" y="897.4321"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="526" y="916.5">Manages the drones.</text></g><!--MD5=[f30791a34938a904c0edf4ea4aa04a12]
+entity web_app_task--><g id="elem_web_app_task"><rect fill="#438DD5" height="118.064" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="176" x="829.5" y="1041.6079"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="152" x="839.5" y="1068.712">RobDroneGo - Task</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="108" x="863.5" y="1090.504">Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="43" x="896" y="1108.0201">[NodeJS]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="915.5" y="1126.5021"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="852.5" y="1145.57">Manages the tasks.</text></g><!--MD5=[5658af76fa3396e0082355778f2ec86b]
+entity web_app_user--><g id="elem_web_app_user"><rect fill="#438DD5" height="137.132" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="218" x="912.5" y="323.0379"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="151" x="944" y="350.142">RobDroneGo - User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="108" x="967.5" y="371.934">Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="43" x="1000" y="389.4501">[NodeJS]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1019.5" y="407.9321"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="922.5" y="427">Manages the users (register,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="127" x="958" y="446.0679">update, auth, etc.).</text></g><!--MD5=[c9b856c38457d6e12c0da7c935de2227]
+entity web_app_planner--><g id="elem_web_app_planner"><rect fill="#438DD5" height="115.3399" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="198" x="764.5" y="813.8979"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="178" x="774.5" y="841.002">RobDroneGo - Planner</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="43" x="842" y="858.5181">[NodeJS]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="861.5" y="877"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="781.5" y="896.0679">Planes the routes of the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="51" x="838" y="915.1358">drones.</text></g><!--MD5=[aee79d52d1391a24afd96f3c40d3d3cd]
+entity web_app_request--><g id="elem_web_app_request"><rect fill="#438DD5" height="118.064" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="213" x="1165" y="332.5679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="152" x="1193.5" y="359.672">RobDroneGo - Task</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="65" x="1239" y="381.464">Request</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="43" x="1250" y="398.9801">[NodeJS]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1269.5" y="417.4621"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="193" x="1175" y="436.53">Manages the tasks requests.</text></g><!--MD5=[5b53e49b19b883c625446e1ddf765364]
+entity nosql--><g id="elem_nosql"><path d="M621.5,1280.6679 C621.5,1270.6679 730.5,1270.6679 730.5,1270.6679 C730.5,1270.6679 839.5,1270.6679 839.5,1280.6679 L839.5,1385.0078 C839.5,1395.0078 730.5,1395.0078 730.5,1395.0078 C730.5,1395.0078 621.5,1395.0078 621.5,1385.0078 L621.5,1280.6679 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/><path d="M621.5,1280.6679 C621.5,1290.6679 730.5,1290.6679 730.5,1290.6679 C730.5,1290.6679 839.5,1290.6679 839.5,1280.6679 " fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="143" x="659" y="1311.772">NoSQL Data Store</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="59" x="701" y="1329.2881">[MongoDB]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="728.5" y="1347.77"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="631.5" y="1366.8379">Stores buildings, floor plans,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="121" x="670" y="1385.9058">drones, tasks, etc.</text></g><!--MD5=[ca06478adb74a0a12c19a333518ed355]
+entity rel_db--><g id="elem_rel_db"><path d="M1085.5,597.8079 C1085.5,587.8079 1178.5,587.8079 1178.5,587.8079 C1178.5,587.8079 1271.5,587.8079 1271.5,597.8079 L1271.5,683.0799 C1271.5,693.0799 1178.5,693.0799 1178.5,693.0799 C1178.5,693.0799 1085.5,693.0799 1085.5,683.0799 L1085.5,597.8079 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/><path d="M1085.5,597.8079 C1085.5,607.8079 1178.5,607.8079 1178.5,607.8079 C1178.5,607.8079 1271.5,607.8079 1271.5,597.8079 " fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="163" x="1097" y="628.912">Relational Database</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="72" x="1142.5" y="646.4281">[MySQL 5.5.x]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1176.5" y="664.91"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="166" x="1095.5" y="683.9779">Stores people, tasks, etc.</text></g><!--MD5=[f3905c20e44b2e38ec5153cb75e83c90]
+entity anonymous_user--><g id="elem_anonymous_user"><rect fill="#686868" height="89.792" rx="2.5" ry="2.5" style="stroke:#8A8A8A;stroke-width:0.5;" width="157" x="7" y="47.0679"/><image height="48" width="48" x="61.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAB6ElEQVR4Xu2YLY+EMBCG9+dWr0aj0Wg0Go1Go0+j8Xdv2uTCvv1gpt0ebHKPuhDaeW4605Z9mJvx4AdXUyTUdd08z+u6flmWZRnHsWkafk9DptAwDPu+f0eAYtu2PEaGWuj5fCIZrBAC2eLBAnRCsEkkxmeaJp7iDJ2QMDdHsLg8SxKFEJaAo8lAXnmuOFIhTMpxxKATebo4UiFknuNo4OniSIXQyRxEA3YsnjGCVEjVXD7yLUAqxBGUyPv/Y4W2beMgGuS7kVQIBycH0fD+oi5pezQETxdHKmQKGk1eQEYldK+jw5GxPfZ9z7Mk0Qnhf1W1m3w//EUn5BDmSZsbR44QQLBEqrBHqOrmSKaQAxdnLArCrxZcM7A7ZKs4ioRq8LFC+NpC3WCBJsvpVw5edm9iEXFuyNfxXAgSwfrFQ1c0iNda8AdejvUgnktOtJQQxmcfFzGglc5WVCj7oDgFqU18boeFSs52CUh8LE8BIVQDT1ABrB0HtgSEYlX5doJnCwv9TXocKCaKbnwhdDKPq4lf3SwU3HLq4V/+WYhHVMa/3b4IlfyikAduCkcBc7mQ3/z/Qq/cTuikhkzB12Ae/mcJC9U+Vo8Ej1gWAtgbeGgFsAMHr50BIWOLCbezvhpBFUdY6EJuJ/QDW0XoMX60zZ0AAAAASUVORK5CYII=" y="57.0679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="137" x="17" y="122.172">Anonymous User</text></g><!--MD5=[092dcbe66359f38f21fbe9bd3e2ca111]
+entity taskManager_user--><g id="elem_taskManager_user"><rect fill="#08427B" height="89.792" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="133" x="199" y="47.0679"/><image height="48" width="48" x="241.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="57.0679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="113" x="209" y="122.172">Task Manager</text></g><!--MD5=[cf757f8eeab9affaa17a1278b74acd3e]
+entity fleetManager_user--><g id="elem_fleetManager_user"><rect fill="#08427B" height="89.792" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="135" x="367" y="47.0679"/><image height="48" width="48" x="410.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="57.0679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="115" x="377" y="122.172">Fleet Manager</text></g><!--MD5=[91adbcbf932e503a33e91f0dd3be935c]
+entity campusManager_user--><g id="elem_campusManager_user"><rect fill="#08427B" height="89.792" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="161" x="537" y="47.0679"/><image height="48" width="48" x="593.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="57.0679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="141" x="547" y="122.172">Campus Manager</text></g><!--MD5=[ef615fba35cb26e38db3c4a14c60d396]
+entity administration_user--><g id="elem_administration_user"><rect fill="#08427B" height="89.792" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="183" x="733" y="47.0679"/><image height="48" width="48" x="800.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="57.0679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="163" x="743" y="122.172">Administration User</text></g><!--MD5=[d09ac78a084da13492bb45d12ccd6749]
+entity registered_user--><g id="elem_registered_user"><rect fill="#08427B" height="89.792" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="145" x="951" y="47.0679"/><image height="48" width="48" x="999.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="57.0679"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="125" x="961" y="122.172">Registered User</text></g><!--MD5=[7f25e2e1f2d2a815914d03575ed9fca9]
+link anonymous_user to web_app_spa--><g id="link_anonymous_user_web_app_spa"><path d="M164.28,137.0479 C252.99,186.6779 398.05,267.8279 500.11,324.9279 " fill="none" id="anonymous_user-to-web_app_spa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="506.99,328.7779,501.4672,322.2588,498.5425,327.4977,506.99,328.7779" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="28" x="280" y="180.696">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="274.5" y="197.0401">[HTTPS]</text></g><!--MD5=[bb474c424428ce8027052ae7b8b7ca25]
+link taskManager_user to web_app_spa--><g id="link_taskManager_user_web_app_spa"><path d="M317.82,137.2079 C371.13,182.2779 455.05,253.2379 520.54,308.6179 " fill="none" id="taskManager_user-to-web_app_spa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="526.47,313.6279,522.2992,306.1711,518.4245,310.7522,526.47,313.6279" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="28" x="396" y="180.696">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="390.5" y="197.0401">[HTTPS]</text></g><!--MD5=[f73e195d595ebd6c495217f2ee530506]
+link fleetManager_user to web_app_spa--><g id="link_fleetManager_user_web_app_spa"><path d="M461.7,137.2079 C489.08,181.7379 531.99,251.5179 565.85,306.5979 " fill="none" id="fleetManager_user-to-web_app_spa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="569.98,313.3179,568.3491,304.931,563.2365,308.0714,569.98,313.3179" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="28" x="506" y="180.696">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="500.5" y="197.0401">[HTTPS]</text></g><!--MD5=[bd464194ceeaf049aa3a0e364cd7eb80]
+link campusManager_user to web_app_spa--><g id="link_campusManager_user_web_app_spa"><path d="M617.5,137.2079 C617.5,181.3679 617.5,250.3779 617.5,305.2379 " fill="none" id="campusManager_user-to-web_app_spa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="617.5,313.0979,620.5,305.0979,614.5,305.0979,617.5,313.0979" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="28" x="624" y="180.696">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="618.5" y="197.0401">[HTTPS]</text></g><!--MD5=[eb9df4ae57623584ad1bdff572f69a41]
+link web_app_spa to web_app_campus--><g id="link_web_app_spa_web_app_campus"><path d="M690.54,468.6779 C716.86,496.0879 746.7,527.1679 773.64,555.2279 " fill="none" id="web_app_spa-to-web_app_campus" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="779.02,560.8179,775.6423,552.9699,771.3148,557.126,779.02,560.8179" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="751.5" y="512.166">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="126" x="763" y="528.5101">[Task Management API]</text></g><!--MD5=[96fb654737b181b778bf42cf55a09cec]
+link web_app_spa to web_app_fleet--><g id="link_web_app_spa_web_app_fleet"><path d="M595.03,468.7979 C587.55,497.7979 580.19,531.3379 576.5,562.3379 C568.29,631.2779 571.74,649.2779 576.5,718.5379 C578.41,746.3579 582.27,776.8479 586.16,803.1679 " fill="none" id="web_app_spa-to-web_app_fleet" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="587.31,810.7879,589.0916,802.4317,583.1578,803.3207,587.31,810.7879" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="577.5" y="637.266">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="127" x="588.5" y="653.6101">[Fleet Management API]</text></g><!--MD5=[77677d07e8b1905381e8483cd405a97b]
+link web_app_spa to web_app_task--><g id="link_web_app_spa_web_app_task"><path d="M726.95,421.4179 C783.73,438.9879 852.87,464.6179 909.5,498.3379 C946.29,520.2479 963.96,523.2879 981.5,562.3379 C999.5,602.4279 1012.7,911.8579 980.5,1011.6079 C978.13,1018.9279 974.91,1026.1679 971.17,1033.1579 " fill="none" id="web_app_spa-to-web_app_task" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="967.31,1039.9179,973.8778,1034.4531,968.665,1031.482,967.31,1039.9179" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="1000.5" y="762.366">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="146" x="1002" y="778.7101">[Campus Management API]</text></g><!--MD5=[b3d91bad1ea06a806ba77100cbba2eb8]
+reverse link web_app_campus to web_app_planner--><g id="link_web_app_campus_web_app_planner"><path d="M857.91,728.2079 C859.03,756.8379 860.25,787.9179 861.27,813.7179 " fill="none" id="web_app_campus-backto-web_app_planner" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="857.61,720.5279,854.9264,728.6395,860.9217,728.404,857.61,720.5279" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="68" x="865" y="762.366">Reads from</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="75" x="861.5" y="778.7101">[Planning API]</text></g><!--MD5=[88d57411c9b30301dd36eaa2a0dce0e6]
+reverse link web_app_fleet to web_app_planner--><g id="link_web_app_fleet_web_app_planner"><path d="M696.25,871.5679 C718.49,871.5679 742.1,871.5679 764.35,871.5679 " fill="none" id="web_app_fleet-backto-web_app_planner" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="688.33,871.5679,696.33,874.5679,696.33,868.5679,688.33,871.5679" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="68" x="691.5" y="848.396">Reads from</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="75" x="688" y="864.7401">[Planning API]</text></g><!--MD5=[257970827921d7549f8824657ad9d2ec]
+link web_app_planner to web_app_task--><g id="link_web_app_planner_web_app_task"><path d="M877.06,929.5779 C884.48,960.7979 893.73,999.6779 901.5,1032.3779 " fill="none" id="web_app_planner-to-web_app_task" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="903.31,1039.9479,904.3719,1031.4702,898.5357,1032.8623,903.31,1039.9479" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="68" x="900" y="982.936">Reads from</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="75" x="896.5" y="999.2801">[Planning API]</text></g><!--MD5=[e33ddaa50af0f79c558a4ca33c3fb18d]
+link web_app_campus to nosql--><g id="link_web_app_campus_nosql"><path d="M795.75,718.6479 C777.09,746.8179 758.27,779.8179 746.5,812.5379 C724.04,874.9679 731.73,894.3979 727.5,960.6079 C723.9,1016.8979 726.63,1169.7979 728.71,1260.8479 " fill="none" id="web_app_campus-to-nosql" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="728.89,1268.7679,731.7035,1260.7004,725.7051,1260.8397,728.89,1268.7679" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="728.5" y="974.436">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="133" x="735" y="990.7801">[MongoDB wire protocol,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="64" x="771" y="1007.1242">port 27017]</text></g><!--MD5=[c64dfb6f83959366e08ea52a9b8c07ec]
+link web_app_fleet to nosql--><g id="link_web_app_fleet_nosql"><path d="M576.93,930.8479 C559.3,990.4379 541.02,1084.6479 570.5,1159.6679 C586.11,1199.3879 615.67,1235.3879 645.18,1264.0879 " fill="none" id="web_app_fleet-to-nosql" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="650.77,1269.4279,647.0586,1261.7321,642.9135,1266.07,650.77,1269.4279" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="571.5" y="1088.966">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="133" x="578" y="1105.3101">[MongoDB wire protocol,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="64" x="614" y="1121.6542">port 27017]</text></g><!--MD5=[9fbb02818b334515f29a7b70aa9bafa1]
+link web_app_task to nosql--><g id="link_web_app_task_nosql"><path d="M870.07,1160.0279 C844.62,1191.3579 813.1,1230.1579 786.45,1262.9579 " fill="none" id="web_app_task-to-nosql" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="781.45,1269.1179,788.8205,1264.7963,784.1615,1261.0156,781.45,1269.1179" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="842.5" y="1203.496">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="133" x="849" y="1219.8401">[MongoDB wire protocol,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="64" x="885" y="1236.1842">port 27017]</text></g><!--MD5=[46ce18e6c2e202fc1a32d6500b474f83]
+link administration_user to web_app_spa--><g id="link_administration_user_web_app_spa"><path d="M793.73,137.2079 C762.7,181.8279 714.03,251.8079 675.69,306.9379 " fill="none" id="administration_user-to-web_app_spa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="671.22,313.3679,678.2562,308.521,673.3343,305.0896,671.22,313.3679" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="28" x="776" y="180.696">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="770.5" y="197.0401">[HTTPS]</text></g><!--MD5=[4a07370dcdf971c6e00906118c3cfdd2]
+link registered_user to web_app_spa--><g id="link_registered_user_web_app_spa"><path d="M963.16,137.2079 C901.42,182.4679 804.09,253.8179 728.42,309.2879 " fill="none" id="registered_user-to-web_app_spa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="722.38,313.7179,730.6044,311.4031,727.0544,306.566,722.38,313.7179" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="28" x="922" y="180.696">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="916.5" y="197.0401">[HTTPS]</text></g><!--MD5=[45a5cf9cbd07b7b8623b4374536eb11e]
+link web_app_spa to web_app_user--><g id="link_web_app_spa_web_app_user"><path d="M726.83,391.5979 C781.28,391.5979 847.21,391.5979 902.89,391.5979 " fill="none" id="web_app_spa-to-web_app_user" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="910.57,391.5979,902.57,388.5979,902.57,394.5979,910.57,391.5979" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="745" y="368.426">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="126" x="756.5" y="384.7701">[User Management API]</text></g><!--MD5=[5eb5befbb90ad9b77720769edf9b498b]
+link web_app_spa to web_app_request--><g id="link_web_app_spa_web_app_request"><path d="M711.74,314.4779 C762.57,277.8779 828.32,238.0679 894.5,219.1579 C1003.04,188.1279 1048.14,167.4679 1148.5,219.1579 C1191.38,241.2379 1222.61,285.9679 1242.87,324.3379 " fill="none" id="web_app_spa-to-web_app_request" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1246.34,331.0679,1245.3506,322.5814,1240.0144,325.3245,1246.34,331.0679" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="1016" y="180.696">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="96" x="1042.5" y="197.0401">[Task Request API]</text></g><!--MD5=[1150de948f9b28627aa6bf22e1e8a2ce]
+link web_app_user to rel_db--><g id="link_web_app_user_rel_db"><path d="M1031.78,460.4679 C1037.47,484.4079 1046.19,510.7179 1059.5,532.3379 C1070.46,550.1479 1085.26,566.7479 1100.7,581.2979 " fill="none" id="web_app_user-to-rel_db" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1106.23,586.3879,1102.3733,578.7639,1098.3112,583.1797,1106.23,586.3879" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="1060.5" y="512.166">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="116" x="1077" y="528.5101">[SQL/JDBC, port 3306]</text></g><!--MD5=[06c5e0175ae9f08c86cb05af6aa995f7]
+link web_app_request to rel_db--><g id="link_web_app_request_rel_db"><path d="M1249.46,451.0979 C1234.93,489.6679 1215.94,540.0679 1201.26,579.0179 " fill="none" id="web_app_request-to-rel_db" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1198.55,586.2379,1204.1841,579.8148,1198.5714,577.6939,1198.55,586.2379" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="149" x="1231.5" y="512.166">Reads from and writes to</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="116" x="1248" y="528.5101">[SQL/JDBC, port 3306]</text></g><rect fill="none" height="149.4754" id="_legend" rx="7.5" ry="7.5" style="stroke:none;stroke-width:1.0;" width="143" x="1234.5" y="1424.0079"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="51" x="1240.5" y="1446.9739">Legend</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1291.5" y="1446.9739"> </text><rect fill="#08427B" height="19.0679" style="stroke:none;stroke-width:1.0;" width="131" x="1240.5" y="1451.0758"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="1244.5" y="1466.0418">person</text><rect fill="#1168BD" height="19.0679" style="stroke:none;stroke-width:1.0;" width="131" x="1240.5" y="1470.1438"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="1244.5" y="1485.1097">system</text><rect fill="#438DD5" height="19.0679" style="stroke:none;stroke-width:1.0;" width="131" x="1240.5" y="1489.2117"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64" x="1244.5" y="1504.1776">container</text><rect fill="#686868" height="19.0679" style="stroke:none;stroke-width:1.0;" width="131" x="1240.5" y="1508.2796"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="106" x="1244.5" y="1523.2455">external person</text><rect fill="#999999" height="19.0679" style="stroke:none;stroke-width:1.0;" width="131" x="1240.5" y="1527.3475"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="106" x="1244.5" y="1542.3134">external system</text><rect fill="#B3B3B3" height="19.0679" style="stroke:none;stroke-width:1.0;" width="131" x="1240.5" y="1546.4154"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="123" x="1244.5" y="1561.3814">external container</text><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1432.0079" y2="1432.0079"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1451.0758" y2="1451.0758"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1470.1438" y2="1470.1438"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1489.2117" y2="1489.2117"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1508.2796" y2="1508.2796"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1527.3475" y2="1527.3475"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1546.4154" y2="1546.4154"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1371.5" y1="1565.4833" y2="1565.4833"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1240.5" x2="1240.5" y1="1432.0079" y2="1565.4833"/><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="1371.5" x2="1371.5" y1="1432.0079" y2="1565.4833"/><!--MD5=[cc9e9e3f7efc63a9218bf23e59e285c9]
+@startuml "RobDroneGo - Container Diagram"
+
+!include ./../../C4-PlantUML/C4_Container.puml
+
+title Container Diagram - RobDroneGo
+
+LAYOUT_TOP_DOWN()
+LAYOUT_WITH_LEGEND()
+
+System_Boundary(c1, "RobDroneGo"){
+
+    Container(web_app_spa, "RobDroneGo SPA", "React", "Allows users to use the platform( request tasks, view tasks, register in the system, etc)")
+
+    Container(web_app_campus, "RobDroneGo - Campus Management", "NodeJS", "Manages the buildings, floor plans, elevators and passages between buildings.")
+
+    Container(web_app_fleet, "RobDroneGo - Fleet Management", "NodeJS", "Manages the drones.")
+
+    Container(web_app_task, "RobDroneGo - Task Management", "NodeJS", "Manages the tasks.")
+
+    Container(web_app_user, "RobDroneGo - User Management", "NodeJS", "Manages the users (register, update, auth, etc.).")
+
+    Container(web_app_planner, "RobDroneGo - Planner", "NodeJS", "Planes the routes of the drones.")
+
+    Container(web_app_request, "RobDroneGo - Task Request", "NodeJS", "Manages the tasks requests.")
+
+    ContainerDb(nosql, "NoSQL Data Store", "MongoDB", "Stores buildings, floor plans, drones, tasks, etc.")
+
+    ContainerDb(rel_db, "Relational Database", "MySQL 5.5.x", "Stores people, tasks, etc.")
+
+}
+
+Person_Ext(anonymous_user, "Anonymous User")
+
+Rel(anonymous_user, web_app_spa, "Uses", "HTTPS")
+
+Person(taskManager_user, "Task Manager")
+Person(fleetManager_user, "Fleet Manager")
+Person(campusManager_user, "Campus Manager")
+
+Rel_D(taskManager_user, web_app_spa, "Uses", "HTTPS")
+Rel_D(fleetManager_user, web_app_spa, "Uses", "HTTPS")
+Rel_D(campusManager_user, web_app_spa, "Uses", "HTTPS")
+
+Rel(web_app_spa, web_app_campus, "Reads from and writes to", "Task Management API")
+Rel_R(web_app_spa, web_app_fleet, "Reads from and writes to", "Fleet Management API")
+Rel_D(web_app_spa, web_app_task, "Reads from and writes to", "Campus Management API")
+
+Rel_U(web_app_planner, web_app_campus,  "Reads from", "Planning API")
+Rel_L(web_app_planner,web_app_fleet, "Reads from", "Planning API")
+Rel_D(web_app_planner,web_app_task, "Reads from", "Planning API")
+
+Rel(web_app_campus, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+Rel(web_app_fleet, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+Rel(web_app_task, nosql, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+Person(administration_user, "Administration User")
+Person(registered_user, "Registered User")
+
+Rel(administration_user, web_app_spa, "Uses", "HTTPS")
+Rel(registered_user, web_app_spa, "Uses", "HTTPS")
+
+Rel_R(web_app_spa, web_app_user, "Reads from and writes to", "User Management API")
+Rel_R(web_app_spa, web_app_request, "Reads from and writes to", "Task Request API")
+
+Rel(web_app_user, rel_db, "Reads from and writes to", "SQL/JDBC, port 3306")
+Rel(web_app_request, rel_db, "Reads from and writes to", "SQL/JDBC, port 3306")
+
+@enduml
+
+@startuml "RobDroneGo - Container Diagram"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam LegendFontColor #FFFFFF
+skinparam LegendBackgroundColor transparent
+skinparam LegendBorderColor transparent
+
+skinparam rectangle<<legendArea>> {
+    backgroundcolor transparent
+    bordercolor transparent
+}
+
+skinparam rectangle {
+    StereotypeFontSize 12
+}
+
+skinparam database {
+    StereotypeFontSize 12
+}
+
+skinparam queue {
+    StereotypeFontSize 12
+}
+
+skinparam participant {
+    StereotypeFontSize 12
+}
+
+skinparam arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam person {
+    StereotypeFontSize 12
+}
+
+skinparam actor {
+    StereotypeFontSize 12
+    style awesome
+}
+
+skinparam rectangle<<boundary>> {
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    BorderStyle dashed
+}
+
+skinparam package {
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    FontStyle plain
+    BackgroundColor transparent
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+skinparam rectangle<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam database<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam queue<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam person<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam actor<<boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam participant<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam sequencebox<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam package<<boundary>>StereotypeFontColor transparent
+skinparam rectangle<<boundary>>StereotypeFontColor transparent
+
+    
+skinparam rectangle<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam database<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam queue<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam person<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam actor<<enterprise_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam participant<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam sequencebox<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam package<<enterprise_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<enterprise_boundary>>StereotypeFontColor transparent
+
+
+    
+skinparam rectangle<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam database<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam queue<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam person<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam actor<<system_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam participant<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam sequencebox<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam package<<system_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<system_boundary>>StereotypeFontColor transparent
+
+
+    
+skinparam rectangle<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam database<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam queue<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam person<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam actor<<container_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam participant<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam sequencebox<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam package<<container_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<container_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam database<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam queue<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam person<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam actor<<person>> {
+    StereotypeFontColor #08427B
+    FontColor #08427B
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam participant<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam sequencebox<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam database<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam person<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_person>> {
+    StereotypeFontColor #686868
+    FontColor #686868
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam participant<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam sequencebox<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam queue<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam person<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam actor<<system>> {
+    StereotypeFontColor #1168BD
+    FontColor #1168BD
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam participant<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam sequencebox<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam person<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_system>> {
+    StereotypeFontColor #999999
+    FontColor #999999
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam participant<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam sequencebox<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+    
+skinparam rectangle<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam database<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam queue<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam person<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam actor<<system_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam participant<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam sequencebox<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam package<<system_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<system_boundary>>StereotypeFontColor transparent
+
+
+    
+skinparam rectangle<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam database<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam queue<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam person<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam actor<<enterprise_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam participant<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam sequencebox<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam package<<enterprise_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<enterprise_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+sprite $person [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000025788300000000005886410000000000000
+000000000007DFFFFFFD9643347BFFFFFFFB400000000000
+0000000004EFFFFFFFFFFFFFFFFFFFFFFFFFFB1000000000
+000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD200000000
+00000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE10000000
+0000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0000000
+000000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5000000
+000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000
+000009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF200000
+00000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF600000
+00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF700000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+0000008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3000000
+000000014555555555555555555555555555555300000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+sprite $person2 [48x48/16] {
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000002578888300000000005888864100000000000
+0000000007DFFFFFFFFD9643347BFFFFFFFFFB4000000000
+00000004EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB10000000
+0000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2000000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+00003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+0000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF50000
+0003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0000
+0009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+0009FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF2000
+0003FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFD0000
+0000BFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFF50000
+00003FFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFB00000
+000006FFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFE100000
+0000007FFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFD2000000
+00000004EFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFB10000000
+0000000007DF8FFFFFFFFFFFFFFFFFFFFFF8FB4000000000
+000000000002578888888888888888888864100000000000
+}
+
+sprite $robot [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000005BFFFFFFFFFFFFFFFFFFFFFE9100000000000
+0000000000AFFFFFFFFFFFFFFFFFFFFFFFFFE30000000000
+0000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFE1000000000
+000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000000000
+000000004FFFFFFFFFFFFFFFFFFFFFFFFFFFFFC000000000
+000000005FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000000
+000000005FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000000000
+000000005FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000000000
+000699405FFFFFFC427FFFFFFFFFC427FFFFFFE009982000
+008FFF705FFFFFE10006FFFFFFFE00007FFFFFE00FFFF100
+00CFFF705FFFFFA00001FFFFFFF900002FFFFFE00FFFF500
+00DFFF705FFFFFB00002FFFFFFFA00003FFFFFE00FFFF500
+00DFFF705FFFFFF4000AFFFFFFFF3000BFFFFFE00FFFF500
+00DFFF705FFFFFFFA8DFFFFFFFFFFA8DFFFFFFE00FFFF500
+00DFFF705FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE00FFFF500
+00DFFF705FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE00FFFF500
+00DFFF705FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE00FFFF500
+00DFFF705FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE00FFFF500
+00DFFF705FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE00FFFF500
+00CFFF705FFFFFF87777777777777777CFFFFFE00FFFF500
+008FFF705FFFFFF100000000000000009FFFFFE00FFFF100
+000699405FFFFFF76666666666666666CFFFFFE009982000
+000000005FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000000000
+000000005FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000000000
+000000004FFFFFFFFFFFFFFFFFFFFFFFFFFFFFC000000000
+000000000EFFFFFFFFFFFFFFFFFFFFFFFFFFFF7000000000
+0000000005FFFFFFFFFFFFFFFFFFFFFFFFFFFD0000000000
+00000000004CFFFFFFFFFFFFFFFFFFFFFFFF910000000000
+000000000000011111111111111111111110000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+sprite $robot2 [48x48/16] {
+000000000000000088888888888888880000000000000000
+000000000000000AFFFFFFFFFFFFFFFFA000000000000000
+00000000000000CFFFFFFFFFFFFFFFFFFC00000000000000
+00000000000004EFFFFFFFFFFFFFFFFFFE40000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFFA0000000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000888FFFFFFFFFFFFFFFFFFFF88800000000000
+00000000008FF8FFFFFFFFFFFFFFFFFFFF8FF80000000000
+00000000008FF8FFFFFFFFFFFFFFFFFFFF8FF80000000000
+00000000008FF8FFFFFFFFFFFFFFFFFFFF8FF80000000000
+00000000008FF8FFFFFFFFFFFFFFFFFFFF8FF80000000000
+00000000008FF8FFFFFFFFFFFFFFFFFFFF8FF80000000000
+00000000008FF8FFFFFFFFFFFFFFFFFFFF8FF80000000000
+00000000000888FFFFFFFFFFFFFFFFFFFF88800000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000008FFFFFFFFFFFFFFFFFFFF80000000000000
+00000000000004CFFFFFFFFFFFFFFFFFFC40000000000000
+000000488888848CFFFFFFFFFFFFFFFFC848888884000000
+00000CFFFFFFFFC888888888888888888CFFFFFFFFC00000
+00008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF80000
+0000CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+0008FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF8000
+0008FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF8000
+0008FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF8000
+0008FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF8000
+0000CFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFC0000
+00008FFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFF80000
+00000CFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFC00000
+000000488887578888888888888888888864688884000000
+000000000000000000000000000000000000000000000000
+}
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam database<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam queue<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam person<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam actor<<person>> {
+    StereotypeFontColor #08427B
+    FontColor #08427B
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam participant<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam sequencebox<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam database<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam person<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_person>> {
+    StereotypeFontColor #686868
+    FontColor #686868
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam participant<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam sequencebox<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam queue<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam person<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam actor<<container>> {
+    StereotypeFontColor #438DD5
+    FontColor #438DD5
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam participant<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam sequencebox<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam database<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam queue<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam person<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam actor<<external_container>> {
+    StereotypeFontColor #B3B3B3
+    FontColor #B3B3B3
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam participant<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam sequencebox<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+
+
+    
+skinparam rectangle<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam database<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam queue<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam person<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam actor<<container_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam participant<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam sequencebox<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+    BorderStyle dashed
+}
+skinparam package<<container_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<container_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+title Container Diagram - RobDroneGo
+
+top to bottom direction
+hide stereotype
+legend right
+|<color:#000000>**Legend**</color> |
+|<#08427B> person |
+|<#1168BD> system |
+|<#438DD5> container |
+|<#686868> external person |
+|<#999999> external system |
+|<#B3B3B3> external container |
+endlegend
+
+  rectangle "== RobDroneGo\n<size:12>[System]</size>" <<system_boundary>><<boundary>> as c1 {
+
+      rectangle "== RobDroneGo SPA\n//<size:12>[React]</size>//\n\nAllows users to use the platform( request tasks, view tasks, register in the system, etc)" <<container>> as web_app_spa
+
+      rectangle "== RobDroneGo - Campus Management\n//<size:12>[NodeJS]</size>//\n\nManages the buildings, floor plans, elevators and passages between buildings." <<container>> as web_app_campus
+
+      rectangle "== RobDroneGo - Fleet Management\n//<size:12>[NodeJS]</size>//\n\nManages the drones." <<container>> as web_app_fleet
+
+      rectangle "== RobDroneGo - Task Management\n//<size:12>[NodeJS]</size>//\n\nManages the tasks." <<container>> as web_app_task
+
+      rectangle "== RobDroneGo - User Management\n//<size:12>[NodeJS]</size>//\n\nManages the users (register, update, auth, etc.)." <<container>> as web_app_user
+
+      rectangle "== RobDroneGo - Planner\n//<size:12>[NodeJS]</size>//\n\nPlanes the routes of the drones." <<container>> as web_app_planner
+
+      rectangle "== RobDroneGo - Task Request\n//<size:12>[NodeJS]</size>//\n\nManages the tasks requests." <<container>> as web_app_request
+
+      database "== NoSQL Data Store\n//<size:12>[MongoDB]</size>//\n\nStores buildings, floor plans, drones, tasks, etc." <<container>> as nosql
+
+      database "== Relational Database\n//<size:12>[MySQL 5.5.x]</size>//\n\nStores people, tasks, etc." <<container>> as rel_db
+
+}
+
+rectangle "<$person>\n== Anonymous User" <<external_person>> as anonymous_user 
+
+anonymous_user - ->> web_app_spa : **Uses**\n//<size:12>[HTTPS]</size>//
+
+rectangle "<$person>\n== Task Manager" <<person>> as taskManager_user 
+rectangle "<$person>\n== Fleet Manager" <<person>> as fleetManager_user 
+rectangle "<$person>\n== Campus Manager" <<person>> as campusManager_user 
+
+taskManager_user -DOWN->> web_app_spa : **Uses**\n//<size:12>[HTTPS]</size>//
+fleetManager_user -DOWN->> web_app_spa : **Uses**\n//<size:12>[HTTPS]</size>//
+campusManager_user -DOWN->> web_app_spa : **Uses**\n//<size:12>[HTTPS]</size>//
+
+web_app_spa - ->> web_app_campus : **Reads from and writes to**\n//<size:12>[Task Management API]</size>//
+web_app_spa -RIGHT->> web_app_fleet : **Reads from and writes to**\n//<size:12>[Fleet Management API]</size>//
+web_app_spa -DOWN->> web_app_task : **Reads from and writes to**\n//<size:12>[Campus Management API]</size>//
+
+web_app_planner -UP->> web_app_campus : **Reads from**\n//<size:12>[Planning API]</size>//
+web_app_planner -LEFT->> web_app_fleet : **Reads from**\n//<size:12>[Planning API]</size>//
+web_app_planner -DOWN->> web_app_task : **Reads from**\n//<size:12>[Planning API]</size>//
+
+web_app_campus - ->> nosql : **Reads from and writes to**\n//<size:12>[MongoDB wire protocol, port 27017]</size>//
+web_app_fleet - ->> nosql : **Reads from and writes to**\n//<size:12>[MongoDB wire protocol, port 27017]</size>//
+web_app_task - ->> nosql : **Reads from and writes to**\n//<size:12>[MongoDB wire protocol, port 27017]</size>//
+
+rectangle "<$person>\n== Administration User" <<person>> as administration_user 
+rectangle "<$person>\n== Registered User" <<person>> as registered_user 
+
+administration_user - ->> web_app_spa : **Uses**\n//<size:12>[HTTPS]</size>//
+registered_user - ->> web_app_spa : **Uses**\n//<size:12>[HTTPS]</size>//
+
+web_app_spa -RIGHT->> web_app_user : **Reads from and writes to**\n//<size:12>[User Management API]</size>//
+web_app_spa -RIGHT->> web_app_request : **Reads from and writes to**\n//<size:12>[Task Request API]</size>//
+
+web_app_user - ->> rel_db : **Reads from and writes to**\n//<size:12>[SQL/JDBC, port 3306]</size>//
+web_app_request - ->> rel_db : **Reads from and writes to**\n//<size:12>[SQL/JDBC, port 3306]</size>//
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 18:01:30 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: pt
+Country: PT
+--></g></svg>

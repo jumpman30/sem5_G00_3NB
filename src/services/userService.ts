@@ -1,18 +1,18 @@
-import { Service, Inject } from 'typedi';
-import jwt from 'jsonwebtoken';
-import config from '../../config';
-import argon2 from 'argon2';
-import { randomBytes } from 'crypto';
-import IUserService from '../services/IServices/IUserService';
-import { UserMap } from '../mappers/UserMap';
-import { IUserDTO } from '../dto/IUserDTO';
-import IUserRepo from './IRepos/IUserRepo';
-import IRoleRepo from './IRepos/IRoleRepo';
-import { User } from '../domain/user';
-import { UserPassword } from '../domain/userPassword';
-import { UserEmail } from '../domain/userEmail';
-import { Role } from '../domain/role';
-import { Result } from '../core/logic/Result';
+import { Inject, Service } from "typedi";
+import jwt from "jsonwebtoken";
+import config from "../../config";
+import argon2 from "argon2";
+import { randomBytes } from "crypto";
+import IUserService from "../services/IServices/IUserService";
+import { UserMap } from "../mappers/UserMap";
+import { IUserDTO } from "../dto/IUserDTO";
+import IUserRepo from "../repos/IRepos/IUserRepo";
+import IRoleRepo from "../repos/IRepos/IRoleRepo";
+import { User } from "../domain/user/user";
+import { UserPassword } from "../domain/user/userPassword";
+import { UserEmail } from "../domain/user/userEmail";
+import { Role } from "../domain/role/role";
+import { Result } from "../core/logic/Result";
 
 @Service()
 export default class UserService implements IUserService {

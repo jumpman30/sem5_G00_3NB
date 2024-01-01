@@ -1,4 +1,4 @@
-import { RobotType } from "../domain/RobotType";
+import { RobotType } from "../domain/robotType/RobotType";
 
 export interface IRobotDTO {
   nickname: string;
@@ -7,4 +7,3 @@ export interface IRobotDTO {
   serialNumber: string;
   robotType: RobotType;
 }
-

@@ -1,13 +1,12 @@
-import { Service, Inject } from 'typedi';
-import { Document, FilterQuery, Model } from 'mongoose';
-import { IPassagePersistence } from '../dataschema/IPassagePersistence';
-import IPassageRepo from '../services/IRepos/IPassageRepo';
-import { Passage } from '../domain/passage';
-import { PassageId } from '../domain/passageId';
-import { PassageMap } from '../mappers/PassageMap';
-import { PassageDbProjection } from '../types';
-import { cleanObject } from '../utils/Object.utils';
-import { map } from 'lodash';
+import { Inject, Service } from "typedi";
+import { Document, FilterQuery, Model } from "mongoose";
+import { IPassagePersistence } from "../dataschema/IPassagePersistence";
+import IPassageRepo from "./IRepos/IPassageRepo";
+import { Passage } from "../domain/passage/passage";
+import { PassageId } from "../domain/passage/passageId";
+import { PassageMap } from "../mappers/PassageMap";
+import { PassageDbProjection } from "../types";
+import { cleanObject } from "../utils/Object.utils";
 
 @Service()
 export default class PassageRepo implements IPassageRepo {

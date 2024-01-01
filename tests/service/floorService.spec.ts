@@ -1,8 +1,7 @@
-import mocks from '../mocks';
-import FloorService from '../../src/services/floorService';
-import IFloorRepo from '../../src/services/IRepos/IFloorRepo';
-import BuildingService from '../../src/services/buildingService';
-import IBuildingRepo from '../../src/services/IRepos/IBuildingRepo';
+import mocks from "../mocks";
+import FloorService from "../../src/services/floorService";
+import IFloorRepo from "../../src/repos/IRepos/IFloorRepo";
+import IBuildingRepo from "../../src/repos/IRepos/IBuildingRepo";
 
 describe('FloorService', () => {
   let floorService: FloorService;

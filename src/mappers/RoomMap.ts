@@ -1,5 +1,5 @@
 import { Mapper } from '../core/infra/Mapper';
-import { Room } from '../domain/room';
+import { Room } from '../domain/room/room';
 
 export class RoomMap extends Mapper<Room> {
   public static toPersistence(room: Room): any {

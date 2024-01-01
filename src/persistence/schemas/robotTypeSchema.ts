@@ -1,6 +1,6 @@
-import { IRobotTypePersistence } from '../../dataschema/IRobotTypePersistence';
-import mongoose from 'mongoose';
-import { TaskTypes } from '../../domain/TaskTypes';
+import { IRobotTypePersistence } from "../../dataschema/IRobotTypePersistence";
+import mongoose from "mongoose";
+import { TaskType } from "../../domain/task/TaskType";
 
 const RobotTypeSchema = new mongoose.Schema(
   {
@@ -8,7 +8,7 @@ const RobotTypeSchema = new mongoose.Schema(
     brand: { type: String, required: true },
     model: { type: String, required: true },
     robotType: { type: String, required: true, },
-    taskTypes: { type: [String], enum: Object.values(TaskTypes), required: true, }
+    taskTypes: { type: [String], enum: Object.values(TaskType), required: true }
   },
   {
     timestamps: true,

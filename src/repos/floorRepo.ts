@@ -1,10 +1,10 @@
 import { Service, Inject } from 'typedi';
 import mongoose, { Document, Model } from 'mongoose';
 
-import IFloorRepo from '../services/IRepos/IFloorRepo';
+import IFloorRepo from "./IRepos/IFloorRepo";
 import { IFloorPersistence } from '../dataschema/IFloorPersistence';
-import { Floor } from '../domain/floor';
-import { FloorId } from '../domain/floorId';
+import { Floor } from '../domain/floor/floor';
+import { FloorId } from '../domain/floor/floorId';
 import { FloorMap } from '../mappers/FloorMap';
 
 @Service()
@@ -39,7 +39,7 @@ export default class FloorRepo implements IFloorRepo {
 
         return FloorMap.toDomain(floorCreated);
       } else {
-        
+
         floorDocument.number = floor.number;
         floorDocument.buildingId = floor.buildingId;
         floorDocument.floorMap = floor.floorMap;

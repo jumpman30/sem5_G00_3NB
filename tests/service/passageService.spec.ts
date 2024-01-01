@@ -1,10 +1,9 @@
-import mocks from '../mocks';
-import PassageService from '../../src/services/passageService';
-import IPassageRepo from '../../src/services/IRepos/IPassageRepo';
-import { Result } from '../../src/core/logic/Result';
-import IFloorRepo from '../../src/services/IRepos/IFloorRepo';
-import { PassageDbProjection } from '../../src/types';
-import exp = require('constants');
+import mocks from "../mocks";
+import PassageService from "../../src/services/passageService";
+import IPassageRepo from "../../src/repos/IRepos/IPassageRepo";
+import { Result } from "../../src/core/logic/Result";
+import IFloorRepo from "../../src/repos/IRepos/IFloorRepo";
+import { PassageDbProjection } from "../../src/types";
 
 describe('PassageService', () => {
   let passageService: PassageService;

@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
-import { Inject, Service } from 'typedi';
-import config from '../../config';
-import { Result } from '../core/logic/Result';
-import { BaseController } from '../core/infra/BaseController';
-import IFloorService from '../services/IServices/IFloorService';
-import IBuildingController from './IControllers/IBuildingController';
-import IBuildingService from '../services/IServices/IBuildingService';
+import { NextFunction, Request, Response } from "express";
+import { Inject, Service } from "typedi";
+import config from "../../config";
+import { Result } from "../core/logic/Result";
+import { BaseController } from "../core/infra/BaseController";
+import IFloorService from "../services/IServices/IFloorService";
+import IBuildingController from "./IControllers/IBuildingController";
+import IBuildingService from "../services/IServices/IBuildingService";
 import { IBuildingUpdateDto } from "../dto/IBuidlingUpdateDto";
 import { IBuildingDto } from "../dto/IBuildingDto";
 
@@ -25,7 +25,11 @@ export default class BuildingController extends BaseController
     throw new Error('Method not implemented.');
   }
 
-  public async createBuilding(req: Request, res: Response, next: NextFunction) {
+  public async createBuilding(
+    req: Request,
+    res: Response,
+    _next: NextFunction
+  ) {
     try {
       const buildingIdOrError = (await this.buildingService.save(
         req.body as IBuildingDto,
@@ -40,23 +44,29 @@ export default class BuildingController extends BaseController
     }
   }
 
-  public async updateBuilding(req: Request, res: Response, next: NextFunction) {
+  public async updateBuilding(
+    req: Request,
+    res: Response,
+    _next: NextFunction
+  ) {
     try {
-      const buildingUpdateOrError = await this.buildingService.update(req.body as IBuildingUpdateDto) as Result<IBuildingDto>
+      const buildingUpdateOrError = (await this.buildingService.update(
+        req.body as IBuildingUpdateDto
+      )) as Result<IBuildingDto>;
 
       if (buildingUpdateOrError.isFailure) {
-        return res.status(400).json(buildingUpdateOrError.error.toString())
+        return res.status(400).json(buildingUpdateOrError.error.toString());
       }
       return this.ok(res, buildingUpdateOrError.getValue());
     } catch (e) {
-        return this.fail(e);
+      return this.fail(e);
     }
   }
 
   public async getBuildingByBuildingId(
     req: Request,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction
   ) {
     try {
       const buildingId = req.query.buildingId as string;
@@ -80,7 +90,7 @@ export default class BuildingController extends BaseController
     } catch (e) {
       return res.status(500).json(e);
     }
-}
+  }
 
   public async getFloorsByBuildingId(
     req: Request,
@@ -151,7 +161,11 @@ export default class BuildingController extends BaseController
     }
   }
 
-  public async getAllBuildings(req: Request, res: Response, next: NextFunction) {
+  public async getAllBuildings(
+    _req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const buildings = await this.buildingService.getAllBuildings();
 
@@ -162,6 +176,5 @@ export default class BuildingController extends BaseController
     } catch (e) {
       return next(e);
     }
-    return
   }
 }

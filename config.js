@@ -39,7 +39,9 @@ export default {
   api: {
     prefix: '/api',
   },
-
+  /**
+   * Controllers configs
+   */
   controllers: {
     role: {
       name: 'RoleController',
@@ -81,8 +83,14 @@ export default {
       name: 'ElevatorController',
       path: '../controllers/elevatorController',
     },
+    task: {
+      name: 'TaskController',
+      path: '../controllers/taskController',
+    },
   },
-
+  /**
+   * Repos configs
+   */
   repos: {
     role: {
       name: 'RoleRepo',
@@ -124,8 +132,14 @@ export default {
       name: 'ElevatorRepo',
       path: '../repos/elevatorRepo',
     },
+    task: {
+      name: 'TaskRepo',
+      path: '../repos/taskRepo',
+    },
   },
-
+  /**
+   * Services configs
+   */
   services: {
     role: {
       name: 'RoleService',
@@ -162,6 +176,10 @@ export default {
     elevator: {
       name: 'ElevatorService',
       path: '../services/elevatorService',
+    },
+    task: {
+      name: 'TaskService',
+      path: '../services/taskService',
     },
   },
 };

@@ -1,0 +1,26 @@
+@startuml
+participant "User" as User
+box "RobDroneGo_SPA" #LightSeaGreen
+participant "User Interface: \nRobDroneGo (SPA)" as UI
+
+
+end box
+box "RobDroneGo_TaskManagment" #LightBlue
+participant "TaskManagment" as TaskManagment
+end box
+
+
+activate User
+User -> UI: Request new task
+activate UI
+note over UI: Need to be developed
+
+UI -> TaskManagment: POST /Task (json)
+note over TaskManagment: See SD_US460_RequireTask
+TaskManagment -> UI: HTTP 200 OK\njson(responseDTO)
+deactivate TaskManagment
+UI -> User: Show confirmation of task creation
+deactivate UI
+deactivate User
+
+@enduml

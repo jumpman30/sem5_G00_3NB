@@ -1,12 +1,12 @@
-import { Service, Inject } from 'typedi';
+import { Inject, Service } from "typedi";
 
-import IRobotTypeRepo from '../services/IRepos/IRobotTypeRepo';
-import { RobotType } from '../domain/RobotType';
-import { RobotTypeId } from '../domain/RobotTypeId';
-import { RobotTypeMap } from '../mappers/RobotTypeMap';
+import IRobotTypeRepo from "./IRepos/IRobotTypeRepo";
+import { RobotType } from "../domain/robotType/RobotType";
+import { RobotTypeId } from "../domain/robotType/RobotTypeId";
+import { RobotTypeMap } from "../mappers/RobotTypeMap";
 
-import { Document, FilterQuery, Model } from 'mongoose';
-import { IRobotTypePersistence } from '../dataschema/IRobotTypePersistence';
+import { Document, FilterQuery, Model } from "mongoose";
+import { IRobotTypePersistence } from "../dataschema/IRobotTypePersistence";
 
 @Service()
 export default class RobotTypeRepo implements IRobotTypeRepo {

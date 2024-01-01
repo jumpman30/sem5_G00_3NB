@@ -1,13 +1,7 @@
-@startuml
-' !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
-' uncomment the following line and comment the first to use locally
-!include C4_Context.puml
+@startuml RobDroneGo System Context
+!include ./../../C4-PlantUML/C4_Container.puml
 
-'LAYOUT_TOP_DOWN()
-'LAYOUT_AS_SKETCH()
-
-
-title System Landscape diagram for RobDroneGo
+SHOW_LEGEND()
 
 Enterprise_Boundary(c0, "RobDrones") {
 
@@ -17,20 +11,20 @@ Enterprise_Boundary(c0, "RobDrones") {
 
 System_Ext(sms_system, "SMS system", "External system for sending text messages.")
 
-
 Person(admin, "Administrador de sistema", "Gere os utilizadores e as suas permissões.")
-Person(Fmanager, "Gestor de frota", "Gere os dados dos robots e drones e tipos de tarefas.")
-Person(Cmanager, "Gestor de campus", " Gere os dados dos percursos e mapas.")
+Person(fManager, "Gestor de frota", "Gere os dados dos robots e drones e tipos de tarefas.")
+Person(cManager, "Gestor de campus", " Gere os dados dos percursos e mapas.")
 Person(user, "Utente (aluno, docente, funcionário)", "Pede a execução de tarefas.")
 
+Rel_Down(admin, RobDroneGo_system, "Uses", "https")
+Rel_Down(fManager, RobDroneGo_system, "Uses", "https")
+Rel_Down(cManager, RobDroneGo_system, "Uses", "https")
+Rel_Down(user, RobDroneGo_system, "Uses", "https")
 
-Rel_Down(admin, RobDroneGo_system, "Uses")
-Rel_Down(Fmanager, RobDroneGo_system, "Uses")
-Rel_Down(Cmanager, RobDroneGo_system, "Uses")
-Rel_Down(user, RobDroneGo_system, "Uses")
+Rel_Up(sms_system, user, "Sends sms to")
+Rel_Up(sms_system, cManager, "Sends sms to")
+Rel_Up(sms_system, fManager, "Sends sms to")
 
-Rel_Back(Fmanager, sms_system, "Sends sms to")
-Rel_Neighbor(RobDroneGo_system, sms_system, "Uses")
+Rel_Neighbour(RobDroneGo_system, sms_system, "Uses")
 
-SHOW_LEGEND()
 @enduml

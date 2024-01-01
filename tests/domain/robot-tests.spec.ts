@@ -1,4 +1,4 @@
-import { RobotType, RobotTypeProps } from '../../src/domain/RobotType';
+import { RobotType, RobotTypeProps } from '../../src/domain/robotType/RobotType';
 import { Robot } from '../../src/domain/robot/robot';
 import { RobotTypeMap } from '../../src/mappers/RobotTypeMap';
 
@@ -115,7 +115,7 @@ const testCases = [
 ]
 
 describe('RobotType', () => {
-  
+
   test.each(testCases)('creates a Robot with invalid data', async (data) => {
     const result = Robot.create(data.robotData);
     expect(result.isSuccess).toBe(false);

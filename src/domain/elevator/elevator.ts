@@ -3,7 +3,7 @@ import { UniqueEntityID } from "../../core/domain/UniqueEntityID";
 import { Result } from "../../core/logic/Result";
 import { IElevatorDto } from "../../dto/IElevatorDto";
 import { IRobotDTO } from "../../dto/IRobotDTO";
-import { RobotType } from "../RobotType";
+import { RobotType } from "../robotType/RobotType";
 import { ElevatorModel, ElevatorModelProps } from "./elevatorModel";
 import { ElevatorSerialNumber } from "./elevatorSerialNumber";
 
@@ -20,7 +20,7 @@ export class Elevator extends AggregateRoot<ElevatorProps> {
   get id (): UniqueEntityID {
     return this._id;
   }
-  
+
   get serialNumber (): string {
     return this.props.serialNumber.value;
   }

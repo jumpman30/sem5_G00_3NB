@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
-import RoomController from '../../src/controllers/roomController';
-import IRoomService from '../../src/services/IRepos/IRoomService';
-import { Result } from '../../src/core/logic/Result';
-import mocks from '../mocks';
+import { NextFunction, Request, Response } from "express";
+import RoomController from "../../src/controllers/roomController";
+import IRoomService from "../../src/repos/IRepos/IRoomService";
+import { Result } from "../../src/core/logic/Result";
+import mocks from "../mocks";
 
 describe('RoomController', () => {
   let roomController: RoomController;

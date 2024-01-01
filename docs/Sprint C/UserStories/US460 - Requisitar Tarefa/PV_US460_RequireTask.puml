@@ -1,0 +1,17 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Sequence.puml
+
+SHOW_ELEMENT_DESCRIPTIONS()
+
+Person(user, "User", "People who uses the application")
+System_Boundary(c1, 'RobDroneGo')
+  Container(frontend_app, "RobDroneGo (SPA)", "React", "Allows users to access the application")
+  Container(backend_app, "RobDroneGo (API)", "NodeJS", "Provides API for the application")
+  Container(db, "RobDroneGo (DB)", "MongoDB", "Stores users and drones data")
+Boundary_End()
+
+Rel(user, frontend_app, "Uses", "HTTPS")
+Rel(frontend_app, backend_app, "Uses", "HTTPS")
+Rel(backend_app, db, "Reads from and writes to", "HTTPS")
+
+@enduml

@@ -1,4 +1,4 @@
-import { FloorMap } from "../domain/floorMap";
+import { FloorMap } from "../domain/floor/floorMap";
 
 export interface IFloorPersistence {
   _id: string;

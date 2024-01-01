@@ -3,13 +3,13 @@ import config from '../../config';
 import { Result } from '../core/logic/Result';
 import IFloorService from './IServices/IFloorService';
 import { IFloorDto } from '../dto/IFloorDto';
-import { Floor } from '../domain/floor';
-import IFloorRepo from './IRepos/IFloorRepo';
+import { Floor } from '../domain/floor/floor';
+import IFloorRepo from "../repos/IRepos/IFloorRepo";
 import IBuildingService from './IServices/IBuildingService';
 import { FloorMap as FloorMapper } from '../mappers/FloorMap';
 import { floor } from 'lodash';
-import IBuildingRepo from './IRepos/IBuildingRepo';
-import { FloorMap } from '../domain/floorMap';
+import IBuildingRepo from "../repos/IRepos/IBuildingRepo";
+import { FloorMap } from '../domain/floor/floorMap';
 
 @Service()
 export default class FloorService implements IFloorService {
@@ -31,7 +31,7 @@ export default class FloorService implements IFloorService {
 
       console.log(floor)
       let floorEdited = await this.floorRepo.editSave(floor);
-  
+
       return Result.ok<IFloorDto>(FloorMapper.toDTO(floorEdited));
 
       } catch (e) {

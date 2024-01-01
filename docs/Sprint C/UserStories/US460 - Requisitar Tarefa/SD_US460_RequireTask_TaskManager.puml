@@ -1,0 +1,91 @@
+
+@startuml
+participant "User" as User
+box "RobDroneGo_SPA" #LightSeaGreen
+participant "User Interface: \nRobDroneGo (SPA)" as UI
+end box
+box "RobDroneGo_TaskManagment" #LightBlue
+participant "Router" as Router
+participant "TaskController" as Controller
+participant "TaskService" as Service
+participant "TaskRepository" as Repository
+participant "TaskMapper" as Mapper
+participant "TaskCreateResponseDTO" as CreateResponseDTO
+participant "TaskSchema" as Schema
+participant "TaskModel" as Model
+participant "TaskCreateRequestDTO" as CreateRequestDTO
+participant "Persistence" as Persistence
+end box
+
+activate User
+User -> UI: Request new task
+activate UI
+note over UI: See SD_US460_RequireTask_SPA
+UI -> Router: POST /Task (json)
+
+
+activate Router
+
+Router -> Controller: requestDTO =\ncreateTask(json)
+activate Controller
+
+Controller -> Controller: validate(json)
+Controller -> Mapper: requestDTO = createCreateDTO()
+activate Mapper
+create CreateRequestDTO
+
+Mapper -> CreateRequestDTO: requestDTO: <<new>>
+deactivate Mapper
+
+Controller -> Service: responseDTO =\ncreate(requestDTO)
+activate Service
+
+Service -> Service: validate(requestDTO)
+Service -> Mapper: task = toModel(requestDTO)
+activate Mapper
+create Model
+
+Mapper -> Model: task: <<new>>
+deactivate Mapper
+
+Service -> Repository: entity =\nsave(task)
+activate Repository
+
+Repository -> Mapper: schema = toSchema(entity)
+activate Mapper
+create Schema
+
+Mapper -> Schema: schema: <<new>>
+deactivate
+
+Repository -> Persistence: persist(schema)
+activate Persistence
+deactivate Persistence
+
+Repository -> Mapper: entity = toModel(schema)
+activate Mapper
+
+Mapper -> Model: entity: <<new>>
+activate Model
+deactivate Model
+deactivate Mapper
+
+Repository --> Service: entity
+deactivate Repository
+
+Service -> Mapper: responseDTO = createResponseDTO(entity)
+activate Mapper
+create CreateResponseDTO
+Mapper -> CreateResponseDTO: responseDTO <<new>>
+deactivate Mapper
+
+Service --> Controller: responseDTO
+deactivate Service
+
+Controller --> Router: responseDTO
+deactivate Controller
+Router --> UI: HTTP 200 OK\njson(responseDTO)
+deactivate Router
+UI --> User: Shows to user the new task request
+deactivate UI
+@enduml

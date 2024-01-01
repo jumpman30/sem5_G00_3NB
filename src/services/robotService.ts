@@ -1,14 +1,14 @@
-import { Service, Inject } from 'typedi';
+import { Inject, Service } from "typedi";
 import config from "../../config";
-import { IRobotDTO } from '../dto/IRobotDTO';
+import { IRobotDTO } from "../dto/IRobotDTO";
 import { Robot } from "../domain/robot/robot";
-import IRobotRepo from '../services/IRepos/IRobotRepo';
-import IRobotService from './IServices/IRobotService';
+import IRobotRepo from "../repos/IRepos/IRobotRepo";
+import IRobotService from "./IServices/IRobotService";
 import { Result } from "../core/logic/Result";
 import { RobotMap } from "../mappers/RobotMap";
-import IRobotTypeRepo from './IRepos/IRobotTypeRepo';
-import { ICreateRobotRequestDto } from '../dto/ICreateRobotRequestDto';
-import { ICreateRobotResponseDto } from '../dto/ICreateRobotResponseDto';
+import IRobotTypeRepo from "../repos/IRepos/IRobotTypeRepo";
+import { ICreateRobotRequestDto } from "../dto/ICreateRobotRequestDto";
+import { ICreateRobotResponseDto } from "../dto/ICreateRobotResponseDto";
 
 @Service()
 export default class RobotService implements IRobotService {
@@ -36,7 +36,7 @@ export default class RobotService implements IRobotService {
   public async getAll(): Promise<Result<IRobotDTO[]>> {
     try{
       let Robot = await this.RobotRepo.getAll();
-      
+
       if (Robot === null) {
         return Result.fail("Robot not found");
       }

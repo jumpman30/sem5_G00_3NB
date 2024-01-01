@@ -1,0 +1,32 @@
+@startuml RobDroneGo System Context
+
+!include ./../../C4-PlantUML/C4_Context.puml
+
+title RobDroneGo System Context
+
+LAYOUT_WITH_LEGEND()
+
+Enterprise_Boundary(c0, "RobDrones") {
+
+    System(RobDroneGo_system, "RobDroneGo", "sistema de execução de tarefas de uma frota de robots e drones")
+
+}
+
+System_Ext(sms_system, "SMS system", "External system for sending text messages.")
+
+Person(admin, "Administrador de sistema", "Gere os utilizadores e as suas permissões.")
+Person(fManager, "Gestor de frota", "Gere os dados dos robots e drones e tipos de tarefas.")
+Person(cManager, "Gestor de campus", " Gere os dados dos percursos e mapas.")
+Person(user, "Utente (aluno, docente, funcionário)", "Pede a execução de tarefas.")
+
+Rel_Up(sms_system, user, "Sends sms to")
+Rel_Down(sms_system, fManager, "Sends sms to")
+
+Rel_Left(RobDroneGo_system, sms_system, "Uses")
+
+Rel_Up(admin, RobDroneGo_system, "Uses", "https")
+Rel_Up(fManager, RobDroneGo_system, "Uses", "https")
+Rel_Down(cManager, RobDroneGo_system, "Uses", "https")
+Rel_Down(user, RobDroneGo_system, "Uses", "https")
+
+@enduml

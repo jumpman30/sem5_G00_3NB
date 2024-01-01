@@ -1,7 +1,7 @@
 import sinon from "sinon";
 import { expect } from "chai";
 import  elevatorService  from "../../src/services/elevatorService";
-import { RobotType, RobotTypeProps } from "../../src/domain/RobotType";
+import { RobotType, RobotTypeProps } from "../../src/domain/robotType/RobotType";
 import BuildingRepo from "../../src/repos/buildingRepo";
 import IRobotTypeDto from "../../src/dto/IRobotTypeDTO";
 import AlreadyExistsException from "../../src/core/infra/AlreadyExistsException";

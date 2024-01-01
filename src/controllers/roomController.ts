@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
-import { Inject, Service } from 'typedi';
-import config from '../../config';
-import { Result } from '../core/logic/Result';
-import { BaseController } from '../core/infra/BaseController';
-import IRoomController from './IControllers/IRoomController';
-import IRoomService from '../services/IRepos/IRoomService';
-import { IRoomDto } from '../dto/IRoomDto';
+import { NextFunction, Request, Response } from "express";
+import { Inject, Service } from "typedi";
+import config from "../../config";
+import { Result } from "../core/logic/Result";
+import { BaseController } from "../core/infra/BaseController";
+import IRoomController from "./IControllers/IRoomController";
+import IRoomService from "../repos/IRepos/IRoomService";
+import { IRoomDto } from "../dto/IRoomDto";
 
 @Service()
 export default class RoomController extends BaseController

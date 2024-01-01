@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { IFloorPersistence } from '../../dataschema/IFloorPersistence';
-import { FloorMap } from '../../domain/floorMap';
+import { FloorMap } from '../../domain/floor/floorMap';
 
 const Floor = new mongoose.Schema(
   {

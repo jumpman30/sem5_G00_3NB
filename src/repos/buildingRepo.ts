@@ -1,8 +1,8 @@
 import { Inject, Service } from 'typedi';
 import { Document, FilterQuery, Model } from 'mongoose';
-import IBuildingRepo from '../services/IRepos/IBuildingRepo';
-import { Building } from '../domain/building';
-import { BuildingId } from '../domain/buildingId';
+import IBuildingRepo from "./IRepos/IBuildingRepo";
+import { Building } from '../domain/building/building';
+import { BuildingId } from '../domain/building/buildingId';
 import { IBuildingPersistence } from '../dataschema/IBuildingPersistence';
 import { BuildingMap } from '../mappers/BuidingMap';
 
@@ -19,7 +19,7 @@ export default class BuildingRepo implements IBuildingRepo {
 
     try {
       const buildingDb = await this.buildingSchema.create(rawRoom);
-      return new BuildingId(buildingDb.domainId);
+      return BuildingId.create(buildingDb.domainId);
     } catch (e) {
       throw e;
     }
@@ -48,6 +48,7 @@ export default class BuildingRepo implements IBuildingRepo {
 
     return !!buildingDocument === true;
   }
+
   public async update(building: Building): Promise<Building> {
     try {
           const buildingId = building.domainId;

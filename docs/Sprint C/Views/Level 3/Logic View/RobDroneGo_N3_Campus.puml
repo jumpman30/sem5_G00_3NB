@@ -1,0 +1,84 @@
+@startuml "RobDroneGo - CM Component Diagram"
+
+!include ./../../C4-PlantUML/C4_Component.puml
+
+
+
+title Component Diagram - Campus Management System
+
+LAYOUT_WITH_LEGEND()
+LAYOUT_TOP_DOWN()
+
+AddBoundaryTag("fl", $bgColor="lightgreen", $fontColor="green", $borderColor="green")
+AddBoundaryTag("il", $bgColor="mediumslateblue", $fontColor="purple", $borderColor="purple")
+AddBoundaryTag("al", $bgColor="orange", $fontColor="orangered", $borderColor="orangered")
+AddBoundaryTag("el", $bgColor="lightsalmon", $fontColor="red", $borderColor="red")
+
+Component(campus_management_API, "Campus Management API") {
+}
+
+
+Component(campus_management_System, "Campus Management System") {
+
+  Boundary(famework_layer, "Framework and Drivers Layer", $type="BOUNDARY TYPE", $tags="fl") {
+
+    Component(route, "Route") {
+    }
+    Component(persistence, "Persistence") {
+    }
+  }
+
+  Component(dataModel, "Data Model") {
+  }
+
+  Boundary(interface_layer, "Interface Adapters Layer", $type="BOUNDARY TYPE", $tags="il") {
+
+    Component(controller, "Controller") {
+    }
+    Component(repository, "Repository") {
+    }
+
+  }
+
+  Component(dto, "DTO") {
+  }
+
+  Boundary(application_layer, "Application and Business Rules", $type="BOUNDARY TYPE", $tags="al") {
+
+    Component(service, "Services") {
+    }
+  }
+
+    Boundary(enterprise_layer, "Enterprise Business Rules", $type="BOUNDARY TYPE", $tags="el") {
+
+    Component(domain, "Domain Model DDD") {
+    }
+  }
+
+
+
+}
+
+ComponentDb(nosql, "NoSQL Data Store", "MongoDB", "Stores buildings, floor plans, elevators and passages"){
+}
+
+
+Rel_D(campus_management_API, route, "Uses")
+Rel_D(route, controller, "Uses", "controllerAPI")
+Rel_D(controller, service, "Uses", "serviceAPI")
+Rel_U(service, dto, "Uses","dtoAPI")
+Rel(controller, dto,"Uses", "dtoAPI")
+Rel(domain, repository, "Uses", "repositoryAPI")
+Rel_D(service, domain, "Uses", "modelAPI")
+
+Rel_R(persistence, nosql, "Reads from and writes to", "mongoAPI")
+Rel_U(service, repository, "Uses", "repositoryAPI")
+Rel_U(repository, persistence, "Uses", "persistenceAPI")
+Rel(persistence, dataModel, "Uses", "dataModelAPI")
+Rel_U(repository, dataModel, "Uses", "dataModelAPI")
+
+Lay_L(route,persistence)
+Lay_L(controller,repository)
+
+
+@enduml

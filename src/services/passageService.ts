@@ -1,14 +1,14 @@
-import { Service, Inject } from 'typedi';
-import config from '../../config';
-import { Result } from '../core/logic/Result';
-import IPassageService from './IServices/IPassageService';
-import IPassageRepo from './IRepos/IPassageRepo';
-import { IPassageDto } from '../dto/IPassageDto';
-import { Passage } from '../domain/passage';
-import { IUpdatePassageDto } from '../dto/IUpdatePassageDto';
-import { PassageDbProjection, UpdateBuildingFilter } from '../types';
-import IFloorRepo from './IRepos/IFloorRepo';
-import { IPassageBetweenTwoBuildingsDto } from '../dto/IPassageBetweenTwoBuildingsDto';
+import { Inject, Service } from "typedi";
+import config from "../../config";
+import { Result } from "../core/logic/Result";
+import IPassageService from "./IServices/IPassageService";
+import IPassageRepo from "../repos/IRepos/IPassageRepo";
+import { IPassageDto } from "../dto/IPassageDto";
+import { Passage } from "../domain/passage/passage";
+import { IUpdatePassageDto } from "../dto/IUpdatePassageDto";
+import { PassageDbProjection, UpdateBuildingFilter } from "../types";
+import IFloorRepo from "../repos/IRepos/IFloorRepo";
+import { IPassageBetweenTwoBuildingsDto } from "../dto/IPassageBetweenTwoBuildingsDto";
 
 @Service()
 export default class PassageService implements IPassageService {
