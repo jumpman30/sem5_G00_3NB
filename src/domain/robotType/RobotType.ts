@@ -5,7 +5,7 @@ import { Result } from "../../core/logic/Result";
 import { RobotTypeId } from "./RobotTypeId";
 
 import { Guard, IGuardResult } from "../../core/logic/Guard";
-import { TaskTypes } from "../task/TaskType";
+import { TaskType } from "../task/TaskType";
 import { TextUtil } from "../../utils/TextUtil";
 
 export interface RobotTypeProps {
@@ -95,7 +95,7 @@ export class RobotType extends Entity<RobotTypeProps> {
               };
         }
         for (const taskType of taskTypes) {
-            if (!Object.values(TaskTypes).includes(taskType)) {
+          if (!Object.values(TaskType).includes(taskType)) {
                 return {
                     succeeded: false,
                     message: `Robot type ${taskType} is not recognized as a valid task type, please add a PickupAndDelivery and/or a Surveillance type.`,

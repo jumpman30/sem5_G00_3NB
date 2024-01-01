@@ -75,7 +75,7 @@ export default class TaskController
     }
   }
 
-  public async getTaskByTaskId(
+  public async getTaskById(
     req: Request,
     res: Response,
     _next: NextFunction
