@@ -1,9 +1,9 @@
-import { RoomId } from '../../src/domain/room/roomId';
-import { Location } from '../../src/domain/location';
-import { Room } from '../../src/domain/room/room';
-import { FloorId } from '../../src/domain/floor/floorId';
-import { BuildingId } from '../../src/domain/building/buildingId';
-import { PassageId } from '../../src/domain/passage/passageId';
+import { RoomId } from "../../src/domain/room/roomId";
+import { Location } from "../../src/domain/location";
+import { Room } from "../../src/domain/room/room";
+import { FloorId } from "../../src/domain/floor/floorId";
+import { BuildingId } from "../../src/domain/building/buildingId";
+import { PassageId } from "../../src/domain/passage/passageId";
 
 const buildRoom = (data?: Partial<Room>) => {
   return  {
@@ -84,7 +84,7 @@ const buildPassageDto = (data?) => {
 
 const buildBuilding = (data?) => {
   return {
-    id: new BuildingId('test'),
+    id: BuildingId.create("test"),
     designation: 'test',
     length: 'test',
     width: 'test',
