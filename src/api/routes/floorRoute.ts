@@ -1,13 +1,20 @@
-import { Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 import { Container } from 'typedi';
 import config from '../../../config';
 import IFloorController from '../../controllers/IControllers/IFloorController';
+import middlewares from '../middlewares';
 
 const route = Router();
 
 export default (app: Router) => {
   app.use('/floor', route);
+  app.use((req: Request, res: Response, next: NextFunction) =>
+    middlewares.guarder(req, res, next, [
+      'admin',
+      'campusManager',
+    ]),
+  );
 
   const ctrl = Container.get(config.controllers.floor.name) as IFloorController;
 
