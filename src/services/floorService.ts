@@ -68,6 +68,7 @@ export default class FloorService implements IFloorService {
     }
 
     const floors = await this.floorRepo.findByBuildingId(buildingId);
+    console.log(buildingId);
     if (!floors) {
       return Result.fail<IFloorDto[]>(`No floors found for building with ID ${buildingId}.`);
     }

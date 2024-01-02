@@ -1,14 +1,22 @@
-import { Router } from "express";
-import { celebrate, Joi } from "celebrate";
-import { Container } from "typedi";
-import config from "../../../config";
-import IBuildingController from "../../controllers/IControllers/IBuildingController";
-import IElevatorController from "../../controllers/IControllers/IElevatorController";
+import { Router, Request, Response, NextFunction } from 'express';
+
+import { celebrate, Joi } from 'celebrate';
+import { Container } from 'typedi';
+import config from '../../../config';
+import IBuildingController from '../../controllers/IControllers/IBuildingController';
+import IElevatorController from '../../controllers/IControllers/IElevatorController';
+import middlewares from '../middlewares';
 
 const route = Router();
 
 export default (app: Router) => {
   app.use('/building', route);
+  app.use((req: Request, res: Response, next: NextFunction) =>
+    middlewares.guarder(req, res, next, [
+      'admin',
+      'campusManager',
+    ]),
+  );
 
   const elevatorCtrl = Container.get(
     config.controllers.elevator.name

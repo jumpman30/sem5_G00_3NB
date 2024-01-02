@@ -1,15 +1,22 @@
-import { Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 
 import { Container } from 'typedi';
 import IRobotController from '../../controllers/IControllers/IRobotController';
 
 import config from "../../../config";
+import middlewares from '../middlewares';
 
 const robot = Router();
 
 export default (app: Router) => {
   app.use('/robots', robot);
+  app.use((req: Request, res: Response, next: NextFunction) =>
+    middlewares.guarder(req, res, next, [
+      'admin',
+      'fleetManager',
+    ]),
+  );
 
   const ctrl = Container.get(config.controllers.robot.name) as IRobotController;
 
