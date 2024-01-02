@@ -43,7 +43,10 @@ export class PickupDeliveryTask extends Task {
     const guardedProps = [
       { argument: props.pickupRoomId, argumentName: 'pickupRoomId' },
       { argument: props.deliveryRoomId, argumentName: 'deliveryRoomId' },
-      { argument: props.deliveryConfirmationCode, argumentName: 'deliveryConfirmationCode' },
+      {
+        argument: props.deliveryConfirmationCode,
+        argumentName: 'deliveryConfirmationCode',
+      },
       { argument: props.description, argumentName: 'description' },
     ];
 

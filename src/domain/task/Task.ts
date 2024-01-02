@@ -65,4 +65,8 @@ export class Task extends AggregateRoot<TaskProps> {
     }
   }
 
+  public updateStatus(newStatus: TaskStatus): void {
+    this.props.taskStatus = newStatus;
+    this.props.updatedAt = new Date();
+  }
 }
