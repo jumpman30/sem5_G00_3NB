@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 import { Container } from 'typedi';
 import config from '../../../config';
-import ITaskController from "../../controllers/IControllers/ITaskController";
+import ITaskController from '../../controllers/IControllers/ITaskController';
 const route = Router();
 
 export default (app: Router) => {
@@ -10,7 +10,7 @@ export default (app: Router) => {
 
   const ctrl = Container.get(config.controllers.task.name) as ITaskController;
 
-route.post(
+  route.post(
     '/surveillance',
     celebrate({
       body: Joi.object({
@@ -46,9 +46,7 @@ route.post(
     (req, res, next) => ctrl.createPickupDeliveryTask(req, res, next),
   );
 
-  route.get(
-    '',(req, res, next) => ctrl.getAllTasks(req, res, next),
-  );
+  route.get('', (req, res, next) => ctrl.getAllTasks(req, res, next));
 
   route.get(
     '/:taskId',
@@ -60,4 +58,28 @@ route.post(
     (req, res, next) => ctrl.getTaskById(req, res, next),
   );
 
-}
+  // ... (código existente)
+
+  route.patch(
+    '/:taskId',
+    celebrate({
+      params: Joi.object({
+        taskId: Joi.string().required(),
+      }),
+      body: Joi.object({
+        // Adicione aqui os campos que você deseja permitir que sejam atualizados
+        user: Joi.string(),
+        taskType: Joi.string(),
+        taskStatus: Joi.string(),
+        pickupRoomId: Joi.string(),
+        deliveryRoomId: Joi.string(),
+        deliveryConfirmationCode: Joi.number(),
+        description: Joi.string(),
+        buildingId: Joi.string(),
+        floorId: Joi.string(),
+        emergencyContact: Joi.string(),
+      }),
+    }),
+    (req, res, next) => ctrl.updateTask(req, res, next),
+  );
+};
