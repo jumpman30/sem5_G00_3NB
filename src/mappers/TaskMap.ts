@@ -1,13 +1,17 @@
-import { SurveillanceTask } from "../domain/task/SurveillanceTask";
-import { PickupDeliveryTask } from "../domain/task/PickupDeliveryTask";
-import { requestPickupDeliveryTaskDto, requestSurveillanceTaskDto } from "../dto/ITaskDto";
-import { Document, Model } from "mongoose";
-import { ITaskPersistence } from "../dataschema/ITaskPersistence";
-import { Task } from "../domain/task/Task";
+import { SurveillanceTask } from '../domain/task/SurveillanceTask';
+import { PickupDeliveryTask } from '../domain/task/PickupDeliveryTask';
+import {
+  requestPickupDeliveryTaskDto,
+  requestSurveillanceTaskDto,
+} from '../dto/ITaskDto';
+import { Document, Model } from 'mongoose';
+import { ITaskPersistence } from '../dataschema/ITaskPersistence';
+import { Task } from '../domain/task/Task';
 
 export class TaskMapper {
-
-  static toDto<T extends SurveillanceTask | PickupDeliveryTask | Task >(task: T): requestSurveillanceTaskDto | requestPickupDeliveryTaskDto {
+  static toDto<T extends SurveillanceTask | PickupDeliveryTask | Task>(
+    task: T,
+  ): requestSurveillanceTaskDto | requestPickupDeliveryTaskDto {
     if (task instanceof SurveillanceTask) {
       return this.mapSurveillanceTaskToDto(task);
     } else if (task instanceof PickupDeliveryTask) {
@@ -17,7 +21,9 @@ export class TaskMapper {
     throw new Error('Unsupported task type');
   }
 
-  static toPersistence<T extends SurveillanceTask | PickupDeliveryTask >(task: T): requestSurveillanceTaskDto | requestPickupDeliveryTaskDto {
+  static toPersistence<T extends SurveillanceTask | PickupDeliveryTask>(
+    task: T,
+  ): requestSurveillanceTaskDto | requestPickupDeliveryTaskDto {
     if (task instanceof SurveillanceTask) {
       return this.mapSurveillanceTaskToPersistence(task);
     } else if (task instanceof PickupDeliveryTask) {
@@ -27,7 +33,9 @@ export class TaskMapper {
     throw new Error('Unsupported task type');
   }
 
-  static toDomain(task: Document & ITaskPersistence): SurveillanceTask | PickupDeliveryTask {
+  static toDomain(
+    task: Document & ITaskPersistence,
+  ): SurveillanceTask | PickupDeliveryTask {
     let raw = task.toObject();
     if (raw.taskType === 'Surveillance') {
       return this.mapSurveillanceTaskToDomain(raw);
@@ -38,7 +46,9 @@ export class TaskMapper {
     throw new Error('Unsupported task type');
   }
 
-  private static mapSurveillanceTaskToDto(surveillanceTask: SurveillanceTask): any {
+  private static mapSurveillanceTaskToDto(
+    surveillanceTask: SurveillanceTask,
+  ): any {
     return {
       taskId: surveillanceTask.taskId,
       user: surveillanceTask.user,
@@ -73,7 +83,9 @@ export class TaskMapper {
     return taskOrError.isSuccess ? taskOrError.getValue() : null;
   }
 
-  private static mapPickupDeliveryTaskToDto(pickupDeliveryTask: PickupDeliveryTask): requestPickupDeliveryTaskDto {
+  private static mapPickupDeliveryTaskToDto(
+    pickupDeliveryTask: PickupDeliveryTask,
+  ): requestPickupDeliveryTaskDto {
     return {
       taskId: pickupDeliveryTask.taskId,
       user: pickupDeliveryTask.user,

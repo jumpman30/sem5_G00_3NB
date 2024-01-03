@@ -16,27 +16,32 @@ interface TaskDto {
   emergencyContact: string;
 }
 
-export type responseTaskDto = Omit<TaskDto,
-  'pickupRoomId' |
-  'deliveryRoomId' |
-  'deliveryConfirmationCode' |
-  'description' |
-  'buildingId' |
-  'floorId' |
-  'emergencyContact' |
-  'updatedAt' |
-  'createdAt'
-> & Partial<Pick<TaskDto,
-  'pickupRoomId' |
-  'deliveryRoomId' |
-  'deliveryConfirmationCode' |
-  'description' |
-  'buildingId' |
-  'floorId' |
-  'emergencyContact' |
-  'updatedAt' |
-  'createdAt'
->>;
+export type responseTaskDto = Omit<
+  TaskDto,
+  | 'pickupRoomId'
+  | 'deliveryRoomId'
+  | 'deliveryConfirmationCode'
+  | 'description'
+  | 'buildingId'
+  | 'floorId'
+  | 'emergencyContact'
+  | 'updatedAt'
+  | 'createdAt'
+> &
+  Partial<
+    Pick<
+      TaskDto,
+      | 'pickupRoomId'
+      | 'deliveryRoomId'
+      | 'deliveryConfirmationCode'
+      | 'description'
+      | 'buildingId'
+      | 'floorId'
+      | 'emergencyContact'
+      | 'updatedAt'
+      | 'createdAt'
+    >
+  >;
 
 export type requestSurveillanceTaskDto = Omit<
   TaskDto,
@@ -52,4 +57,3 @@ export type requestPickupDeliveryTaskDto = Omit<
   TaskDto,
   'buildingId' | 'floorId' | 'emergencyContact' | 'updatedAt' | 'createdAt'
 >;
-
