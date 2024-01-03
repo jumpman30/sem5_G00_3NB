@@ -233,10 +233,7 @@ export default class TaskService implements ITaskService {
     }
   }
 
-  public async rejectTask(
-    taskId: string,
-    reason: string,
-  ): Promise<Result<responseTaskDto>> {
+  public async rejectTask(taskId: string): Promise<Result<responseTaskDto>> {
     try {
       const existingTask = await this.taskRepo.findByTaskId(taskId);
 
@@ -244,15 +241,13 @@ export default class TaskService implements ITaskService {
         return Result.fail<responseTaskDto>('Task not found');
       }
 
-      // Verifique se a tarefa já foi rejeitada
       if (existingTask.status === TaskStatus.Rejected) {
         return Result.fail<responseTaskDto>('Task is already rejected');
       }
+      2;
 
-      // Atualize o status da tarefa para rejeitado
       existingTask.updateStatus(TaskStatus.Rejected);
 
-      // Salve a tarefa atualizada no repositório
       const updatedTask = await this.taskRepo.update(existingTask);
 
       return Result.ok<responseTaskDto>(
@@ -291,12 +286,10 @@ export default class TaskService implements ITaskService {
         return Result.fail<responseTaskDto[]>('No approved tasks found');
       }
 
-      // Ordene as tarefas por data de updatedAt em ordem decrescente
       approvedTasks.sort(
         (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime(),
       );
 
-      // Mapeie as tarefas para DTOs
       const taskDTOResult = approvedTasks.map(item => TaskMapper.toDto(item));
 
       return Result.ok<responseTaskDto[]>(taskDTOResult);

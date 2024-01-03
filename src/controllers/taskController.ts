@@ -39,8 +39,7 @@ export default class TaskController implements ITaskController {
   public async rejectTask(req: Request, res: Response, _next: NextFunction) {
     try {
       const taskId = req.params.taskId;
-      const reason = req.body.reason; // Certifique-se de incluir uma propriedade 'reason' no corpo da requisição
-      const taskOrError = await this.taskService.rejectTask(taskId, reason);
+      const taskOrError = await this.taskService.rejectTask(taskId);
 
       if (taskOrError.isFailure) {
         return res.status(404).send();

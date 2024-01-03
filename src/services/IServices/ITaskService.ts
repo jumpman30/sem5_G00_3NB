@@ -16,5 +16,5 @@ export default interface ITaskService {
   getAllTasks(): Promise<Result<responseTaskDto[]>>;
 
   approveTask(taskId: string): Promise<Result<responseTaskDto>>;
-  rejectTask(taskId: string, reason: string): Promise<Result<responseTaskDto>>;
+  rejectTask(taskId: string): Promise<Result<responseTaskDto>>;
 }

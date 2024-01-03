@@ -6,7 +6,7 @@ export default interface ITaskController {
   getAllTasks(req: Request, res: Response, next: NextFunction);
   getTaskById(req: Request, res: Response, next: NextFunction);
   updateTask(req: Request, res: Response, next: NextFunction);
-
   approveTask(req: Request, res: Response, next: NextFunction);
   rejectTask(req: Request, res: Response, next: NextFunction);
 }
+
